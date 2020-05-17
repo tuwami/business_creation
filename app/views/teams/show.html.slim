@@ -19,8 +19,8 @@ div.row
               td = history.market_id
               td = history.budget
               td = history.recruiting
-              td [ Edit ]
-              td [ Delete ]
+              td = link_to 'Edit', edit_team_history_path(@team, history)
+              td = link_to 'Delete', team_history_path(@team, history), method: :delete, data: { confirm: 'Are you sure?' }
           end
       - else
         p No histories yet.
