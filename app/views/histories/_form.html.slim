@@ -1,0 +1,22 @@
+= form_with model: @history, local: true do |f|
+  div class="form-group"
+    = f.hidden_field :team_id, class: "form-control"
+  div class="form-group"
+    label Market_id :
+    = f.number_field :market_id, class: "form-control", min: 1, max: 10
+  div class="form-group"
+    = f.hidden_field :fund, class: "form-control"
+  div class="form-group"
+    = f.hidden_field :employee, class: "form-control"
+  div class="form-group"
+    = f.hidden_field :earning, class: "form-control"
+  div class="form-group"
+    label Budget :
+    = f.number_field :budget, class: "form-control", min: 0, max: 100000000
+  div class="form-group"
+    label Recruiting :
+    = f.number_field :recruiting, class: "form-control", min: 0, max: 100
+  div class="text-center"
+    = f.submit "Save", class: "btn btn-primary"
+
+= link_to "Histories", root_path, class: "btn btn-primary"
