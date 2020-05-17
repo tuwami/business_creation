@@ -1,0 +1,8 @@
+= form_with model: @team, local: true do |f|
+  div class="form-group"
+    label Name :
+    = f.text_field :name, class: "form-control", min: 0, max: 100
+  div class="text-center"
+    = f.submit "Save", class: "btn btn-primary"
+
+= link_to "Teams", root_path, class: "btn btn-primary"

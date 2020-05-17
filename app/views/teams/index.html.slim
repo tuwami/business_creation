@@ -1,0 +1,19 @@
+h1 Teams
+div.row
+  div.col-md-12
+    table.table.table-striped
+      thead.thead-light
+        tr
+          th ID
+          th Name
+          th Edit
+          th Delete
+      tbody
+        - @teams.each do |team|
+          tr
+            td = team.id
+            td = link_to team.name, team_path(team)
+            td = link_to 'Edit', edit_team_path(team)
+            td = link_to 'Delete', team_path(team), method: :delete, data:{ confirm: 'Are you sure?' }
+        
+= link_to "New team", new_team_path, class: "btn btn-primary"

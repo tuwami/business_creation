@@ -1,11 +1,11 @@
 div.row
-  div.col-md-12
+  div.col-md-8
     h2 = @team.name
     hr
     
-    h3 Make new histories.
+    h3 Make new history.
     
-    = form_with mldel: [@team, @history]. local: true do |f|
+    = form_with mldel: [@team, @history], local: true do |f|
       = f.hidden_field :team_id, {value: @team.id}
       div class="form-group"
         label Market_id :
@@ -24,6 +24,5 @@ div.row
         = f.number_field :recruiting, class: "form-control", min: 0, max: 100
       div class="text-center"
         = f.submit "Save", class: "btn btn-primary"
-
-= link_to "Histories", team_histories_path, class: "btn btn-primary"
-    end
+    
+    = link_to 'Home', root_path, class: 'btn btn-primary'

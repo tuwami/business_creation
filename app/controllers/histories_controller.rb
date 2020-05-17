@@ -16,18 +16,18 @@ class HistoriesController < ApplicationController
   end
   
   def create
-    @history = History.new(history_params)
-    - if @history.save
-      redirect_to root_path, notice: 'Success!'
+    @team = Team.find(params[:team_id])
+    @history = History.new
+    - if @history.update(history_params)
+      redirect_to team_path(@team), notice: 'Success!'
     else
-      flash[:alert] = 'Save error!'
-      render :new
+      redirect_to team_path(@team), alert: 'Invalid!'
     end
   end
   
   def update
     - if @history.update(history_params)
-      redirect_to root_path, notice: 'Success!'
+      redirect_to team_path(@team), notice: 'Success!'
     else
       flash[:alert] = 'Save error!'
       render :edit
@@ -36,12 +36,12 @@ class HistoriesController < ApplicationController
   
   def destroy
     @history.destroy
-    redirect_to root_path, notice: 'Success!'
+    redirect_to team_path, notice: 'Success!'
   end
   
   private
   def history_params
-    params.require(:history).permit(:market_id, :budget, :recruiting)
+    params.require(:history).permit(:team_id, :market_id, :budget, :recruiting)
   end
   
   def set_history
