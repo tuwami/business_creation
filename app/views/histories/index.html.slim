@@ -18,6 +18,6 @@ div.row
             td = history.budget
             td = history.recruiting
             td = link_to 'Edit', edit_history_path(history)
-            td = link_to 'Delete ', history_path(history), method: :delete, data:{ confirm: 'Are you sure?' }
+            td = link_to 'Delete', history_path(history), method: :delete, data:{ confirm: 'Are you sure?' }
         
 = link_to "New history", new_team_history_path, class: "btn btn-primary"

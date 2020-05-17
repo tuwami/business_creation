@@ -3,6 +3,29 @@ div.row
     h2 = @team.name
     hr
     
+    h3 Histories
+    table.table.table-striped
+      - if @team.histories.any?
+        thead.thead-light
+          tr
+            td Market_id
+            td Budget
+            td Recruiting
+            td Edit
+            td Delete
+        tbody
+          - @team.histories.each do |history|
+            tr
+              td = history.market_id
+              td = history.budget
+              td = history.recruiting
+              td [ Edit ]
+              td [ Delete ]
+          end
+      - else
+        p No histories yet.
+      end
+    
     h3 Make new history.
     
     = form_with model: [@team, @history], local: true do |f|
