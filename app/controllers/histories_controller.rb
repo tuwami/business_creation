@@ -1,5 +1,5 @@
 class HistoriesController < ApplicationController
-  
+  before_action :authenticate_admin_or_user!
   def index
     @histories = History.all
   end
@@ -48,5 +48,9 @@ class HistoriesController < ApplicationController
   private
   def history_params
     params.require(:history).permit(:team_id, :market_id, :budget, :staffing)
+  end
+  
+  def authenticate_admin_or_user
+    authenticate_admin || authenticate_user
   end
 end
