@@ -64,3 +64,11 @@ gem 'slim-rails'
 gem 'html2slim'
 gem 'bootstrap', '~> 4.1.1'
 gem 'jquery-rails', '~> 4.3.1'
+
+gem 'devise'
+
+group :development do #開発環境のみ
+  gem 'letter_opener_web'
+end
+
+gem 'config'

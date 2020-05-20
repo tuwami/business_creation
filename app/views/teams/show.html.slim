@@ -8,17 +8,27 @@ div.row
       - if @team.histories.any?
         thead.thead-light
           tr
+            td ID
             td Market_id
             td Budget
+            td Staffing
+            td Earning
             td Recruiting
+            td Fund
+            td Employee
             td Edit
             td Delete
         tbody
           - @team.histories.each do |history|
             tr
+              td = history.id
               td = history.market_id
               td = history.budget
-              td = history.recruiting
+              td = history.staffing
+              td = (history.cal_earning*history.cal_markert_adj).to_i
+              td = history.cal_recruiting
+              td history.cal_fund
+              td history.cal_employee
               td = link_to 'Edit', edit_team_history_path(@team, history)
               td = link_to 'Delete', team_history_path(@team, history), method: :delete, data: { confirm: 'Are you sure?' }
           end
@@ -32,7 +42,7 @@ div.row
       = f.hidden_field :team_id, {value: @team.id}
       div class="form-group"
         label Market_id :
-        = f.number_field :market_id, class: "form-control", min: 1, max: 10
+        = f.number_field :market_id, class: "form-control", min: 0, max: 100
       div class="form-group"
         = f.hidden_field :fund, class: "form-control"
       div class="form-group"
@@ -40,11 +50,13 @@ div.row
       div class="form-group"
         = f.hidden_field :earning, class: "form-control"
       div class="form-group"
+        = f.hidden_field :recruiting, class: "form-control"
+      div class="form-group"
         label Budget :
         = f.number_field :budget, class: "form-control", min: 0, max: 100000000
       div class="form-group"
-        label Recruiting :
-        = f.number_field :recruiting, class: "form-control", min: 0, max: 100
+        label Staffing :
+        = f.number_field :staffing, class: "form-control", min: 0, max: 100
       div class="text-center"
         = f.submit "Save", class: "btn btn-primary"
     

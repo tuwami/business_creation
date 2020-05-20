@@ -7,7 +7,7 @@ div.row
           th ID
           th Market_id
           th Budget
-          th Recruiting
+          th Staffing
           th Edit
           th Delete
       tbody
@@ -16,7 +16,7 @@ div.row
             td = history.id
             td = history.market_id
             td = history.budget
-            td = history.recruiting
+            td = history.staffing
             td = link_to 'Edit', edit_history_path(history)
             td = link_to 'Delete', history_path(history), method: :delete, data:{ confirm: 'Are you sure?' }
         
