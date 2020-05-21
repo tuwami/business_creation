@@ -3,6 +3,12 @@ div.row
     h2 = @team.name
     hr
     
+    h3 = Team member
+    @users.each do |user|
+      - if @team.id == user.team_id
+        p = user.email
+    end
+    
     h3 Make new histories.
     
     = form_with mldel: [@team, @history]. local: true do |f|

@@ -3,6 +3,14 @@ div.row
     h2 = @team.name
     hr
     
+    h3 = 'Team member'
+    -@users.each do |user|
+      - if @team.id == user.team_id
+        p = user.email
+      end
+    end
+    hr
+    
     h3 Histories
     table.table.table-striped
       - if @team.histories.any?

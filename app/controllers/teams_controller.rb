@@ -1,5 +1,5 @@
 class TeamsController < ApplicationController
-  before_action :authenticate_admin!
+  before_action :authenticate_admin!, except: [:index]
   before_action :set_team, only: [:show, :edit, :update, :destroy]
   
   def index
@@ -7,6 +7,7 @@ class TeamsController < ApplicationController
   end
   
   def show
+    @users = User.all
     @history = History.new
   end
   

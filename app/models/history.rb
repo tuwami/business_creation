@@ -32,12 +32,12 @@ class History < ApplicationRecord
   end
   
   def cal_fund
-    sum = fund + earning
+    sum = earning - budget
     return sum
   end
   
   def cal_employee
-    sum = employee + recruiting
+    sum = recruiting
     return sum
   end
   
