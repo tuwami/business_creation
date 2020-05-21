@@ -1,5 +1,5 @@
 class TeamsController < ApplicationController
-  before_action :authenticate_admin!, except: [:index]
+  before_action :authenticate_admin!, except: [:index, :show]
   before_action :set_team, only: [:show, :edit, :update, :destroy]
   
   def index
@@ -50,4 +50,6 @@ class TeamsController < ApplicationController
   def set_team
     @team = Team.find(params[:id])
   end
+  
+
 end

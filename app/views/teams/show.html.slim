@@ -1,14 +1,33 @@
 div.row
   div.col-md-8
-    h2 = @team.name
+    table.table.table-striped
+      thead.thead-dark
+        tr
+          td = 'Team Name'
+          td = 'User Name'
+      tbody
+        tr
+          td = @team.name
+          td
+            - if admin_signed_in?
+              p = current_admin.email
+            - elsif user_signed_in?
+              p = current_user.email
+            end
+            
     hr
     
     h3 = 'Team member'
-    -@users.each do |user|
+    - @users.each do |user|
       - if @team.id == user.team_id
         p = user.email
       end
     end
+    hr
+    
+    = line_chart History.pluck(:id, :budget), xtitle: :id, ytitle: :budget 
+    = line_chart History.pluck(:id, :staffing), xtitle: :id, ytitle: :staffing 
+    
     hr
     
     h3 Histories
@@ -69,3 +88,5 @@ div.row
         = f.submit "Save", class: "btn btn-primary"
     
     = link_to 'Home', root_path, class: 'btn btn-primary'
+  
+button 'button'

@@ -1,5 +1,5 @@
 class HistoriesController < ApplicationController
-  before_action :authenticate_admin_or_user!
+  before_action :authenticate_admin_or_user
   
   def index
     @histories = History.all
@@ -52,6 +52,6 @@ class HistoriesController < ApplicationController
   end
   
   def authenticate_admin_or_user
-    authenticate_admin || authenticate_user
+    authenticate_admin! || authenticate_user!
   end
 end

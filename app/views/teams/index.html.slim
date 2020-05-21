@@ -12,7 +12,16 @@ div.row
         - @teams.each do |team|
           tr
             td = team.id
-            td = link_to team.name, team_path(team)
+            td
+              - if admin_signed_in?
+                = link_to team.name, team_path(team)
+              - elsif user_signed_in?
+                - if current_user.team_id == team.id
+                  = link_to team.name, team_path(team)
+                - else
+                  = team.name
+              - else
+                = team.name
             td = link_to 'Edit', edit_team_path(team)
             td = link_to 'Delete', team_path(team), method: :delete, data:{ confirm: 'Are you sure?' }
         
