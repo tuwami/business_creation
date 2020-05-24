@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_24_080953) do
+ActiveRecord::Schema.define(version: 2020_05_24_134847) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -29,13 +29,27 @@ ActiveRecord::Schema.define(version: 2020_05_24_080953) do
     t.integer "market_id"
     t.integer "fund"
     t.integer "employee"
-    t.integer "budget"
-    t.integer "recruiting"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "assigning"
     t.integer "novice"
     t.index ["team_id"], name: "index_histories_on_team_id"
+  end
+
+  create_table "market_masters", force: :cascade do |t|
+    t.string "market_name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "markets", force: :cascade do |t|
+    t.integer "market_master_id"
+    t.integer "team_id"
+    t.integer "earning"
+    t.integer "recruiting"
+    t.integer "budget"
+    t.integer "assigning"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "teams", force: :cascade do |t|

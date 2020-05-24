@@ -1,9 +1,18 @@
 class History < ApplicationRecord
   belongs_to :team
+  belongs_to :market
   
   validates :market_id, presence: true
   validates :budget, presence: true
   validates :assigning, presence: true
+  
+  def set_column(team)
+    fund = cal_fund(team)
+    employee = cal_employee(team)
+    novice = cal_novice(team)
+    earning = cal_earning(team)
+    recruiting = cal_recruiting(team)
+  end
   
   def cal_earning
     if market_id == 0
@@ -31,7 +40,8 @@ class History < ApplicationRecord
     end
   end
   
-  def cal_fund
+  def cal_fund(team)
+    history = team.history.last
     sum = cal_earning - budget
     return sum
   end

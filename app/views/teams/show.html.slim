@@ -25,6 +25,20 @@ div.row
     end
     hr
     
+    h3 Status
+    table.table.table-striped
+      thead.thead-light
+        tr
+          td Fund
+          td Employee
+          td Novice
+      tbody
+        tr
+          td = @team.histories.last.fund
+          td = @team.histories.last.employee
+          td = @team.histories.last.novice
+          
+    
     = line_chart History.pluck(:id, :budget), xtitle: :id, ytitle: :budget 
     = line_chart History.pluck(:id, :assigning), xtitle: :id, ytitle: :assigning
     

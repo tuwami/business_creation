@@ -15,8 +15,9 @@ class HistoriesController < ApplicationController
   
   def create
     @team = Team.find(params[:team_id])
-    @history = History.new
-    - if @history.update(history_params)
+    @history = History.new(history_params)
+    @history.set_column
+    - if @history.save
       redirect_to team_path(@team), notice: 'Success!'
     else
       redirect_to team_path(@team), alert: 'Invalid!'
