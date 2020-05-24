@@ -7,7 +7,8 @@ class TeamsController < ApplicationController
   end
   
   def show
-    @users = User.all
+    @team = Team.find(params[:id])
+    @users = @team.users
     @history = History.new
   end
   
