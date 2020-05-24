@@ -14,8 +14,8 @@ class InvestmentsController < ApplicationController
     investment.team_id = params[:team_id]
 
     if investment.save
-      #investment.calculate_team_status # calc_fund, calc_employee, calc_novice
-      #investment.save_history
+      investment.calculate_team_status # calc_fund, calc_employee, calc_novice
+      investment.save_history
       redirect_to team_path(params[:team_id]), notice: 'Success!'
     else
       render 'team/show'
