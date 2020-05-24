@@ -10,12 +10,13 @@ class InvestmentsController < ApplicationController
   end
   
   def create
-    @team = Team.find(params[:team_id])
     investment = Investment.new(investment_params)
-    investment.team_id = @team.id
-    #@investment.set_column
+    investment.team_id = params[:team_id]
+
     if investment.save
-      redirect_to team_path(@team), notice: 'Success!'
+      #investment.calculate_team_status # calc_fund, calc_employee, calc_novice
+      #investment.save_history
+      redirect_to team_path(params[:team_id]), notice: 'Success!'
     else
       render 'team/show'
     end
