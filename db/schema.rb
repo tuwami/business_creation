@@ -53,10 +53,10 @@ ActiveRecord::Schema.define(version: 2020_05_24_153628) do
   create_table "markets", force: :cascade do |t|
     t.integer "market_master_id"
     t.integer "team_id"
-    t.integer "earning"
-    t.integer "recruiting"
-    t.integer "market_employee"
-    t.integer "balance"
+    t.integer "earning", default: 0
+    t.integer "recruiting", default: 0
+    t.integer "market_employee", default: 0
+    t.integer "balance", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

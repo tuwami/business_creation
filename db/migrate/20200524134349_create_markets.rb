@@ -3,10 +3,10 @@ class CreateMarkets < ActiveRecord::Migration[5.2]
     create_table :markets do |t|
       t.integer :market_master_id
       t.integer :team_id
-      t.integer :earning
-      t.integer :recruiting
-      t.integer :market_employee
-      t.integer :balance #残高
+      t.integer :earning, default: 0
+      t.integer :recruiting, default: 0
+      t.integer :market_employee,default: 0
+      t.integer :balance, default: 0 #残高
       t.timestamps
     end
   end
