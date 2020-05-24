@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_24_075331) do
+ActiveRecord::Schema.define(version: 2020_05_24_080953) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -34,6 +34,7 @@ ActiveRecord::Schema.define(version: 2020_05_24_075331) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "assigning"
+    t.integer "novice"
     t.index ["team_id"], name: "index_histories_on_team_id"
   end
 

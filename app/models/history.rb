@@ -41,6 +41,11 @@ class History < ApplicationRecord
     return sum
   end
   
+  def cal_novice
+    sum = cal_recruiting
+    return sum
+  end
+  
   def cal_markert_adj
     if market_id == 1
       return 1.5

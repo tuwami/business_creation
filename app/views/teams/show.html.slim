@@ -43,6 +43,7 @@ div.row
             td Recruiting
             td Fund
             td Employee
+            td Novice
             td Edit
             td Delete
         tbody
@@ -56,6 +57,7 @@ div.row
               td = history.cal_recruiting
               td = history.cal_fund
               td = history.cal_employee
+              td = history.cal_novice
               td = link_to 'Edit', edit_team_history_path(@team, history)
               td = link_to 'Delete', team_history_path(@team, history), method: :delete, data: { confirm: 'Are you sure?' }
           end
