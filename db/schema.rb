@@ -10,10 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_24_134847) do
+ActiveRecord::Schema.define(version: 2020_05_24_153628) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
+    t.string "name"
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
@@ -26,13 +27,21 @@ ActiveRecord::Schema.define(version: 2020_05_24_134847) do
 
   create_table "histories", force: :cascade do |t|
     t.integer "team_id"
-    t.integer "market_id"
     t.integer "fund"
     t.integer "employee"
+    t.integer "novice"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "novice"
     t.index ["team_id"], name: "index_histories_on_team_id"
+  end
+
+  create_table "investments", force: :cascade do |t|
+    t.integer "market_id"
+    t.integer "team_id"
+    t.integer "budeget"
+    t.integer "assigning"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "market_masters", force: :cascade do |t|
@@ -46,8 +55,8 @@ ActiveRecord::Schema.define(version: 2020_05_24_134847) do
     t.integer "team_id"
     t.integer "earning"
     t.integer "recruiting"
-    t.integer "budget"
-    t.integer "assigning"
+    t.integer "market_employee"
+    t.integer "balance"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -60,6 +69,7 @@ ActiveRecord::Schema.define(version: 2020_05_24_134847) do
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
+    t.string "name"
     t.string "encrypted_password", default: "", null: false
     t.integer "team_id"
     t.string "reset_password_token"
@@ -67,7 +77,6 @@ ActiveRecord::Schema.define(version: 2020_05_24_134847) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.boolean "admin", default: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

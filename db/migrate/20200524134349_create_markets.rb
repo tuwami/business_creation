@@ -5,9 +5,8 @@ class CreateMarkets < ActiveRecord::Migration[5.2]
       t.integer :team_id
       t.integer :earning
       t.integer :recruiting
-      t.integer :budget
-      t.integer :assigning
-
+      t.integer :market_employee
+      t.integer :balance #残高
       t.timestamps
     end
   end
