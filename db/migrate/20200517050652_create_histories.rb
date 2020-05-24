@@ -6,7 +6,7 @@ class CreateHistories < ActiveRecord::Migration[5.2]
       t.integer :fund
       t.integer :employee
       t.integer :novice
-
+      t.integer :investment_id
       t.timestamps
     end
   end

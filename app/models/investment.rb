@@ -1,10 +1,41 @@
 class Investment < ApplicationRecord
   belongs_to :team
   belongs_to :market
+  has_one :history
 
   def save_history
-    binding.pry
-    History.create(budget: budget,assigning: assigning,team_id: team_id)
+    History.create(investment_id: id,fund: team.current_fund,employee: team.current_employee, novice: team.current_novice, team_id: team.id)
+  end
+
+  def calculate_team_status
+    team.current_fund = cal_fund_nohara
+    team.current_employee = cal_employee_nohara
+    team.current_novice = cal_novice_nohara
+    team.save
+  end
+
+  def cal_fund_nohara
+    if team.histories.any?
+      return team.histories.last.fund - budget + market.earning
+    else
+      return team.current_fund - budget + market.earning
+    end
+  end
+
+  def cal_employee_nohara
+    if team.histories.any?
+      team.histories.last.employee
+    else
+      team.current_employee
+    end
+  end
+
+  def cal_novice_nohara
+    if team.histories.any?
+      return team.histories.last.novice - assigning
+    else
+      team.current_novice - assigning
+    end
   end
 
   def set_column(team)

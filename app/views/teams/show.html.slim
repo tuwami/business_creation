@@ -47,28 +47,25 @@ div.row
       - if @team.investments.any?
         thead.thead-light
           tr
-            td ID
-            td Market_id
+            td Market
             td Budget
-            td Assigning
+            td アサインする人材量
             td Earning
             td Recruiting
             td Fund
             td Employee
             td Novice
-            td Edit
-            td Delete
         tbody
           - @team.investments.each do |investment|
             tr
               td = investment.market.market_master.market_name
               td = investment.budget
               td = investment.assigning
-              / td = #(history.cal_earning*history.cal_markert_adj).to_i
-              / td = #history.cal_recruiting
-              / td = #history.cal_fund
-              / td = #history.cal_employee
-              / td = #history.cal_novice
+              td = investment.market.earning
+              td = investment.market.recruiting
+              td = investment.history.fund
+              td = investment.history.employee
+              td = investment.history.novice
           end
       - else
         p No histories yet.

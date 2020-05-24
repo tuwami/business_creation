@@ -30,6 +30,7 @@ ActiveRecord::Schema.define(version: 2020_05_24_153628) do
     t.integer "fund"
     t.integer "employee"
     t.integer "novice"
+    t.integer "investment_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["team_id"], name: "index_histories_on_team_id"
