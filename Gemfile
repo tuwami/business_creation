@@ -74,3 +74,4 @@ group :development do #開発環境のみ
 end
 
 gem 'config'
+gem 'pry-rails'

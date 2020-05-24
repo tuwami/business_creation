@@ -1,31 +1,33 @@
 class InvestmentsController < ApplicationController
-  before_action :authenticate_admin_or_user
+  #before_action :authenticate_admin_or_user
   
   def index
-    @histories = History.all
+    @investments = Investment.all
   end
 
   def new
-    @history = History.new
+    @investment = Investment.new
   end
   
   def create
     @team = Team.find(params[:team_id])
-    @history = History.new(history_params)
-    @history.set_column
-    - if @history.save
+    investment = Investment.new(investment_params)
+    investment.team_id = @team.id
+    #@investment.set_column
+    if @investment.save
       redirect_to team_path(@team), notice: 'Success!'
     else
-      redirect_to team_path(@team), alert: 'Invalid!'
+      render 'team/show'
     end
   end
   
   private
-  def history_params
-    params.require(:history).permit(:team_id, :market_id, :budget, :assigning)
+  def investment_params
+    params.require(:investment).permit(:budget, :assigning)
   end
   
   def authenticate_admin_or_user
-    authenticate_admin! || authenticate_user!
+    binding.pry
+    authenticate_admin || authenticate_user
   end
 end
