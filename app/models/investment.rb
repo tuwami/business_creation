@@ -13,6 +13,13 @@ class Investment < ApplicationRecord
     team.current_novice = cal_novice_nohara
     team.save
   end
+  
+  def calculate_market_status
+    market.recruiting = cal_recruiting_nohara
+    market.balance *= 0.9
+    market.earning = cal_earning_nohara
+    market.save
+  end
 
   def cal_fund_nohara
     if team.histories.any?
@@ -36,6 +43,15 @@ class Investment < ApplicationRecord
     else
       team.current_novice - assigning
     end
+  end
+
+  def cal_recruiting_nohara
+    ret_val = (market.balance + budget) * (market.market_employee + assigning)/rand(1000..9999)
+  end
+
+  def cal_earning_nohara
+    ret_val = (market.balance + budget) * (market.market_employee + assigning)
+    return ret_val
   end
 
   def set_column(team)

@@ -39,6 +39,13 @@ div.row
     
     = line_chart Investment.pluck(:id, :budget), xtitle: :id, ytitle: :budget 
     = line_chart Investment.pluck(:id, :assigning), xtitle: :id, ytitle: :assigning
+
+    h3 fund推移
+    = line_chart [{name: "fund",data: @team.histories.pluck(:id, :fund)},{name: "employee",data: @team.histories.pluck(:id, :employee)},{name: "novice", data: @team.histories.pluck(:id, :novice)}], xtitle: :id
+    / h3 employee推移
+    / = line_chart @team.histories.pluck(:id, :employee), xtitle: :id, ytitle: :employee
+    / h3 novice推移
+    / = line_chart @team.histories.pluck(:id, :novice), xtitle: :id, ytitle: :novice
     
     hr
     
@@ -48,13 +55,13 @@ div.row
         thead.thead-light
           tr
             td Market
-            td Budget
-            td アサインする人材量
-            td Earning
-            td Recruiting
-            td Fund
-            td Employee
-            td Novice
+            td 投資額 budget
+            td アサインする人材量 assingning
+            td マーケットの売り上げ earning
+            td 投資による人材確保人数 recruiting
+            td 投資をした時点での資金 fund
+            td 投資をした時点での従業員 earning
+            td 投資をした時点でのNovice
         tbody
           - @team.investments.each do |investment|
             tr
@@ -88,4 +95,3 @@ div.row
     
     = link_to 'Home', root_path, class: 'btn btn-primary'
   
-button 'button'
