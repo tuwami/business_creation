@@ -19,9 +19,7 @@ div.row
     
     h3 = 'Team member'
     - @users.each do |user|
-      - if @team.id == user.team_id
-        p = user.email
-      end
+      p = user.email
     end
     hr
     
@@ -34,9 +32,9 @@ div.row
           td Novice
       tbody
         tr
-          td = @team.histories.last.fund
-          td = @team.histories.last.employee
-          td = @team.histories.last.novice
+          td = @team.current_fund
+          td = @team.current_employee
+          td = @team.curernt_novice
           
     
     = line_chart History.pluck(:id, :budget), xtitle: :id, ytitle: :budget 

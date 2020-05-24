@@ -63,6 +63,9 @@ ActiveRecord::Schema.define(version: 2020_05_24_153628) do
 
   create_table "teams", force: :cascade do |t|
     t.string "name"
+    t.integer "current_fund"
+    t.integer "current_employee"
+    t.integer "current_novice"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
