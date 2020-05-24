@@ -48,7 +48,7 @@ class HistoriesController < ApplicationController
   
   private
   def history_params
-    params.require(:history).permit(:team_id, :market_id, :budget, :staffing)
+    params.require(:history).permit(:team_id, :market_id, :budget, :assigning)
   end
   
   def authenticate_admin_or_user

@@ -3,20 +3,20 @@ class History < ApplicationRecord
   
   validates :market_id, presence: true
   validates :budget, presence: true
-  validates :staffing, presence: true
+  validates :assigning, presence: true
   
   def cal_earning
     if market_id == 0
       sum = 0
       return sum
     elsif market_id == 1
-      sum = 100*budget + staffing
+      sum = 100*budget + assigning
       return sum
     elsif market_id == 2
-      sum = budget + 100*staffing
+      sum = budget + 100*assigning
       return sum
     else
-      sum = budget + staffing
+      sum = budget + assigning
       return sum
     end
   end
@@ -32,12 +32,12 @@ class History < ApplicationRecord
   end
   
   def cal_fund
-    sum = earning - budget
+    sum = cal_earning - budget
     return sum
   end
   
   def cal_employee
-    sum = recruiting
+    sum = cal_recruiting
     return sum
   end
   
