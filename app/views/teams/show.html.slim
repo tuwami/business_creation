@@ -63,7 +63,7 @@ div.row
             tr
               td = investment.market.market_master.market_name
               td = investment.budget
-              td = history.assigning
+              td = investment.assigning
               / td = #(history.cal_earning*history.cal_markert_adj).to_i
               / td = #history.cal_recruiting
               / td = #history.cal_fund
@@ -77,10 +77,9 @@ div.row
     h3 Make new history.
     
     = form_with model: [@team, @investment], local: true do |f|
-      = f.hidden_field :team_id, {value: @team.id}
       div class="form-group"
-        label Market_id :
-        = f.select :person_id, Market.all.collect { |m| [ m.market_master.market_name, p.id ] }
+        label Marketd :
+        = f.select :market_id, Market.all.collect { |m| [ m.market_master.market_name, m.id ] }
       div class="form-group"
         label Budget :
         = f.number_field :budget, class: "form-control", min: 0, max: 100000000

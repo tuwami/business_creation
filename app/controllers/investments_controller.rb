@@ -14,7 +14,7 @@ class InvestmentsController < ApplicationController
     investment = Investment.new(investment_params)
     investment.team_id = @team.id
     #@investment.set_column
-    if @investment.save
+    if investment.save
       redirect_to team_path(@team), notice: 'Success!'
     else
       render 'team/show'
@@ -23,7 +23,7 @@ class InvestmentsController < ApplicationController
   
   private
   def investment_params
-    params.require(:investment).permit(:budget, :assigning)
+    params.require(:investment).permit(:budget, :assigning,:market_id)
   end
   
   def authenticate_admin_or_user
