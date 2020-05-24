@@ -2,6 +2,11 @@ class Investment < ApplicationRecord
   belongs_to :team
   belongs_to :market
 
+  def save_history
+    binding.pry
+    History.create(budget: budget,assigning: assigning,team_id: team_id)
+  end
+
   def set_column(team)
     fund = cal_fund(team)
     employee = cal_employee(team)

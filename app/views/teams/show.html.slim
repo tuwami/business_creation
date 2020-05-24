@@ -78,8 +78,8 @@ div.row
     
     = form_with model: [@team, @investment], local: true do |f|
       div class="form-group"
-        label Marketd :
-        = f.select :market_id, Market.all.collect { |m| [ m.market_master.market_name, m.id ] }
+        label Market :
+        = f.select :market_id, @team.markets.collect { |m| [ m.market_master.market_name, m.id ] }
       div class="form-group"
         label Budget :
         = f.number_field :budget, class: "form-control", min: 0, max: 100000000
