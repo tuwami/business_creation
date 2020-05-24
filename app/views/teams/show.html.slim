@@ -34,7 +34,7 @@ div.row
         tr
           td = @team.current_fund
           td = @team.current_employee
-          td = @team.curernt_novice
+          td = @team.current_novice
           
     
     = line_chart Investment.pluck(:id, :budget), xtitle: :id, ytitle: :budget 
@@ -42,9 +42,9 @@ div.row
     
     hr
     
-    h3 Histories
+    h3 Investment履歴
     table.table.table-striped
-      - if @team.Investments.any?
+      - if @team.investments.any?
         thead.thead-light
           tr
             td ID
@@ -61,17 +61,14 @@ div.row
         tbody
           - @team.investments.each do |investment|
             tr
-              td = history.id
-              td = history.market_id
-              td = history.budget
+              td = investment.market.market_master.market_name
+              td = investment.budget
               td = history.assigning
-              td = (history.cal_earning*history.cal_markert_adj).to_i
-              td = history.cal_recruiting
-              td = history.cal_fund
-              td = history.cal_employee
-              td = history.cal_novice
-              td = link_to 'Edit', edit_team_history_path(@team, history)
-              td = link_to 'Delete', team_history_path(@team, history), method: :delete, data: { confirm: 'Are you sure?' }
+              / td = #(history.cal_earning*history.cal_markert_adj).to_i
+              / td = #history.cal_recruiting
+              / td = #history.cal_fund
+              / td = #history.cal_employee
+              / td = #history.cal_novice
           end
       - else
         p No histories yet.
@@ -79,19 +76,11 @@ div.row
     
     h3 Make new history.
     
-    = form_with model: [@team, @history], local: true do |f|
+    = form_with model: [@team, @investment], local: true do |f|
       = f.hidden_field :team_id, {value: @team.id}
       div class="form-group"
         label Market_id :
-        = f.number_field :market_id, class: "form-control", min: 0, max: 100
-      div class="form-group"
-        = f.hidden_field :fund, class: "form-control"
-      div class="form-group"
-        = f.hidden_field :employee, class: "form-control"
-      div class="form-group"
-        = f.hidden_field :earning, class: "form-control"
-      div class="form-group"
-        = f.hidden_field :recruiting, class: "form-control"
+        = f.select :person_id, Market.all.collect { |m| [ m.market_master.market_name, p.id ] }
       div class="form-group"
         label Budget :
         = f.number_field :budget, class: "form-control", min: 0, max: 100000000

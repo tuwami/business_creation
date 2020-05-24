@@ -38,7 +38,7 @@ ActiveRecord::Schema.define(version: 2020_05_24_153628) do
   create_table "investments", force: :cascade do |t|
     t.integer "market_id"
     t.integer "team_id"
-    t.integer "budeget"
+    t.integer "budget"
     t.integer "assigning"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

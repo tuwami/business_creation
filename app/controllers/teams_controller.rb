@@ -9,7 +9,7 @@ class TeamsController < ApplicationController
   def show
     @team = Team.find(params[:id])
     @users = @team.users
-    @history = History.new
+    @investment = Investment.new
   end
   
   def new
