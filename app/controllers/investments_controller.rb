@@ -15,6 +15,7 @@ class InvestmentsController < ApplicationController
 
     if investment.save
       investment.calculate_team_status # calc_fund, calc_employee, calc_novice
+      investment.calculate_market_status
       investment.save_history
       redirect_to team_path(params[:team_id]), notice: 'Success!'
     else

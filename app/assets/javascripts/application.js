@@ -22,6 +22,6 @@
 //= require_tree .
 
  /* global $*/
-$(document).ready(function() {
-    $("button").text("Hello JQuery on Rails");
- });
+///$(document).ready(function() {
+    ///$("button").text("Hello JQuery on Rails");
+ ///});

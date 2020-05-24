@@ -7,6 +7,9 @@ class TeamsController < ApplicationController
   end
   
   def show
+    if !current_user || current_user.team.id != params[:id].to_i
+      redirect_to teams_path
+    end
     @team = Team.find(params[:id])
     @users = @team.users
     @investment = Investment.new
