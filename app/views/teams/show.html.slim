@@ -37,14 +37,14 @@ div.row
           td = @team.curernt_novice
           
     
-    = line_chart History.pluck(:id, :budget), xtitle: :id, ytitle: :budget 
-    = line_chart History.pluck(:id, :assigning), xtitle: :id, ytitle: :assigning
+    = line_chart Investment.pluck(:id, :budget), xtitle: :id, ytitle: :budget 
+    = line_chart Investment.pluck(:id, :assigning), xtitle: :id, ytitle: :assigning
     
     hr
     
     h3 Histories
     table.table.table-striped
-      - if @team.histories.any?
+      - if @team.Investments.any?
         thead.thead-light
           tr
             td ID
@@ -59,7 +59,7 @@ div.row
             td Edit
             td Delete
         tbody
-          - @team.histories.each do |history|
+          - @team.investments.each do |investment|
             tr
               td = history.id
               td = history.market_id
