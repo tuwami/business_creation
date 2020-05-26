@@ -23,7 +23,7 @@ div.row
     end
     hr
     
-    h3 TeamStatus
+    h3 Status
     table.table.table-striped
       thead.thead-light
         tr
@@ -36,7 +36,6 @@ div.row
           td = @team.current_employee
           td = @team.current_novice
 
-    h3 TransitiveGraph
     = line_chart [{name: "fund",data: @team.histories.pluck(:id, :fund)},{name: "employee",data: @team.histories.pluck(:id, :employee)},{name: "novice", data: @team.histories.pluck(:id, :novice)}], xtitle: :id
     = line_chart Investment.pluck(:id, :budget), xtitle: :id, ytitle: :budget 
     = line_chart Investment.pluck(:id, :assigning), xtitle: :id, ytitle: :assigning
