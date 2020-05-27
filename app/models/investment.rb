@@ -8,20 +8,21 @@ class Investment < ApplicationRecord
   end
 
   def calculate_team_status
-    team.current_fund = cal_fund_nohara
-    team.current_employee = cal_employee_nohara
-    team.current_novice = cal_novice_nohara
+    team.current_fund = cal_fund
+    team.current_employee = cal_employee
+    team.current_novice = cal_novice
     team.save
   end
   
   def calculate_market_status
-    market.recruiting = cal_recruiting_nohara
-    market.balance *= 0.9
-    market.earning = cal_earning_nohara
+    market.recruiting = cal_recruiting
+    market.earning = cal_earning
+    market.market_employee = cal_market_employee
+    market.balance = cal_balance
     market.save
   end
 
-  def cal_fund_nohara
+  def cal_fund
     if team.histories.any?
       return team.histories.last.fund - budget + market.earning
     else
@@ -29,88 +30,39 @@ class Investment < ApplicationRecord
     end
   end
 
-  def cal_employee_nohara
+  def cal_employee
     if team.histories.any?
-      team.histories.last.employee
+      return team.histories.last.employee + market.recruiting
     else
-      team.current_employee
+      return team.current_employee + market.recruiting
     end
   end
 
-  def cal_novice_nohara
+  def cal_novice
     if team.histories.any?
-      return team.histories.last.novice - assigning
+      return team.histories.last.novice - assigning + market.recruiting
     else
-      team.current_novice - assigning
+      return team.current_novice - assigning + market.recruiting
     end
   end
 
-  def cal_recruiting_nohara
-    ret_val = (market.balance + budget) * (market.market_employee + assigning)/rand(1000..9999)
-  end
-
-  def cal_earning_nohara
-    ret_val = (market.balance + budget) * (market.market_employee + assigning)
+  def cal_recruiting
+    ret_val = (market.balance + budget) * (market.market_employee + assigning) / 1000 * rand(1000..9999)
     return ret_val
   end
 
-  def set_column(team)
-    fund = cal_fund(team)
-    employee = cal_employee(team)
-    novice = cal_novice(team)
-    earning = cal_earning(team)
-    recruiting = cal_recruiting(team)
-  end
-  
   def cal_earning
-    if market_id == 0
-      sum = 0
-      return sum
-    elsif market_id == 1
-      sum = 100*budget + assigning
-      return sum
-    elsif market_id == 2
-      sum = budget + 100*assigning
-      return sum
-    else
-      sum = budget + assigning
-      return sum
-    end
+    ret_val = (market.balance + budget) * (market.market_employee + assigning) * 0.3
+    return ret_val
   end
   
-  def cal_recruiting
-    if market_id == 0
-      sum = (budget*0.05).to_i
-      return sum
-    else
-      sum = 0
-      return sum
-    end
+  def cal_market_employee
+    ret_val = market.market_employee + assigning
+    return ret_val
   end
   
-  def cal_fund(team)
-    history = team.history.last
-    sum = cal_earning - budget
-    return sum
-  end
-  
-  def cal_employee
-    sum = cal_recruiting
-    return sum
-  end
-  
-  def cal_novice
-    sum = cal_recruiting
-    return sum
-  end
-  
-  def cal_markert_adj
-    if market_id == 1
-      return 1.5
-    elsif market_id == 2
-      return 3
-    else
-      return 100
-    end
+  def cal_balance
+    ret_val = ( market.balance + budget ) * 0.5
+    return ret_val
   end
 end

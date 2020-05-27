@@ -29,7 +29,6 @@ class InvestmentsController < ApplicationController
   end
   
   def authenticate_admin_or_user
-    binding.pry
     authenticate_admin || authenticate_user
   end
 end
