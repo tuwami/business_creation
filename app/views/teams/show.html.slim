@@ -39,6 +39,10 @@ div.row
     = line_chart [{name: "fund",data: @team.histories.pluck(:id, :fund)},{name: "employee",data: @team.histories.pluck(:id, :employee)},{name: "novice", data: @team.histories.pluck(:id, :novice)}], xtitle: :id
     = line_chart Investment.pluck(:id, :budget), xtitle: :id, ytitle: :budget 
     = line_chart Investment.pluck(:id, :assigning), xtitle: :id, ytitle: :assigning
+
+    h3 マーケットごとのbudgetごとの推移
+    = line_chart @team.markets.map { |market| {name: market.market_master.market_name, data: market.investments.pluck(:budget).map.with_index{|budget,i| [i+1, budget] }}}
+    = line_chart @team.markets.map { |market| {name: market.market_master.market_name, data: market.investments.pluck(:id, :budget)}}
     
     hr
     

@@ -9,6 +9,7 @@ class CreateHistories < ActiveRecord::Migration[5.2]
       t.integer :earning
       t.integer :recruiting
       t.integer :investment_id
+      t.integer :market_id
       t.timestamps
     end
   end

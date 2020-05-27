@@ -33,6 +33,7 @@ ActiveRecord::Schema.define(version: 2020_05_25_052652) do
     t.integer "earning"
     t.integer "recruiting"
     t.integer "investment_id"
+    t.integer "market_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["team_id"], name: "index_histories_on_team_id"
@@ -67,8 +68,8 @@ ActiveRecord::Schema.define(version: 2020_05_25_052652) do
   create_table "teams", force: :cascade do |t|
     t.string "name"
     t.integer "current_fund", default: 1000
-    t.integer "current_employee", default: 4
-    t.integer "current_novice", default: 4
+    t.integer "current_employee", default: 20
+    t.integer "current_novice", default: 20
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
