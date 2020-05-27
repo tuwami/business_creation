@@ -1,3 +1,9 @@
+- if admin_signed_in?
+  h1 Ranking
+  = column_chart @teams.pluck(:name, :current_fund)
+end
+
+hr
 h1 Teams
 div.row
   div.col-md-12

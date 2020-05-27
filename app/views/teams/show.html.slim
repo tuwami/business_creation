@@ -40,7 +40,7 @@ div.row
     hr
     
     h3 budget
-    = line_chart @team.markets.map { |market| {name: market.market_master.market_name, data: market.investments.pluck(:budget).map.with_index{|budget,i| [i+1, budget] }}}, xtitle: :id, ytitle: :budget
+    = line_chart @team.markets.map { |market| {name: market.market_master.market_name, data: market.investments.pluck(:budget).map.with_index{|budget,i| [i+1, budget] }}}, id: "budget", xtitle: :id, ytitle: :budget
     // line_chart @team.markets.map { |market| {name: market.market_master.market_name, data: market.investments.pluck(:id, :budget)}}
     
     h3 assigning

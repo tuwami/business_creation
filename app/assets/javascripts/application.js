@@ -25,3 +25,19 @@
 ///$(document).ready(function() {
     ///$("button").text("Hello JQuery on Rails");
  ///});
+ 
+<script>
+document.getElementById("budget").style.display ="block";
+
+function onClick(){
+	const budget = document.getElementById("budget");
+
+	if(budget.style.display=="block"){
+		// noneで非表示
+		budget.style.display ="none";
+	}else{
+		// blockで表示
+		budget.style.display ="block";
+	}
+}
+</script>

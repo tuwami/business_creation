@@ -62,21 +62,21 @@ class Investment < ApplicationRecord
       ret_val = cal_market_earning(1,1,0.1)
       return ret_val
     elsif market.market_master_id == 3
-      ret_val = cal_market_earning(10,10,0.1)
+      ret_val = cal_market_earning(1.5,1.5,0.1)
       return ret_val
     elsif market.market_master_id == 4
-      ret_val = cal_market_earning(100,100,0.1)
+      ret_val = cal_market_earning(0.5,0.5,0.1)
       return ret_val
     end
   end
 
   def cal_market_recruiting(a,b,c)
-    ret_val = (budget * a) * (market.market_employee + assigning * b) * c / rand(10..99)
+    ret_val = (budget * a) / 10 + (market.market_employee + assigning * b) * c / rand(5000..15000) / 10000
     return ret_val
   end
 
   def cal_market_earning(a,b,c)
-    ret_val = (market.balance + budget * a) * (market.market_employee + assigning * b) * c * rand(5000..15000) / 10000
+    ret_val = (market.balance + budget * a) / 10 + (market.market_employee + assigning * b) * c * rand(5000..15000) / 10000
     return ret_val
   end
   
