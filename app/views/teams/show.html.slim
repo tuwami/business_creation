@@ -81,10 +81,10 @@ div.row
         = f.select :market_id, @team.markets.collect { |m| [ m.market_master.market_name, m.id ] }
       div class="form-group"
         label Budget :
-        = f.number_field :budget, class: "form-control", min: 0, max: 100000000
+        = f.number_field :budget, class: "form-control", min: 0, max: @team.current_fund
       div class="form-group"
         label Assigning :
-        = f.number_field :assigning, class: "form-control", min: 0, max: 100
+        = f.number_field :assigning, class: "form-control", min: 0, max: @team.current_novice
       div class="text-center"
         = f.submit "Save", class: "btn btn-primary"
     
