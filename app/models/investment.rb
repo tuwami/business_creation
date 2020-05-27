@@ -15,8 +15,8 @@ class Investment < ApplicationRecord
   end
   
   def calculate_market_status
-    market.recruiting = cal_recruiting
-    market.earning = cal_earning
+    market.market_recruiting = cal_market_recruiting
+    market.market_earning = cal_market_earning
     market.market_employee = cal_market_employee
     market.balance = cal_balance
     market.save
@@ -24,34 +24,34 @@ class Investment < ApplicationRecord
 
   def cal_fund
     if team.histories.any?
-      return team.histories.last.fund - budget + market.earning
+      return team.histories.last.fund - budget + market.market_earning
     else
-      return team.current_fund - budget + market.earning
+      return team.current_fund - budget + market.market_earning
     end
   end
 
   def cal_employee
     if team.histories.any?
-      return team.histories.last.employee + market.recruiting
+      return team.histories.last.employee + market.market_recruiting
     else
-      return team.current_employee + market.recruiting
+      return team.current_employee + market.market_recruiting
     end
   end
 
   def cal_novice
     if team.histories.any?
-      return team.histories.last.novice - assigning + market.recruiting
+      return team.histories.last.novice - assigning + market.market_recruiting
     else
-      return team.current_novice - assigning + market.recruiting
+      return team.current_novice - assigning + market.market_recruiting
     end
   end
 
-  def cal_recruiting
+  def cal_market_recruiting
     ret_val = (market.balance + budget) * (market.market_employee + assigning) / 1000 * rand(1000..9999)
     return ret_val
   end
 
-  def cal_earning
+  def cal_market_earning
     ret_val = (market.balance + budget) * (market.market_employee + assigning) * 0.3
     return ret_val
   end
