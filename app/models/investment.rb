@@ -15,8 +15,8 @@ class Investment < ApplicationRecord
   end
   
   def calculate_market_status
-    market.market_recruiting = cal_market_recruiting
-    market.market_earning = cal_market_earning
+    market.market_recruiting = cal_params_market_recruiting
+    market.market_earning = cal_params_market_earning
     market.market_employee = cal_market_employee
     market.balance = cal_balance
     market.save
@@ -48,23 +48,39 @@ class Investment < ApplicationRecord
   
   def cal_total_earning
   end
-
-  def cal_market_recruiting
+  
+  def cal_params_market_recruiting
     if market.market_master_id == 1
-      ret_val = budget * (market.market_employee + assigning) / rand(10..99)
+      ret_val = cal_market_recruiting(10,10,0.1)
       return ret_val
     else
       return 0
     end
   end
-
-  def cal_market_earning
-    if market.market_master_id != 1
-      ret_val = (market.balance + budget) * (market.market_employee + assigning) * 0.3
-      return ret_val
-    else
+  
+  def cal_params_market_earning
+    if market.market_master_id == 1
       return 0
+    elsif market.market_master_id == 2
+      ret_val = cal_market_earning(1,1,0.1)
+      return ret_val
+    elsif market.market_master_id == 3
+      ret_val = cal_market_earning(10,10,0.1)
+      return ret_val
+    elsif market.market_master_id == 4
+      ret_val = cal_market_earning(100,100,0.1)
+      return ret_val
     end
+  end
+
+  def cal_market_recruiting(a,b,c)
+    ret_val = (budget * a) * (market.market_employee + assigning * b) * c / rand(10..99)
+    return ret_val
+  end
+
+  def cal_market_earning(a,b,c)
+    ret_val = (market.balance + budget * a) * (market.market_employee + assigning * b) * c
+    return ret_val
   end
   
   def cal_market_employee
