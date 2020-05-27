@@ -30,6 +30,8 @@ ActiveRecord::Schema.define(version: 2020_05_25_052652) do
     t.integer "fund"
     t.integer "employee"
     t.integer "novice"
+    t.integer "earning"
+    t.integer "recruiting"
     t.integer "investment_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

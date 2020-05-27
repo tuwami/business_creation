@@ -4,7 +4,7 @@ class Investment < ApplicationRecord
   has_one :history
 
   def save_history
-    History.create(investment_id: id,fund: team.current_fund,employee: team.current_employee, novice: team.current_novice, team_id: team.id)
+    History.create(investment_id: id, fund: team.current_fund, employee: team.current_employee, novice: team.current_novice, earning: market.market_earning, recruiting: market.market_recruiting, team_id: team.id)
   end
 
   def calculate_team_status
