@@ -47,6 +47,7 @@ div.row
       - if @team.investments.any?
         thead.thead-light
           tr
+            td ID
             td Market
             td Budget
             td Assingning
@@ -58,6 +59,7 @@ div.row
         tbody
           - @team.investments.each do |investment|
             tr
+              td = investment.id
               td = investment.market.market_master.market_name
               td = investment.budget
               td = investment.assigning
