@@ -45,15 +45,26 @@ class Investment < ApplicationRecord
       return team.current_novice - assigning + market.market_recruiting
     end
   end
+  
+  def cal_total_earning
+  end
 
   def cal_market_recruiting
-    ret_val = (market.balance + budget) * (market.market_employee + assigning) / 1000 * rand(1000..9999)
-    return ret_val
+    if market.market_master_id == 1
+      ret_val = budget * (market.market_employee + assigning) / rand(10..99)
+      return ret_val
+    else
+      return 0
+    end
   end
 
   def cal_market_earning
-    ret_val = (market.balance + budget) * (market.market_employee + assigning) * 0.3
-    return ret_val
+    if market.market_master_id != 1
+      ret_val = (market.balance + budget) * (market.market_employee + assigning) * 0.3
+      return ret_val
+    else
+      return 0
+    end
   end
   
   def cal_market_employee
