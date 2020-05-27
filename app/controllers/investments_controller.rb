@@ -10,17 +10,24 @@ class InvestmentsController < ApplicationController
   end
   
   def create
-    investment = Investment.new(investment_params)
-    investment.team_id = params[:team_id]
 
-    if investment.save
-      investment.calculate_team_status # calc_fund, calc_employee, calc_novice
-      investment.calculate_market_status
-      investment.save_history
-      redirect_to team_path(params[:team_id]), notice: 'Success!'
-    else
-      render 'team/show'
+    current_user.team.markets.each do |market|
+      if params[:investment][:market_id].to_i == market.id
+        investment = Investment.new(investment_params)
+      else
+        investment = Investment.new(market_id: market.id, budget: 0, assigning: 0)
+      end
+      investment.team_id = params[:team_id]
+      if investment.save
+        investment.calculate_team_status # calc_fund, calc_employee, calc_novice
+        investment.calculate_market_status
+        investment.save_history
+      else
+        render 'team/show'
+      end
     end
+    redirect_to team_path(params[:team_id]), notice: 'Success!'
+
   end
   
   private

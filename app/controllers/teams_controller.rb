@@ -7,12 +7,13 @@ class TeamsController < ApplicationController
   end
   
   def show
-    if !(current_admin || current_user.team.id == params[:id].to_i)
+    if current_admin || (current_user && current_user.team.id == params[:id].to_i)
+      @team = Team.find(params[:id])
+      @users = @team.users
+      @investment = Investment.new
+    else
       redirect_to teams_path
     end
-    @team = Team.find(params[:id])
-    @users = @team.users
-    @investment = Investment.new
   end
   
   def new
@@ -21,7 +22,7 @@ class TeamsController < ApplicationController
   
   def create
     @team = Team.new(team_params)
-    - if @team.save
+    if @team.save
       redirect_to root_path, notice: 'Success!'
     else
       flash[:alert] = 'Save error!'
