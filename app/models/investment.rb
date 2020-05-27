@@ -4,7 +4,7 @@ class Investment < ApplicationRecord
   has_one :history
 
   def save_history
-    History.create(investment_id: id, fund: team.current_fund, employee: team.current_employee, novice: team.current_novice, earning: market.market_earning, recruiting: market.market_recruiting, team_id: team.id, market_id: market_id)
+    History.create(investment_id: id, fund: team.current_fund, employee: team.current_employee, novice: team.current_novice, earning: market.market_earning, recruiting: market.market_recruiting, each_market_employee: market.market_employee, team_id: team.id, market_id: market_id)
   end
 
   def calculate_team_status
@@ -46,9 +46,6 @@ class Investment < ApplicationRecord
     end
   end
   
-  def cal_total_earning
-  end
-  
   def cal_params_market_recruiting
     if market.market_master_id == 1
       ret_val = cal_market_recruiting(10,10,0.1)
@@ -79,7 +76,7 @@ class Investment < ApplicationRecord
   end
 
   def cal_market_earning(a,b,c)
-    ret_val = (market.balance + budget * a) * (market.market_employee + assigning * b) * c
+    ret_val = (market.balance + budget * a) * (market.market_employee + assigning * b) * c * rand(5000..15000) / 10000
     return ret_val
   end
   

@@ -8,6 +8,7 @@ class CreateHistories < ActiveRecord::Migration[5.2]
       t.integer :novice
       t.integer :earning
       t.integer :recruiting
+      t.integer :each_market_employee
       t.integer :investment_id
       t.integer :market_id
       t.timestamps

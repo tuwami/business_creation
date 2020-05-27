@@ -32,6 +32,7 @@ ActiveRecord::Schema.define(version: 2020_05_25_052652) do
     t.integer "novice"
     t.integer "earning"
     t.integer "recruiting"
+    t.integer "each_market_employee"
     t.integer "investment_id"
     t.integer "market_id"
     t.datetime "created_at", null: false
