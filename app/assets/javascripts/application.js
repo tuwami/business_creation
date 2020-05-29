@@ -22,6 +22,23 @@
 //= require_tree .
 
  /* global $*/
-///$(document).ready(function() {
-    ///$("button").text("Hello JQuery on Rails");
- ///});
+$(document).ready(function() {
+    $(".graph1-button").click(function () {
+        $(".graph1").toggle();
+    });
+    $(".graph2-button").click(function () {
+        $(".graph2").toggle();
+    });
+    $(".graph3-button").click(function () {
+        $(".graph3").toggle();
+    });
+    $(".graph4-button").click(function () {
+        $(".graph4").toggle();
+    });
+    $(".graph5-button").click(function () {
+        $(".graph5").toggle();
+    });
+    $(".graph6-button").click(function () {
+        $(".graph6").toggle();
+    });
+});
