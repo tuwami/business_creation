@@ -27,12 +27,12 @@ ActiveRecord::Schema.define(version: 2020_05_25_052652) do
 
   create_table "histories", force: :cascade do |t|
     t.integer "team_id"
-    t.integer "fund"
-    t.integer "employee"
-    t.integer "novice"
-    t.integer "earning"
-    t.integer "recruiting"
-    t.integer "each_market_employee"
+    t.integer "fund", default: 0
+    t.integer "employee", default: 0
+    t.integer "novice", default: 0
+    t.integer "earning", default: 0
+    t.integer "recruiting", default: 0
+    t.integer "each_market_employee", default: 0
     t.integer "investment_id"
     t.integer "market_id"
     t.datetime "created_at", null: false
@@ -43,8 +43,8 @@ ActiveRecord::Schema.define(version: 2020_05_25_052652) do
   create_table "investments", force: :cascade do |t|
     t.integer "market_id"
     t.integer "team_id"
-    t.integer "budget"
-    t.integer "assigning"
+    t.integer "budget", default: 0
+    t.integer "assigning", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
