@@ -36,24 +36,27 @@ div.row
           td = @team.current_employee
           td = @team.current_novice
 
-    = line_chart [{name: "fund",data: @team.histories.pluck(:id, :fund)},{name: "employee",data: @team.histories.pluck(:id, :employee)},{name: "novice", data: @team.histories.pluck(:id, :novice)}], xtitle: :id
+    = line_chart [{name: "fund",data: @use_histories.pluck(:fund).map.with_index{|a,i| [i+1,a]}.insert(0,[0,1000])}, \
+                  {name: "employee",data: @use_histories.pluck(:employee).map.with_index{|a,i| [i+1,a]}.insert(0,[0,20])},\
+                  {name: "novice", data: @use_histories.pluck(:novice).map.with_index{|a,i| [i+1,a]}.insert(0,[0,20])} \
+                 ], xtitle: :id
     hr
     
     h3 budget
-    = line_chart @team.markets.map { |market| {name: market.market_master.market_name, data: market.investments.pluck(:budget).map.with_index{|budget,i| [i+1, budget] }}}, id: "budget", xtitle: :id, ytitle: :budget
+    = line_chart @team.markets.map { |market| {name: market.market_master.market_name, data: market.investments.pluck(:budget).map.with_index{|budget,i| [i+1, budget] }.insert(0,[0,0])}}, id: "budget", xtitle: :id, ytitle: :budget
     // line_chart @team.markets.map { |market| {name: market.market_master.market_name, data: market.investments.pluck(:id, :budget)}}
     
     h3 assigning
-    = line_chart @team.markets.map { |market| {name: market.market_master.market_name, data: market.investments.pluck(:assigning).map.with_index{|assigning,i| [i+1, assigning] }}}, xtitle: :id, ytitle: :assigning
+    = line_chart @team.markets.map { |market| {name: market.market_master.market_name, data: market.investments.pluck(:assigning).map.with_index{|assigning,i| [i+1, assigning] }.insert(0,[0,0])}}, xtitle: :id, ytitle: :assigning
     
     h3 earning
-    = line_chart @team.markets.map { |market| {name: market.market_master.market_name, data: market.histories.pluck(:earning).map.with_index{|earning,i| [i+1, earning] }}}, xtitle: :id, ytitle: :earning
+    = line_chart @team.markets.map { |market| {name: market.market_master.market_name, data: market.histories.pluck(:earning).map.with_index{|earning,i| [i+1, earning] }.insert(0,[0,0])}}, xtitle: :id, ytitle: :earning
     
     h3 recruiting
-    = line_chart @team.markets.map { |market| {name: market.market_master.market_name, data: market.histories.pluck(:recruiting).map.with_index{|recruiting,i| [i+1, recruiting] }}}, xtitle: :id, ytitle: :recruiting
+    = line_chart @team.markets.map { |market| {name: market.market_master.market_name, data: market.histories.pluck(:recruiting).map.with_index{|recruiting,i| [i+1, recruiting] }.insert(0,[0,0])}}, xtitle: :id, ytitle: :recruiting
     
     h3 market_employee
-    = line_chart @team.markets.map { |market| {name: market.market_master.market_name, data: market.histories.pluck(:each_market_employee).map.with_index{|each_market_employee,i| [i+1, each_market_employee] }}}, xtitle: :id, ytitle: :market_employee
+    = line_chart @team.markets.map { |market| {name: market.market_master.market_name, data: market.histories.pluck(:each_market_employee).map.with_index{|each_market_employee,i| [i+1, each_market_employee] }.insert(0,[0,0])}}, xtitle: :id, ytitle: :market_employee
     
     hr
     
