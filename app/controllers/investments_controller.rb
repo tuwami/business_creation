@@ -28,6 +28,7 @@ class InvestmentsController < ApplicationController
           else
             @investment = Investment.new
             @use_histories = @team.histories.where(market_id: @team.markets.last.id)
+            flash[:alert] = 'Save error!'
             render 'teams/show'
             return
           end
