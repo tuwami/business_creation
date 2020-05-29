@@ -11,6 +11,7 @@ class TeamsController < ApplicationController
       @team = Team.find(params[:id])
       @users = @team.users
       @investment = Investment.new
+      @use_histories = @team.histories.where(market_id: @team.markets.last.id)
     else
       redirect_to teams_path
     end
