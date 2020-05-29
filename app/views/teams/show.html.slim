@@ -97,7 +97,7 @@ div.row
     = form_with model: [@team, @investment], local: true do |f|
       div class="form-group"
         label Market :
-        = f.select :market_id, @team.markets.map { |m| [ m.market_master.market_name, m.id ] }
+        = f.select :market_id, @team.markets.order(:id).map { |m| [ m.market_master.market_name, m.id ] }
       div class="form-group"
         label Budget :
         = f.number_field :budget, class: "form-control", min: 0, max: @team.current_fund
