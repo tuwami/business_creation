@@ -23,7 +23,6 @@ div.row
       p = user.email
     end
     hr
-    
     h3 Status
     table.table.table-striped
       thead.thead-light
@@ -37,27 +36,39 @@ div.row
           td = @team.current_employee
           td = @team.current_novice
 
-    = line_chart [{name: "fund",data: @use_histories.pluck(:fund).map.with_index{|a,i| [i+1,a]}.insert(0,[0,1000])}, \
-                  {name: "employee",data: @use_histories.pluck(:employee).map.with_index{|a,i| [i+1,a]}.insert(0,[0,20])},\
-                  {name: "novice", data: @use_histories.pluck(:novice).map.with_index{|a,i| [i+1,a]}.insert(0,[0,20])} \
-                 ], xtitle: :id
+    button class="graph1-button" = '切替'
+    div class="graph1"
+      = line_chart [{name: "fund",data: @use_histories.pluck(:fund).map.with_index{|a,i| [i+1,a]}.insert(0,[0,1000])}, \
+                    {name: "employee",data: @use_histories.pluck(:employee).map.with_index{|a,i| [i+1,a]}.insert(0,[0,20])},\
+                    {name: "novice", data: @use_histories.pluck(:novice).map.with_index{|a,i| [i+1,a]}.insert(0,[0,20])} \
+                  ], xtitle: :id
     hr
     
     h3 budget
-    = line_chart @team.markets.map { |market| {name: market.market_master.market_name, data: market.investments.pluck(:budget).map.with_index{|budget,i| [i+1, budget] }.insert(0,[0,0])}}, id: "budget", xtitle: :id, ytitle: :budget
+    button class="graph2-button" = '切替'
+    div class="graph2"
+      = line_chart @team.markets.map { |market| {name: market.market_master.market_name, data: market.investments.pluck(:budget).map.with_index{|budget,i| [i+1, budget] }.insert(0,[0,0])}}, id: "budget", xtitle: :id, ytitle: :budget
     // line_chart @team.markets.map { |market| {name: market.market_master.market_name, data: market.investments.pluck(:id, :budget)}}
     
     h3 assigning
-    = line_chart @team.markets.map { |market| {name: market.market_master.market_name, data: market.investments.pluck(:assigning).map.with_index{|assigning,i| [i+1, assigning] }.insert(0,[0,0])}}, xtitle: :id, ytitle: :assigning
+    button class="graph3-button" = '切替'
+    div class="graph3"
+      = line_chart @team.markets.map { |market| {name: market.market_master.market_name, data: market.investments.pluck(:assigning).map.with_index{|assigning,i| [i+1, assigning] }.insert(0,[0,0])}}, xtitle: :id, ytitle: :assigning
     
     h3 earning
-    = line_chart @team.markets.map { |market| {name: market.market_master.market_name, data: market.histories.pluck(:earning).map.with_index{|earning,i| [i+1, earning] }.insert(0,[0,0])}}, xtitle: :id, ytitle: :earning
+    button class="graph4-button" = '切替'
+    div class="graph4"
+      = line_chart @team.markets.map { |market| {name: market.market_master.market_name, data: market.histories.pluck(:earning).map.with_index{|earning,i| [i+1, earning] }.insert(0,[0,0])}}, xtitle: :id, ytitle: :earning
     
     h3 recruiting
-    = line_chart @team.markets.map { |market| {name: market.market_master.market_name, data: market.histories.pluck(:recruiting).map.with_index{|recruiting,i| [i+1, recruiting] }.insert(0,[0,0])}}, xtitle: :id, ytitle: :recruiting
+    button class="graph5-button" = '切替'
+    div class="graph5"
+      = line_chart @team.markets.map { |market| {name: market.market_master.market_name, data: market.histories.pluck(:recruiting).map.with_index{|recruiting,i| [i+1, recruiting] }.insert(0,[0,0])}}, xtitle: :id, ytitle: :recruiting
     
     h3 market_employee
-    = line_chart @team.markets.map { |market| {name: market.market_master.market_name, data: market.histories.pluck(:each_market_employee).map.with_index{|each_market_employee,i| [i+1, each_market_employee] }.insert(0,[0,0])}}, xtitle: :id, ytitle: :market_employee
+    button class="graph6-button" = '切替'
+    div class="graph6"
+      = line_chart @team.markets.map { |market| {name: market.market_master.market_name, data: market.histories.pluck(:each_market_employee).map.with_index{|each_market_employee,i| [i+1, each_market_employee] }.insert(0,[0,0])}}, xtitle: :id, ytitle: :market_employee
     
     hr
     
