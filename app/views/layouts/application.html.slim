@@ -15,8 +15,6 @@ html
     - else
       = link_to "Log in", new_user_session_path
   body
-    p.notice = notice
-    p.alert = alert
     div class="container"
       -if flash[:notice]
         p class="text-success" = flash[:notice]
