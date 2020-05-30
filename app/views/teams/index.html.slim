@@ -1,34 +1,36 @@
-- if admin_signed_in?
+- if user_signed_in?
+  div
+    span = current_user.email
+    span としてログインしています
+  div
+    span あなたのチームは
+    span current_user.team.name
+    span です
+  div = link_to 'チームへ入る', team_path(current_user.team)
+
+- elsif admin_signed_in?
   h1 Ranking
   = column_chart @teams.pluck(:name, :current_fund)
-end
 
-hr
-h1 Teams
-div.row
-  div.col-md-12
-    table.table.table-striped
-      thead.thead-light
-        tr
-          th ID
-          th Name
-          th Edit
-          th Delete
-      tbody
-        - @teams.each do |team|
+  hr
+  h1 Teams
+  div.row
+    div.col-md-12
+      table.table.table-striped
+        thead.thead-light
           tr
-            td = team.id
-            td
-              - if admin_signed_in?
-                = link_to team.name, team_path(team)
-              - elsif user_signed_in?
-                - if current_user.team_id == team.id
-                  = link_to team.name, team_path(team)
-                - else
-                  = team.name
-              - else
-                = team.name
-            td = link_to 'Edit', edit_team_path(team)
-            td = link_to 'Delete', team_path(team), method: :delete, data:{ confirm: 'Are you sure?' }
-        
-= link_to "New team", new_team_path, class: "btn btn-primary"
+            th ID
+            th Name
+            th Edit
+            th Delete
+        tbody
+          - @teams.each do |team|
+            tr
+              td = team.id
+              td = link_to team.name, team_path(team)
+              td = link_to 'Edit', edit_team_path(team)
+              td = link_to 'Delete', team_path(team), method: :delete, data:{ confirm: 'Are you sure?' }
+  = link_to "New team", new_team_path, class: "btn btn-primary"
+- else
+  div ログインしていません
+end
