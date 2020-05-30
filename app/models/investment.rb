@@ -83,177 +83,177 @@ class Investment < ApplicationRecord
       return ret_val
     elsif market.market_master_id == 3
       if market.market_employee < 10
-        ret_val = cal_market_earning(0.094,3.80,1.1, 1.0)
+        ret_val = cal_market_earning(0.094,3.80,1.0028, 1.0)
       elsif market.market_employee < 100
-        ret_val = cal_market_earning(0.094,3.80,1.1, 1.2)
+        ret_val = cal_market_earning(0.094,3.80,1.0028, 1.2)
       elsif market.market_employee < 1000
-        ret_val = cal_market_earning(0.094,3.80,1.1, 1.5)
+        ret_val = cal_market_earning(0.094,3.80,1.0028, 1.5)
       else
-        ret_val = cal_market_earning(0.094,3.80,1.1, 2.0)
+        ret_val = cal_market_earning(0.094,3.80,1.0028, 2.0)
       end
       return ret_val
     elsif market.market_master_id == 4
       if market.market_employee < 10
-        ret_val = cal_market_earning(0.086,7.59,1.1, 1.0)
+        ret_val = cal_market_earning(0.086,7.59,1.0050, 1.0)
       elsif market.market_employee < 100
-        ret_val = cal_market_earning(0.086,7.59,1.1, 1.2)
+        ret_val = cal_market_earning(0.086,7.59,1.0050, 1.2)
       elsif market.market_employee < 1000
-        ret_val = cal_market_earning(0.086,7.59,1.1, 1.5)
+        ret_val = cal_market_earning(0.086,7.59,1.0050, 1.5)
       else
-        ret_val = cal_market_earning(0.086,7.59,1.1, 2.0)
+        ret_val = cal_market_earning(0.086,7.59,1.0050, 2.0)
       end
       return ret_val
     elsif market.market_master_id == 5
       if market.market_employee < 10
-        ret_val = cal_market_earning(0.055,2.35,1.1, 1.0)
+        ret_val = cal_market_earning(0.055,2.35,1.0084, 1.0)
       elsif market.market_employee < 100
-        ret_val = cal_market_earning(0.055,2.35,1.1, 1.2)
+        ret_val = cal_market_earning(0.055,2.35,1.0084, 1.2)
       elsif market.market_employee < 1000
-        ret_val = cal_market_earning(0.055,2.35,1.1, 1.5)
+        ret_val = cal_market_earning(0.055,2.35,1.0084, 1.5)
       else
-        ret_val = cal_market_earning(0.055,2.35,1.1, 2.0)
+        ret_val = cal_market_earning(0.055,2.35,1.0084, 2.0)
       end
       return ret_val
     elsif market.market_master_id == 6
       if market.market_employee < 10
-        ret_val = cal_market_earning(0.164,4.85,1.1, 1.0)
+        ret_val = cal_market_earning(0.164,4.85,1.0108, 1.0)
       elsif market.market_employee < 100
-        ret_val = cal_market_earning(0.164,4.85,1.1, 1.2)
+        ret_val = cal_market_earning(0.164,4.85,1.0108, 1.2)
       elsif market.market_employee < 1000
-        ret_val = cal_market_earning(0.164,4.85,1.1, 1.5)
+        ret_val = cal_market_earning(0.164,4.85,1.0108, 1.5)
       else
-        ret_val = cal_market_earning(0.164,4.85,1.1, 2.0)
+        ret_val = cal_market_earning(0.164,4.85,1.0108, 2.0)
       end
       return ret_val
     elsif market.market_master_id == 7
       if market.market_employee < 10
-        ret_val = cal_market_earning(0.05,1.72,1.1, 1.0)
+        ret_val = cal_market_earning(0.05,1.72,0.9986, 1.0)
       elsif market.market_employee < 100
-        ret_val = cal_market_earning(0.05,1.72,1.1, 1.2)
+        ret_val = cal_market_earning(0.05,1.72,0.9986, 1.2)
       elsif market.market_employee < 1000
-        ret_val = cal_market_earning(0.05,1.72,1.1, 1.5)
+        ret_val = cal_market_earning(0.05,1.72,0.9986, 1.5)
       else
-        ret_val = cal_market_earning(0.05,1.72,1.1, 2.0)
+        ret_val = cal_market_earning(0.05,1.72,0.9986, 2.0)
       end
     elsif market.market_master_id == 8
       if market.market_employee < 10
-        ret_val = cal_market_earning(0.152,2.36,1.1, 1.0)
+        ret_val = cal_market_earning(0.152,2.36,1.0074, 1.0)
       elsif market.market_employee < 100
-        ret_val = cal_market_earning(0.152,2.36,1.1, 1.2)
+        ret_val = cal_market_earning(0.152,2.36,1.0074, 1.2)
       elsif market.market_employee < 1000
-        ret_val = cal_market_earning(0.152,2.36,1.1, 1.5)
+        ret_val = cal_market_earning(0.152,2.36,1.0074, 1.5)
       else
-        ret_val = cal_market_earning(0.152,2.36,1.1, 2.0)
+        ret_val = cal_market_earning(0.152,2.36,1.0074, 2.0)
       end
       return ret_val
     elsif market.market_master_id == 9
       if market.market_employee < 10
-        ret_val = cal_market_earning(0.05,6.44,1.1, 1.0)
+        ret_val = cal_market_earning(0.05,6.44,1.0034, 1.0)
       elsif market.market_employee < 100
-        ret_val = cal_market_earning(0.05,6.44,1.1, 1.2)
+        ret_val = cal_market_earning(0.05,6.44,1.0034, 1.2)
       elsif market.market_employee < 1000
-        ret_val = cal_market_earning(0.05,6.44,1.1, 1.5)
+        ret_val = cal_market_earning(0.05,6.44,1.0034, 1.5)
       else
-        ret_val = cal_market_earning(0.05,6.44,1.1, 2.0)
+        ret_val = cal_market_earning(0.05,6.44,1.0034, 2.0)
       end
       return ret_val
     elsif market.market_master_id == 10
       if market.market_employee < 10
-        ret_val = cal_market_earning(0.168,4.59,1.1, 1.0)
+        ret_val = cal_market_earning(0.168,4.59,1.01, 1.0)
       elsif market.market_employee < 100
-        ret_val = cal_market_earning(0.168,4.59,1.1, 1.2)
+        ret_val = cal_market_earning(0.168,4.59,1.01, 1.2)
       elsif market.market_employee < 1000
-        ret_val = cal_market_earning(0.168,4.59,1.1, 1.5)
+        ret_val = cal_market_earning(0.168,4.59,1.01, 1.5)
       else
-        ret_val = cal_market_earning(0.168,4.59,1.1, 2.0)
+        ret_val = cal_market_earning(0.168,4.59,1.01, 2.0)
       end
       return ret_val
     elsif market.market_master_id == 11
       if market.market_employee < 10
-        ret_val = cal_market_earning(0.084,5.37,1.1, 1.0)
+        ret_val = cal_market_earning(0.084,5.37,1.0013, 1.0)
       elsif market.market_employee < 100
-        ret_val = cal_market_earning(0.084,5.37,1.1, 1.2)
+        ret_val = cal_market_earning(0.084,5.37,1.0013, 1.2)
       elsif market.market_employee < 1000
-        ret_val = cal_market_earning(0.084,5.37,1.1, 1.5)
+        ret_val = cal_market_earning(0.084,5.37,1.0013, 1.5)
       else
-        ret_val = cal_market_earning(0.084,5.37,1.1, 2.0)
+        ret_val = cal_market_earning(0.084,5.37,1.0013, 2.0)
       end
       return ret_val
     elsif market.market_master_id == 12
       if market.market_employee < 10
-        ret_val = cal_market_earning(0.086,3.20,1.1, 1.0)
+        ret_val = cal_market_earning(0.086,3.20,1.0041, 1.0)
       elsif market.market_employee < 100
-        ret_val = cal_market_earning(0.086,3.20,1.1, 1.2)
+        ret_val = cal_market_earning(0.086,3.20,1.0041, 1.2)
       elsif market.market_employee < 1000
-        ret_val = cal_market_earning(0.086,3.20,1.1, 1.5)
+        ret_val = cal_market_earning(0.086,3.20,1.0041, 1.5)
       else
-        ret_val = cal_market_earning(0.086,3.20,1.1, 2.0)
+        ret_val = cal_market_earning(0.086,3.20,1.0041, 2.0)
       end
       return ret_val
     elsif market.market_master_id == 13
       if market.market_employee < 10
-        ret_val = cal_market_earning(0.113,1.69,1.1, 1.0)
+        ret_val = cal_market_earning(0.113,1.69,1.0016, 1.0)
       elsif market.market_employee < 100
-        ret_val = cal_market_earning(0.113,1.69,1.1, 1.2)
+        ret_val = cal_market_earning(0.113,1.69,1.0016, 1.2)
       elsif market.market_employee < 1000
-        ret_val = cal_market_earning(0.113,1.69,1.1, 1.5)
+        ret_val = cal_market_earning(0.113,1.69,1.0016, 1.5)
       else
-        ret_val = cal_market_earning(0.113,1.69,1.1, 2.0)
+        ret_val = cal_market_earning(0.113,1.69,1.0016, 2.0)
       end
       return ret_val
     elsif market.market_master_id == 14
       if market.market_employee < 10
-        ret_val = cal_market_earning(0.149,4.21,1.1, 1.0)
+        ret_val = cal_market_earning(0.149,4.21,1.0108, 1.0)
       elsif market.market_employee < 100
-        ret_val = cal_market_earning(0.149,4.21,1.1, 1.2)
+        ret_val = cal_market_earning(0.149,4.21,1.0108, 1.2)
       elsif market.market_employee < 1000
-        ret_val = cal_market_earning(0.149,4.21,1.1, 1.5)
+        ret_val = cal_market_earning(0.149,4.21,1.0108, 1.5)
       else
-        ret_val = cal_market_earning(0.149,4.21,1.1, 2.0)
+        ret_val = cal_market_earning(0.149,4.21,1.0108, 2.0)
       end
       return ret_val
     elsif market.market_master_id == 15
       if market.market_employee < 10
-        ret_val = cal_market_earning(0.010,0.84,1.1, 1.0)
+        ret_val = cal_market_earning(0.010,0.84,0.9994, 1.0)
       elsif market.market_employee < 100
-        ret_val = cal_market_earning(0.010,0.84,1.1, 1.2)
+        ret_val = cal_market_earning(0.010,0.84,0.9994, 1.2)
       elsif market.market_employee < 1000
-        ret_val = cal_market_earning(0.010,0.84,1.1, 1.5)
+        ret_val = cal_market_earning(0.010,0.84,0.9994, 1.5)
       else
-        ret_val = cal_market_earning(0.010,0.84,1.1, 2.0)
+        ret_val = cal_market_earning(0.010,0.84,0.9994, 2.0)
       end
       return ret_val
     elsif market.market_master_id == 16
       if market.market_employee < 10
-        ret_val = cal_market_earning(0.102,7.62,1.1, 1.0)
+        ret_val = cal_market_earning(0.102,7.62,1.0116, 1.0)
       elsif market.market_employee < 100
-        ret_val = cal_market_earning(0.102,7.62,1.1, 1.2)
+        ret_val = cal_market_earning(0.102,7.62,1.0116, 1.2)
       elsif market.market_employee < 1000
-        ret_val = cal_market_earning(0.102,7.62,1.1, 1.5)
+        ret_val = cal_market_earning(0.102,7.62,1.0116, 1.5)
       else
-        ret_val = cal_market_earning(0.102,7.62,1.1, 2.0)
+        ret_val = cal_market_earning(0.102,7.62,1.0116, 2.0)
       end
       return ret_val
     elsif market.market_master_id == 17
       if market.market_employee < 10
-        ret_val = cal_market_earning(0.074,8.08,1.1, 1.0)
+        ret_val = cal_market_earning(0.074,8.08,1.0023, 1.0)
       elsif market.market_employee < 100
-        ret_val = cal_market_earning(0.074,8.08,1.1, 1.2)
+        ret_val = cal_market_earning(0.074,8.08,1.0023, 1.2)
       elsif market.market_employee < 1000
-        ret_val = cal_market_earning(0.074,8.08,1.1, 1.5)
+        ret_val = cal_market_earning(0.074,8.08,1.0023, 1.5)
       else
-        ret_val = cal_market_earning(0.074,8.08,1.1, 2.0)
+        ret_val = cal_market_earning(0.074,8.08,1.0023, 2.0)
       end
       return ret_val
     elsif market.market_master_id == 18
       if market.market_employee < 10
-        ret_val = cal_market_earning(0.020,0.03,1.1, 1.0)
+        ret_val = cal_market_earning(0.020,0.03,1.0025, 1.0)
       elsif market.market_employee < 100
-        ret_val = cal_market_earning(0.020,0.03,1.1, 1.2)
+        ret_val = cal_market_earning(0.020,0.03,1.0025, 1.2)
       elsif market.market_employee < 1000
-        ret_val = cal_market_earning(0.020,0.03,1.1, 1.5)
+        ret_val = cal_market_earning(0.020,0.03,1.0025, 1.5)
       else
-        ret_val = cal_market_earning(0.020,0.03,1.1, 2.0)
+        ret_val = cal_market_earning(0.020,0.03,1.0025, 2.0)
       end
       return ret_val
     end
