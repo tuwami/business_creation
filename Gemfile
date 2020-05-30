@@ -68,8 +68,8 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'slim-rails'
 gem 'html2slim'
-gem 'bootstrap', '~> 4.1.1'
-gem 'jquery-rails', '~> 4.3.1'
+gem 'bootstrap-sass', '~> 3.3.6'
+gem 'jquery-rails'
 
 gem 'devise'
 gem 'pry-rails'
