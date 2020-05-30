@@ -7,14 +7,14 @@ class Investment < ApplicationRecord
   validates :assigning, presence: true
 
   def save_history
-    History.create(investment_id: id, fund: team.current_fund, employee: team.current_employee, novice: team.current_novice, earning: market.market_earning, recruiting: market.market_recruiting, each_market_employee: market.market_employee, team_id: team.id, market_id: market_id)
+    History.create!(investment_id: id, fund: team.current_fund, employee: team.current_employee, novice: team.current_novice, earning: market.market_earning, recruiting: market.market_recruiting, each_market_employee: market.market_employee, team_id: team.id, market_id: market_id)
   end
 
   def calculate_team_status
     team.current_fund = cal_fund
     team.current_employee = cal_employee
     team.current_novice = cal_novice
-    team.save
+    team.save!
   end
   
   def calculate_market_status
@@ -22,7 +22,7 @@ class Investment < ApplicationRecord
     market.market_earning = cal_params_market_earning
     market.market_employee = cal_market_employee
     market.balance = cal_params_balance
-    market.save
+    market.save!
   end
 
   def cal_fund

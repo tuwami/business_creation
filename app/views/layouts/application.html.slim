@@ -13,11 +13,8 @@ html
     - elsif admin_signed_in?
       = link_to "Admin Log out", destroy_admin_session_path, method: :delete
     - else
-      = link_to "Sign up", new_user_registration_path
       = link_to "Log in", new_user_session_path
   body
-    p.notice = notice
-    p.alert = alert
     div class="container"
       -if flash[:notice]
         p class="text-success" = flash[:notice]
