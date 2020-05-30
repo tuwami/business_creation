@@ -70,8 +70,6 @@ gem 'slim-rails'
 gem 'html2slim'
 gem 'bootstrap', '~> 4.1.1'
 gem 'jquery-rails', '~> 4.3.1'
-gem 'jquery-turbolinks'
 
-gem 'config'
 gem 'devise'
 gem 'pry-rails'

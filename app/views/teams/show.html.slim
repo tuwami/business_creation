@@ -46,28 +46,28 @@ div.row
     h5 予算
     button.graph2-button.btn.btn-primary style = "font-size:12px;"= '表示切替'
     div class="graph2"
-      = line_chart @team.markets.map { |market| {name: market.market_master.market_name, data: market.investments.pluck(:budget).map.with_index{|budget,i| [i+1, budget] }.insert(0,[0,0])}}, xtitle: :id, ytitle: :budget
+      = line_chart @team.markets.map { |market| {name: market.name, data: market.investments.pluck(:budget).map.with_index{|budget,i| [i+1, budget] }.insert(0,[0,0])}}, xtitle: :id, ytitle: :budget
     // line_chart @team.markets.map { |market| {name: market.market_master.market_name, data: market.investments.pluck(:id, :budget)}}
     
     h5 配属
     button.graph3-button.btn.btn-primary style = "font-size:12px;"= '表示切替'
     div class="graph3"
-      = line_chart @team.markets.map { |market| {name: market.market_master.market_name, data: market.investments.pluck(:assigning).map.with_index{|assigning,i| [i+1, assigning] }.insert(0,[0,0])}}, xtitle: :id, ytitle: :assigning
+      = line_chart @team.markets.map { |market| {name: market.name, data: market.investments.pluck(:assigning).map.with_index{|assigning,i| [i+1, assigning] }.insert(0,[0,0])}}, xtitle: :id, ytitle: :assigning
     
     h5 売上
     button.graph4-button.btn.btn-primary style = "font-size:12px;"= '表示切替'
     div class="graph4"
-      = line_chart @team.markets.map { |market| {name: market.market_master.market_name, data: market.histories.pluck(:earning).map.with_index{|earning,i| [i+1, earning] }.insert(0,[0,0])}}, xtitle: :id, ytitle: :earning
+      = line_chart @team.markets.map { |market| {name: market.name, data: market.histories.pluck(:earning).map.with_index{|earning,i| [i+1, earning] }.insert(0,[0,0])}}, xtitle: :id, ytitle: :earning
     
     h5 採用人数
     button.graph5-button.btn.btn-primary style = "font-size:12px;"= '表示切替'
     div class="graph5"
-      = line_chart @team.markets.map { |market| {name: market.market_master.market_name, data: market.histories.pluck(:recruiting).map.with_index{|recruiting,i| [i+1, recruiting] }.insert(0,[0,0])}}, xtitle: :id, ytitle: :recruiting
+      = line_chart @team.markets.map { |market| {name: market.name, data: market.histories.pluck(:recruiting).map.with_index{|recruiting,i| [i+1, recruiting] }.insert(0,[0,0])}}, xtitle: :id, ytitle: :recruiting
     
     h5 従業員数
     button.graph6-button.btn.btn-primary style = "font-size:12px;"= '表示切替'
     div class="graph6"
-      = line_chart @team.markets.map { |market| {name: market.market_master.market_name, data: market.histories.pluck(:each_market_employee).map.with_index{|each_market_employee,i| [i+1, each_market_employee] }.insert(0,[0,0])}}, xtitle: :id, ytitle: :department_employee
+      = line_chart @team.markets.map { |market| {name: market.name, data: market.histories.pluck(:each_market_employee).map.with_index{|each_market_employee,i| [i+1, each_market_employee] }.insert(0,[0,0])}}, xtitle: :id, ytitle: :department_employee
     
     hr
     

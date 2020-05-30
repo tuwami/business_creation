@@ -10,19 +10,17 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-//= require jquery3
-//= require jquery.turbolinks
+//= require jquery
 //= require rails-ujs
 //= require activestorage
 //= require turbolinks
-//= require popper
 //= require bootstrap-sprockets
 //= require chartkick
 //= require Chart.bundle
 //= require_tree .
 
  /* global $*/
-$(document).ready(function() {
+$(document).on('turbolinks:load', function() {
     $(".graph1-button").click(function () {
         $(".graph1").toggle();
     });
