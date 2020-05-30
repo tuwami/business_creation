@@ -4,8 +4,8 @@ div.row
     table.table.table-striped
       thead.thead-dark
         tr
-          td = 'Team Name'
-          td = 'User Name'
+          td style="font-size:30px;" 会社名
+          td style="font-size:30px;" 名前
       tbody
         tr
           td = @team.name
@@ -15,28 +15,26 @@ div.row
             - elsif user_signed_in?
               p = current_user.email
             end
-            
-    hr
     
-    h3 = 'Team member'
+    h3 創業者
     - @users.each do |user|
-      p = user.email
+      li = user.email
     end
     hr
-    h3 Status
+    h3 会社全体の数値
     table.table.table-striped
       thead.thead-light
         tr
-          td Fund
-          td Employee
-          td Novice
+          td 資本
+          td 従業員数
+          td 未配属
       tbody
         tr
-          td = @team.current_fund
-          td = @team.current_employee
-          td = @team.current_novice
-
-    button class="graph1-button" = '切替'
+          td = "#{@team.current_fund}百万円"
+          td = "#{@team.current_employee}人"
+          td = "#{@team.current_novice}人"
+    
+    button.graph1-button.btn.btn-primary style = "font-size:10px;"= '表示切替'
     div class="graph1"
       = line_chart [{name: "fund",data: @use_histories.pluck(:fund).map.with_index{|a,i| [i+1,a]}.insert(0,[0,1000])}, \
                     {name: "employee",data: @use_histories.pluck(:employee).map.with_index{|a,i| [i+1,a]}.insert(0,[0,20])},\
@@ -44,31 +42,32 @@ div.row
                   ], xtitle: :id
     hr
     
-    h3 budget
-    button class="graph2-button" = '切替'
+    h3 事業部ごとの数値
+    h5 予算
+    button.graph2-button.btn.btn-primary style = "font-size:12px;"= '表示切替'
     div class="graph2"
-      = line_chart @team.markets.map { |market| {name: market.market_master.market_name, data: market.investments.pluck(:budget).map.with_index{|budget,i| [i+1, budget] }.insert(0,[0,0])}}, id: "budget", xtitle: :id, ytitle: :budget
+      = line_chart @team.markets.map { |market| {name: market.market_master.market_name, data: market.investments.pluck(:budget).map.with_index{|budget,i| [i+1, budget] }.insert(0,[0,0])}}, xtitle: :id, ytitle: :budget
     // line_chart @team.markets.map { |market| {name: market.market_master.market_name, data: market.investments.pluck(:id, :budget)}}
     
-    h3 assigning
-    button class="graph3-button" = '切替'
+    h5 配属
+    button.graph3-button.btn.btn-primary style = "font-size:12px;"= '表示切替'
     div class="graph3"
       = line_chart @team.markets.map { |market| {name: market.market_master.market_name, data: market.investments.pluck(:assigning).map.with_index{|assigning,i| [i+1, assigning] }.insert(0,[0,0])}}, xtitle: :id, ytitle: :assigning
     
-    h3 earning
-    button class="graph4-button" = '切替'
+    h5 売上
+    button.graph4-button.btn.btn-primary style = "font-size:12px;"= '表示切替'
     div class="graph4"
       = line_chart @team.markets.map { |market| {name: market.market_master.market_name, data: market.histories.pluck(:earning).map.with_index{|earning,i| [i+1, earning] }.insert(0,[0,0])}}, xtitle: :id, ytitle: :earning
     
-    h3 recruiting
-    button class="graph5-button" = '切替'
+    h5 採用人数
+    button.graph5-button.btn.btn-primary style = "font-size:12px;"= '表示切替'
     div class="graph5"
       = line_chart @team.markets.map { |market| {name: market.market_master.market_name, data: market.histories.pluck(:recruiting).map.with_index{|recruiting,i| [i+1, recruiting] }.insert(0,[0,0])}}, xtitle: :id, ytitle: :recruiting
     
-    h3 market_employee
-    button class="graph6-button" = '切替'
+    h5 従業員数
+    button.graph6-button.btn.btn-primary style = "font-size:12px;"= '表示切替'
     div class="graph6"
-      = line_chart @team.markets.map { |market| {name: market.market_master.market_name, data: market.histories.pluck(:each_market_employee).map.with_index{|each_market_employee,i| [i+1, each_market_employee] }.insert(0,[0,0])}}, xtitle: :id, ytitle: :market_employee
+      = line_chart @team.markets.map { |market| {name: market.market_master.market_name, data: market.histories.pluck(:each_market_employee).map.with_index{|each_market_employee,i| [i+1, each_market_employee] }.insert(0,[0,0])}}, xtitle: :id, ytitle: :department_employee
     
     hr
     
@@ -78,14 +77,14 @@ div.row
         thead.thead-light
           tr
             td ID
-            td Market
-            td Budget
-            td Assingning
-            td Earning
-            td Recruiting
-            td Fund
-            td Employee
-            td Novice
+            td 事業
+            td 予算
+            td 配属
+            td 売上
+            td 採用
+            td 資本
+            td 従業員数
+            td 未配属
         tbody
           - @team.investments.each do |investment|
             tr
@@ -107,16 +106,16 @@ div.row
     
     = form_with model: [@team, @investment], local: true do |f|
       div class="form-group"
-        label Market :
+        label 事業部 :
         = f.select :market_id, @team.markets.order(:id).map { |m| [ m.market_master.market_name, m.id ] }
       div class="form-group"
-        label Budget :
+        label 予算(百万円) :
         = f.number_field :budget, class: "form-control", min: 0, max: @team.current_fund
       div class="form-group"
-        label Assigning :
+        label 配属(人) :
         = f.number_field :assigning, class: "form-control", min: 0, max: @team.current_novice
       div class="text-center"
-        = f.submit "Save", class: "btn btn-primary"
+        = f.submit "投資", class: "btn btn-primary"
     
     = link_to 'Home', root_path, class: 'btn btn-primary'
   

@@ -19,7 +19,7 @@ User.create!(email: "takaya@waqoo.jp", password: "takaya", team_id: 3)
 User.create!(email: "murata@waqoo.jp", password: "murata", team_id: 4)
 User.create!(email: "sakamoto@waqoo.jp", password: "sakamoto", team_id: 4)
 User.create!(email: "matsunaga@waqoo.jp", password: "matsunaga", team_id: 5)
-User.create!(email: "myokotuka@waqoo.jp", password: "yokotuka", team_id: 5)
+User.create!(email: "yokotuka@waqoo.jp", password: "yokotuka", team_id: 5)
 
 
 MarketMaster.create!(market_name: "market_a")
