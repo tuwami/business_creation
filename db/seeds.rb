@@ -22,24 +22,9 @@ User.create!(email: "matsunaga@waqoo.jp", password: "matsunaga", team_id: 5)
 User.create!(email: "yokotuka@waqoo.jp", password: "yokotuka", team_id: 5)
 
 
-MarketMaster.create!(market_name: "market_a")
-MarketMaster.create!(market_name: "market_b")
-MarketMaster.create!(market_name: "market_c")
-MarketMaster.create!(market_name: "market_d")
-MarketMaster.create!(market_name: "market_e")
-MarketMaster.create!(market_name: "market_f")
-MarketMaster.create!(market_name: "market_g")
-MarketMaster.create!(market_name: "market_h")
-MarketMaster.create!(market_name: "market_i")
-MarketMaster.create!(market_name: "market_j")
-MarketMaster.create!(market_name: "market_k")
-MarketMaster.create!(market_name: "market_l")
-MarketMaster.create!(market_name: "market_m")
-MarketMaster.create!(market_name: "market_n")
-MarketMaster.create!(market_name: "market_o")
-MarketMaster.create!(market_name: "market_p")
-MarketMaster.create!(market_name: "market_q")
-MarketMaster.create!(market_name: "market_r")
+[*'A'..'R'].each do |alphabet|
+  MarketMaster.create!(market_name: "#{alphabet}事業部")
+end
 
 2.times do |n|
   18.times do |m|
