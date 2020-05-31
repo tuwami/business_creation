@@ -7,6 +7,10 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 Team.create!(name: "team_a")
 Team.create!(name: "team_b")
+Team.create!(name: "team_c")
+Team.create!(name: "team_d")
+Team.create!(name: "team_e")
+Team.create!(name: "team_f")
 
 Admin.create!(email: "admin@waqoo.jp", password: "adminadmin")
 User.create!(email: "aa@aa", password: "pppppp", team_id: 1)

@@ -72,13 +72,13 @@ class Investment < ApplicationRecord
       return 0
     elsif market.market_master_id == 2
       if market.market_employee < 10
-        ret_val = cal_market_earning(0.182,4.20,1.0137, 1.0)
+        ret_val = cal_market_earning(0.182,4.20,1.0137, 0.8)
       elsif market.market_employee < 100
-        ret_val = cal_market_earning(0.182,4.20,1.0137, 1.2)
+        ret_val = cal_market_earning(0.182,4.20,1.0137, 1.0)
       elsif market.market_employee < 1000
-        ret_val = cal_market_earning(0.182,4.20,1.0137, 1.5)
+        ret_val = cal_market_earning(0.182,4.20,1.0137, 1.2)
       else
-        ret_val = cal_market_earning(0.182,4.20,1.0137, 2.0)
+        ret_val = cal_market_earning(0.182,4.20,1.0137, 1.5)
       end
       return ret_val
     elsif market.market_master_id == 3
@@ -322,7 +322,7 @@ class Investment < ApplicationRecord
   end
 
   def cal_market_earning(a,b,c,d) #a = 資本の効率性,b = 人的リソースの効率性,c = 市場の成長性,d = 事業の成長性
-    ret_val = MARKETSIZE[market.market_master_id-2]*(MARKETSHARE[market.market_master_id-2]*d)*((market.balance + budget)*a*(market.market_employee + assigning)* b )* c * rand(9000..11000) / 100000
+    ret_val = MARKETSIZE[market.market_master_id-2]*(MARKETSHARE[market.market_master_id-2]*d)*((market.balance + budget*a)*(market.market_employee + assigning)* b )* c * rand(9000..11000) / 100000
     return ret_val
   end
   
