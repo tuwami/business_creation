@@ -72,35 +72,37 @@ div.row
     hr
     
     h3 InvestmentHistories
-    table.table.table-striped
-      - if @team.investments.any?
-        thead.thead-light
-          tr
-            td ID
-            td 事業
-            td 予算
-            td 配属
-            td 売上
-            td 採用
-            td 資本
-            td 従業員数
-            td 未配属
-        tbody
-          - @team.investments.each do |investment|
+    button.graph4-button.btn.btn-primary style = "font-size:12px;"= '表示切替'
+    div class="group7"
+      table.table.table-striped
+        - if @team.investments.any?
+          thead.thead-light
             tr
-              td = investment.id
-              td = investment.market.market_master.market_name
-              td = investment.budget
-              td = investment.assigning
-              td = investment.history.earning
-              td = investment.history.recruiting
-              td = investment.history.fund
-              td = investment.history.employee
-              td = investment.history.novice
-          end
-      - else
-        p No histories yet.
-      end
+              td ID
+              td 事業
+              td 予算
+              td 配属
+              td 売上
+              td 採用
+              td 資本
+              td 従業員数
+              td 未配属
+          tbody
+            - @team.investments.each do |investment|
+              tr
+                td = investment.id
+                td = investment.market.market_master.market_name
+                td = investment.budget
+                td = investment.assigning
+                td = investment.history.earning
+                td = investment.history.recruiting
+                td = investment.history.fund
+                td = investment.history.employee
+                td = investment.history.novice
+            end
+        - else
+          p No histories yet.
+        end
     
     h3 Make new history.
     
