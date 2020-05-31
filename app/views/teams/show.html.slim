@@ -112,10 +112,10 @@ div.row
         = f.select :market_id, @team.markets.order(:id).map { |m| [ m.market_master.market_name, m.id ] }
       div class="form-group"
         label 予算(百万円) :
-        = f.number_field :budget, class: "form-control", min: 0, max: @team.current_fund
+        = f.number_field :budget, class: "form-control", min: 0, max: @team.current_fund*0.9
       div class="form-group"
         label 配属(人) :
-        = f.number_field :assigning, class: "form-control", min: 0, max: @team.current_novice
+        = f.number_field :assigning, class: "form-control", min: 0, max: @team.current_novice*0.9
       div class="text-center"
         = f.submit "投資", class: "btn btn-primary"
     
