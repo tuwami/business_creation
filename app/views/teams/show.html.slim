@@ -71,9 +71,9 @@ div.row
     
     hr
     
-    h3 InvestmentHistories
-    button.graph4-button.btn.btn-primary style = "font-size:12px;"= '表示切替'
-    div class="group7"
+    h3 実績
+    button.graph7-button.btn.btn-primary style = "font-size:12px;"= '表示切替'
+    div class="graph7"
       table.table.table-striped
         - if @team.investments.any?
           thead.thead-light
@@ -101,7 +101,7 @@ div.row
                 td = investment.history.novice
             end
         - else
-          p No histories yet.
+          p まだ実績はありません。
         end
     
     h3 Make new history.
