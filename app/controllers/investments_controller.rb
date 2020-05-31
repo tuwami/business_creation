@@ -13,7 +13,7 @@ class InvestmentsController < ApplicationController
       render_error("前の投資から１分以内に投資することはできません。後" + (60-laps).to_i.to_s + "秒待ってください。")
       return
     end
-    if params[:investment][:budget].empty? || !params[:investment][:assigning].empty?
+    if params[:investment][:budget].empty? || params[:investment][:assigning].empty?
       render_error("予算または配属人数が空のままでは投資できません")
       return
     end

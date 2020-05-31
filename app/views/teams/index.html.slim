@@ -4,7 +4,7 @@
     span としてログインしています
   div
     span あなたのチームは
-    span current_user.team.name
+    span = current_user.team.name
     span です
   div = link_to 'チームへ入る', team_path(current_user.team)
 
