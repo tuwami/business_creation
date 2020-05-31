@@ -260,6 +260,8 @@ class Investment < ApplicationRecord
   end
   
   def cal_params_balance
+    # cal_value = [0.3,0.3,0.5,0.95,0.4,0.95,0.4,0.95,0.3,0.3,0.3,0.3,0.3,0.3,0.8,0.9,0.5,0.3,0.3]
+    # return cal_balance(cal_value[market.market_master_id])
     if market.market_master_id == 1
       return 0
     elsif market.market_master_id == 2
