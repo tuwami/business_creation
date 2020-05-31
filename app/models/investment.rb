@@ -277,7 +277,7 @@ class Investment < ApplicationRecord
       ret_val = cal_balance(0.95)
       return ret_val
     elsif market.market_master_id == 6
-      ret_val = cal_balance(0.40)
+      ret_val = cal_balance(0.60)
       return ret_val
     elsif market.market_master_id == 7
       ret_val = cal_balance(0.95)
