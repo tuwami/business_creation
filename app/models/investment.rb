@@ -324,7 +324,7 @@ class Investment < ApplicationRecord
   end
 
   def cal_market_earning(a,b,c,d) #a = 資本の効率性,b = 人的リソースの効率性,c = 市場の成長性,d = 事業の成長性
-    ret_val = MARKETSIZE[market.market_master_id-2]*(MARKETSHARE[market.market_master_id-2]*d)*((Math.sqrt(market.balance + budget*a))*(Math.sqrt((market.market_employee + assigning)* b)))* c * rand(9000..11000) / 3500
+    ret_val = MARKETSIZE[market.market_master_id-2]*(MARKETSHARE[market.market_master_id-2]*d)*((Math.sqrt(market.balance + budget)*a)*(Math.sqrt((market.market_employee + assigning)* b)))* c * rand(9000..11000) / 3500
     return ret_val
   end
   
