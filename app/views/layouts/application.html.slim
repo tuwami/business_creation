@@ -8,16 +8,24 @@ html
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
   header
-    nav class="navbar navbar-dark bg-dark"
-      = link_to "投資シミュレーションゲーム", teams_path, method: :delete,class: "navbar-brand"
-      - if user_signed_in?
-        = current_user.email
-        = link_to "Log out", destroy_user_session_path, method: :delete,class: "navbar-brand"
-      - elsif admin_signed_in?
-        = current_admin.email
-        = link_to "Admin Log out", destroy_admin_session_path, method: :delete, class: "navbar-brand"
-      - else
-        = link_to "Log in", new_user_session_path, class: "navbar-brand"
+    nav class="navbar navbar-expand-lg navbar-dark bg-dark"
+      div class="collapse navbar-collapse" id="navbarSupportedContent"
+        ul class="navbar-nav mr-auto"
+          li class="nav-item"
+            = link_to "投資シミュレーションゲーム", root_path, class: "navbar-brand"
+        ul class="navbar-nav ml-auto"
+          - if user_signed_in?
+              span.navbar-brand
+                = current_user.email
+              = link_to "Log out", destroy_user_session_path, method: :delete,class: "navbar-brand"
+          - elsif admin_signed_in?
+            li class="nav-item"
+              span.navbar-brand
+                = current_admin.email
+            li class="nav-item"
+              = link_to "Log out", destroy_admin_session_path, method: :delete, class: "navbar-brand"
+          - else
+            = link_to "Log in", new_user_session_path, class: "navbar-brand"
 
 
   body
