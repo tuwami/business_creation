@@ -18,7 +18,7 @@ class InvestmentsController < ApplicationController
       return
     end
     ActiveRecord::Base.transaction do
-      @team.markets.each do |market|
+      @team.markets.order(:market_master_id).each do |market|
         if params[:investment][:market_id].to_i == market.id
           investment = Investment.new(investment_params)
         else

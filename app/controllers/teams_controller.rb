@@ -11,7 +11,8 @@ class TeamsController < ApplicationController
       @team = Team.find(params[:id])
       @users = @team.users
       @investment = Investment.new
-      @use_histories = @team.histories.where(market_id: @team.markets.last.id)
+      last_market = Market.where(team_id: @team.id).order(:market_master_id).last
+      @use_histories = @team.histories.where(market_id: last_market.id)
     else
       redirect_to teams_path
     end
