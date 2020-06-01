@@ -8,12 +8,18 @@ html
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
   header
-    - if user_signed_in?
-      = link_to "User Log out", destroy_user_session_path, method: :delete
-    - elsif admin_signed_in?
-      = link_to "Admin Log out", destroy_admin_session_path, method: :delete
-    - else
-      = link_to "Log in", new_user_session_path
+    nav class="navbar navbar-dark bg-dark"
+      = link_to "投資シミュレーションゲーム", teams_path, method: :delete,class: "navbar-brand"
+      - if user_signed_in?
+        = current_user.email
+        = link_to "Log out", destroy_user_session_path, method: :delete,class: "navbar-brand"
+      - elsif admin_signed_in?
+        = current_admin.email
+        = link_to "Admin Log out", destroy_admin_session_path, method: :delete, class: "navbar-brand"
+      - else
+        = link_to "Log in", new_user_session_path, class: "navbar-brand"
+
+
   body
     div class="container"
       -if flash[:notice]
