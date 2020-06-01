@@ -32,7 +32,7 @@ ActiveRecord::Schema.define(version: 2020_05_25_052652) do
     t.integer "novice", default: 0
     t.integer "earning", default: 0
     t.integer "recruiting", default: 0
-    t.integer "each_market_employee", default: 0
+    t.integer "each_market_employee", default: 1
     t.integer "investment_id"
     t.integer "market_id"
     t.datetime "created_at", null: false
@@ -69,7 +69,7 @@ ActiveRecord::Schema.define(version: 2020_05_25_052652) do
   create_table "teams", force: :cascade do |t|
     t.string "name"
     t.integer "current_fund", default: 100
-    t.integer "current_employee", default: 10
+    t.integer "current_employee", default: 28
     t.integer "current_novice", default: 10
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
