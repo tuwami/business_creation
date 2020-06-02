@@ -1,6 +1,6 @@
 h1 = @message
 div.row
-  div.col-md-8
+  div.col-md-9
     section.jumbotron style="background-color: white;margin-bottom:0px;"
       h3 会社全体の数値
       table.table.table-striped
@@ -11,20 +11,14 @@ div.row
             td 未配属
         tbody
           tr
-            - if @use_histories.last.fund - @use_histories.last(2)[0].fund >= 0
-              td = "#{@team.current_fund}百万円(+#{@use_histories.last.fund - @use_histories.last(2)[0].fund}百万円)"
+            - if @use_histories.size >= 2
+              td = "#{@team.current_fund}百万円(#{sprintf("%+d",@use_histories.last.fund - @use_histories.last(2)[0].fund)}百万円)"
+              td = "#{@team.current_employee}人(#{sprintf("%+d",@use_histories.last.employee - @use_histories.last(2)[0].employee)}人)"
+              td = "#{@team.current_novice}人(#{sprintf("%+d", @use_histories.last.novice - @use_histories.last(2)[0].novice)}人)"
             - else
-              td = "#{@team.current_fund}百万円(#{@use_histories.last.fund - @use_histories.last(2)[0].fund}百万円)"
-            end
-            - if @use_histories.last.employee - @use_histories.last(2)[0].employee >= 0
-              td = "#{@team.current_employee}人(+#{@use_histories.last.employee - @use_histories.last(2)[0].employee}人)"
-            - else
-              td = "#{@team.current_employee}人(#{@use_histories.last.employee - @use_histories.last(2)[0].employee}人)"
-            end
-            - if @use_histories.last.novice - @use_histories.last(2)[0].novice >= 0
-              td = "#{@team.current_novice}人(+#{@use_histories.last.novice - @use_histories.last(2)[0].novice}人)"
-            - else
-              td = "#{@team.current_novice}人(#{@use_histories.last.novice - @use_histories.last(2)[0].novice}人)"
+              td = "#{@team.current_fund}百万円"
+              td = "#{@team.current_employee}人"
+              td = "#{@team.current_novice}人"
             end
 
     section.jumbotron
@@ -87,7 +81,7 @@ div.row
       div class="graph6"
         = line_chart @team.markets.map { |market| {name: market.name, data: market.histories.pluck(:each_market_employee).map.with_index{|each_market_employee,i| [i+1, each_market_employee] }.insert(0,[0,1])}}, xtitle: :id, ytitle: :department_employee
     
-  div.col-md-4
+  div.col-md-3
     section.tron style="background-color: white;margin:50px 0;"
       h3 会社名
       h5 = @team.name
@@ -100,7 +94,7 @@ div.row
       
     section.tron style="background-color: white"
       h3 経過月数
-      h5 = "#{@team.investments.last.id/18}ヶ月目"
+      h5 = "#{@use_histories.count}ヶ月目"
       end
     
     //h3 実績
