@@ -60,7 +60,7 @@ ActiveRecord::Schema.define(version: 2020_05_25_052652) do
     t.integer "team_id"
     t.integer "market_earning", default: 0
     t.integer "market_recruiting", default: 0
-    t.integer "market_employee", default: 0
+    t.integer "market_employee", default: 1
     t.integer "balance", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

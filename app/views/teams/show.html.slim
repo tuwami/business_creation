@@ -11,9 +11,21 @@ div.row
             td 未配属
         tbody
           tr
-            td = "#{@team.current_fund}百万円"
-            td = "#{@team.current_employee}人"
-            td = "#{@team.current_novice}人"
+            - if @use_histories.last.fund - @use_histories.last(2)[0].fund >= 0
+              td = "#{@team.current_fund}百万円(+#{@use_histories.last.fund - @use_histories.last(2)[0].fund}百万円)"
+            - else
+              td = "#{@team.current_fund}百万円(#{@use_histories.last.fund - @use_histories.last(2)[0].fund}百万円)"
+            end
+            - if @use_histories.last.employee - @use_histories.last(2)[0].employee >= 0
+              td = "#{@team.current_employee}人(+#{@use_histories.last.employee - @use_histories.last(2)[0].employee}人)"
+            - else
+              td = "#{@team.current_employee}人(#{@use_histories.last.employee - @use_histories.last(2)[0].employee}人)"
+            end
+            - if @use_histories.last.novice - @use_histories.last(2)[0].novice >= 0
+              td = "#{@team.current_novice}人(+#{@use_histories.last.novice - @use_histories.last(2)[0].novice}人)"
+            - else
+              td = "#{@team.current_novice}人(#{@use_histories.last.novice - @use_histories.last(2)[0].novice}人)"
+            end
 
     section.jumbotron
       div class="graph1"
@@ -80,10 +92,15 @@ div.row
       h3 会社名
       h5 = @team.name
 
-    section.tron style="background-color: white"
+    section.tron style="background-color: white;margin:50px 0;"
       h3 創業者
       - @users.each do |user|
         li = user.email
+      end
+      
+    section.tron style="background-color: white"
+      h3 経過月数
+      h5 = "#{@team.investments.last.id/18}ヶ月目"
       end
     
     //h3 実績
