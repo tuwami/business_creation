@@ -21,6 +21,12 @@ class InvestmentsController < ApplicationController
       render_error("投資する事業部を選択してください")
       return
     end
+    if @team.investments.any?
+      if @team.investments.last.id / 18 >= 10
+        render_error("ゲーム終了です")
+        return
+      end
+    end
     ActiveRecord::Base.transaction do
       @team.markets.order(:market_master_id).each do |market|
         if params[:investment][:market_id].to_i == market.id
