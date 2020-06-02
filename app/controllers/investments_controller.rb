@@ -8,13 +8,17 @@ class InvestmentsController < ApplicationController
   def create
     @team = current_user.team
     @users = @team.users
-    if @team.investments.length != 0 && Time.zone.now - @team.investments.last.created_at < 10
+    if @team.investments.length != 0 && Time.zone.now - @team.investments.last.created_at < 1
       laps = Time.zone.now - @team.investments.last.created_at
-      render_error("前の投資から１分以内に投資することはできません。後" + (10-laps).to_i.to_s + "秒待ってください。")
+      render_error("前の投資から１秒以内に投資することはできません。後" + (1-laps).to_i.to_s + "秒待ってください。")
       return
     end
     if params[:investment][:budget].empty? || params[:investment][:assigning].empty?
       render_error("予算または配属人数が空のままでは投資できません")
+      return
+    end
+    if params[:investment][:market_id].to_i == 0
+      render_error("投資する事業部を選択してください")
       return
     end
     ActiveRecord::Base.transaction do
