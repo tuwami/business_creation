@@ -68,9 +68,9 @@ ActiveRecord::Schema.define(version: 2020_05_25_052652) do
 
   create_table "teams", force: :cascade do |t|
     t.string "name"
-    t.integer "current_fund", default: 100
-    t.integer "current_employee", default: 28
-    t.integer "current_novice", default: 10
+    t.integer "current_fund", default: 100000
+    t.integer "current_employee", default: 100018
+    t.integer "current_novice", default: 100000
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

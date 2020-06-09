@@ -74,7 +74,7 @@ class Investment < ApplicationRecord
   MARKETSIZE = [4.3,29.4,7.4,17.8,5.0,1.5,2.2,1.9,5.5,69.6,1.5,34.0,15.6,1.5,53.7,14.7,36.9]
   MARKETSHARE = [0.233,0.034,0.135,0.056,0.200,0.667,0.455,0.526,0.182,0.014,0.667,0.029,0.064,0.667,0.019,0.068,0.027]
   
-  EATH_MARKET_VALUES_B = [0.182,4.20,1.0137]
+  EATH_MARKET_VALUES_B = [0.102,8.25,1.0137]
   EATH_MARKET_VALUES_C = [0.094,3.80,1.0028]
   EATH_MARKET_VALUES_D = [0.086,7.59,1.0050]
   EATH_MARKET_VALUES_E = [0.055,2.35,1.0084]
@@ -99,7 +99,7 @@ class Investment < ApplicationRecord
                     EATH_MARKET_VALUES_N, EATH_MARKET_VALUES_O, EATH_MARKET_VALUES_P, 
                     EATH_MARKET_VALUES_Q, EATH_MARKET_VALUES_R ]
   
-  BALANCE_VALUES = [0.3,0.3,0.5,0.95,0.4,0.95,0.4,0.95,0.3,0.3,0.3,0.3,0.3,0.3,0.8,0.9,0.5,0.3,0.3]
+  BALANCE_VALUES = [0.31,0.53,0.55,0.95,0.38,0.92,0.50,0.34,0.21,0.70,0.81,0.93,0.56,0.33,0.31,0.30,0.95]
   
   def cal_params_market_earning
     if market.market_master_id == 1
@@ -126,18 +126,17 @@ class Investment < ApplicationRecord
   end
   
   def cal_market_recruiting(a,b) #a = 資本の効率性,b = 人的リソースの効率性
-    return Math.log(1 + ((budget*a)*((market.market_employee + assigning)*b*rand(5000..15000)) / 10000))
+    return Math.sqrt((budget*a)*((market.market_employee + assigning)*b*rand(5000..15000)) / 10000)
   end
 
   def cal_market_earning(a,b,c) #a = 資本の効率性,b = 人的リソースの効率性,c = 市場の成長性
-    if market.market_employee < 10
-      return Math.log(1 + (MARKETSIZE[market.market_master_id-2]*(MARKETSHARE[market.market_master_id-2]*1.0)*((Math.sqrt(market.balance + budget)*a)*(Math.sqrt((market.market_employee + assigning)* b)))* c * rand(9000..11000)))
-    elsif market.market_employee < 50 
-      return Math.log(1 + (MARKETSIZE[market.market_master_id-2]*(MARKETSHARE[market.market_master_id-2]*1.5)*((Math.sqrt(market.balance + budget)*a)*(Math.sqrt((market.market_employee + assigning)* b)))* c * rand(9000..11000)))
-    elsif market.market_employee < 250
-      return Math.log(1 + (MARKETSIZE[market.market_master_id-2]*(MARKETSHARE[market.market_master_id-2]*2.0)*((Math.sqrt(market.balance + budget)*a)*(Math.sqrt((market.market_employee + assigning)* b)))* c * rand(9000..11000)))
-    elsif market.market_employee < 1250
-      return Math.log(1 + (MARKETSIZE[market.market_master_id-2]*(MARKETSHARE[market.market_master_id-2]*3.0)*((Math.sqrt(market.balance + budget)*a)*(Math.sqrt((market.market_employee + assigning)* b)))* c * rand(9000..11000)))
+    investment_value = Math.sqrt(market.balance + budget)*((a*10)**3)*Math.sqrt(market.market_employee + assigning)*(b**2)*c*rand(8000..12000)/100000
+    if investment_value < 500
+      return (MARKETSIZE[market.market_master_id-2]*MARKETSHARE[market.market_master_id-2]*1.0)*(investment_value**2)/1000
+    elsif investment_value < 20000
+      return ((MARKETSIZE[market.market_master_id-2]*MARKETSHARE[market.market_master_id-2]*1.2)*investment_value)/2
+    else
+      return (MARKETSIZE[market.market_master_id-2]*MARKETSHARE[market.market_master_id-2]*1.5)*((investment_value*50)**(0.666666666667))
     end
   end
   
