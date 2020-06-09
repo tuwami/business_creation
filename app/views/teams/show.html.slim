@@ -23,9 +23,9 @@ div.row
 
     section.jumbotron
       div class="graph1"
-        = line_chart [{name: "資本",data: @use_histories.pluck(:fund).map.with_index{|a,i| [i+1,a]}.insert(0,[0,100000])}, \
-                      {name: "従業員数",data: @use_histories.pluck(:employee).map.with_index{|a,i| [i+1,a]}.insert(0,[0,100018])},\
-                      {name: "未配属", data: @use_histories.pluck(:novice).map.with_index{|a,i| [i+1,a]}.insert(0,[0,100000])} \
+        = line_chart [{name: "資本",data: @use_histories.pluck(:fund).map.with_index{|a,i| [i+1,a]}.insert(0,[0,100])}, \
+                      {name: "従業員数",data: @use_histories.pluck(:employee).map.with_index{|a,i| [i+1,a]}.insert(0,[0,28])},\
+                      {name: "未配属", data: @use_histories.pluck(:novice).map.with_index{|a,i| [i+1,a]}.insert(0,[0,10])} \
                     ], xtitle: :id
     section.jumbotron style="background-color: white"
       div style="text-align: center;"
