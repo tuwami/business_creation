@@ -8,10 +8,10 @@ class Investment < ApplicationRecord
 
   def save_history
     History.create!(investment_id: id,
-                    fund: team.current_fund,
+                    fund: team.current_fund.to_f,
                     employee: team.current_employee,
                     novice: team.current_novice,
-                    earning: market.market_earning,
+                    earning: market.market_earning.to_f,
                     recruiting: market.market_recruiting,
                     each_market_employee: market.market_employee,
                     team_id: team.id,
@@ -19,7 +19,7 @@ class Investment < ApplicationRecord
   end
 
   def calculate_team_status
-    team.current_fund = cal_fund
+    team.current_fund = cal_fund.to_f
     team.current_employee = cal_employee
     team.current_novice = cal_novice
     team.save!
@@ -27,7 +27,7 @@ class Investment < ApplicationRecord
   
   def calculate_market_status
     market.market_recruiting = cal_params_market_recruiting
-    market.market_earning = cal_params_market_earning
+    market.market_earning = cal_params_market_earning.to_f
     market.market_employee = cal_market_employee
     market.balance = cal_params_balance
     market.save!
@@ -35,9 +35,9 @@ class Investment < ApplicationRecord
 
   def cal_fund
     if team.histories.any?
-      return team.histories.last.fund - budget + market.market_earning
+      return ((team.histories.last.fund - budget + market.market_earning).to_f - (market.market_employee.to_f)*0.50).to_s.to_d.floor(2).to_f
     else
-      return team.current_fund - budget + market.market_earning
+      return ((team.current_fund - budget + market.market_earning).to_f - (market.market_employee.to_f)*0.50).to_s.to_d.floor(2).to_f
     end
   end
 
@@ -59,13 +59,7 @@ class Investment < ApplicationRecord
   
   def cal_params_market_recruiting
     if market.market_master_id == 1
-      if market.market_employee < 10
-        return cal_market_recruiting(5,5)
-      elsif market.market_employee < 100
-        return cal_market_recruiting(10,10)
-      else
-        return cal_market_recruiting(30,30)
-      end
+      return cal_market_recruiting(5,5)
     else
       return 0
     end
@@ -107,7 +101,7 @@ class Investment < ApplicationRecord
     else
       (2..18).each do |num|
         if num == market.market_master_id
-          return cal_market_earning(*MARKET_VALUES[num - 2])
+          return cal_market_earning(*MARKET_VALUES[num - 2]).to_s.to_d.floor(2).to_f
         end
       end
     end
@@ -126,17 +120,17 @@ class Investment < ApplicationRecord
   end
   
   def cal_market_recruiting(a,b) #a = 資本の効率性,b = 人的リソースの効率性
-    return Math.sqrt((budget*a)*((market.market_employee + assigning)*b*rand(5000..15000)) / 10000)
+    return Math.sqrt((budget*a)*((market.market_employee + assigning)*b*rand(5000..15000)) / 30000)
   end
 
   def cal_market_earning(a,b,c) #a = 資本の効率性,b = 人的リソースの効率性,c = 市場の成長性
-    investment_value = Math.sqrt(market.balance + budget)*((a*10)**3)*Math.sqrt(market.market_employee + assigning)*(b**2)*c*rand(8000..12000)/100000
+    investment_value = (Math.sqrt(market.balance + budget)*((a*10)**3)*Math.sqrt(market.market_employee + assigning)*(b**2)*c*rand(8000..12000)/100000).to_f
     if investment_value < 500
-      return (MARKETSIZE[market.market_master_id-2]*MARKETSHARE[market.market_master_id-2]*1.0)*(investment_value**2)/1000
+      return ((MARKETSIZE[market.market_master_id-2]*MARKETSHARE[market.market_master_id-2]*1.0)*(investment_value**2)/1000).to_f
     elsif investment_value < 20000
-      return ((MARKETSIZE[market.market_master_id-2]*MARKETSHARE[market.market_master_id-2]*1.2)*investment_value)/2
+      return (((MARKETSIZE[market.market_master_id-2]*MARKETSHARE[market.market_master_id-2]*1.2)*investment_value)/2).to_f
     else
-      return (MARKETSIZE[market.market_master_id-2]*MARKETSHARE[market.market_master_id-2]*1.5)*((investment_value*50)**(0.666666666667))
+      return ((MARKETSIZE[market.market_master_id-2]*MARKETSHARE[market.market_master_id-2]*1.5)*((investment_value*50)**(0.666666666667))).to_f
     end
   end
   
@@ -148,6 +142,8 @@ class Investment < ApplicationRecord
     return ( market.balance + budget ) * a
   end
 end
+
+
   
   # def cal_params_market_earning
   #   if market.market_master_id == 1

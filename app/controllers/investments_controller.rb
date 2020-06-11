@@ -18,11 +18,11 @@ class InvestmentsController < ApplicationController
       return
     end
     if params[:investment][:market_id].to_i == 0
-      render_error("投資する事業部を選択してください")
+      render_error("投資する事業を選択してください")
       return
     end
     if @team.investments.any?
-      if @team.investments.count / 18 >= 20
+      if @team.investments.count / 18 >= 10
         render_error("ゲーム終了です")
         return
       end
