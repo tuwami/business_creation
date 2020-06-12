@@ -30,7 +30,10 @@ ActiveRecord::Schema.define(version: 2020_05_25_052652) do
     t.float "fund", default: 0.0
     t.integer "employee", default: 0
     t.integer "novice", default: 0
+    t.float "profit", default: 0.0
     t.float "earning", default: 0.0
+    t.float "budget_earning", default: 0.0
+    t.float "balance_earning", default: 0.0
     t.integer "recruiting", default: 0
     t.integer "each_market_employee", default: 0
     t.integer "investment_id"
@@ -59,6 +62,8 @@ ActiveRecord::Schema.define(version: 2020_05_25_052652) do
     t.integer "market_master_id"
     t.integer "team_id"
     t.float "market_earning", default: 0.0
+    t.float "market_budget_earning", default: 0.0
+    t.float "market_balance_earning", default: 0.0
     t.integer "market_recruiting", default: 0
     t.integer "market_employee", default: 0
     t.integer "balance", default: 0
@@ -71,6 +76,7 @@ ActiveRecord::Schema.define(version: 2020_05_25_052652) do
     t.float "current_fund", default: 100.0
     t.integer "current_employee", default: 10
     t.integer "current_novice", default: 10
+    t.float "current_profit", default: 0.0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

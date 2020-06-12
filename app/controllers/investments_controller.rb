@@ -4,13 +4,12 @@ class InvestmentsController < ApplicationController
   def index
     redirect_to team_path(current_user.team)
   end
-
   def create
     @team = current_user.team
     @users = @team.users
-    if @team.investments.length != 0 && Time.zone.now - @team.investments.last.created_at < 30
+    if @team.investments.length != 0 && Time.zone.now - @team.investments.last.created_at < 1
       laps = Time.zone.now - @team.investments.last.created_at
-      render_error("前の投資から30秒以内に投資することはできません。後" + (1-laps).to_i.to_s + "秒待ってください。")
+      render_error("前の投資から1秒以内に投資することはできません。後" + (1-laps).to_i.to_s + "秒待ってください。")
       return
     end
     if params[:investment][:budget].empty? || params[:investment][:assigning].empty?

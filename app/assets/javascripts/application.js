@@ -43,4 +43,7 @@ $(document).on('turbolinks:load', function() {
     $(".graph7-button").click(function () {
         $(".graph7").toggle();
     });
+    $(".graph8-button").click(function () {
+        $(".graph7").toggle();
+    });
 });
