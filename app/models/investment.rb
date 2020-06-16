@@ -65,10 +65,15 @@ class Investment < ApplicationRecord
   
   def cal_profit
     if team.histories.any?
-      return (0 - budget.to_f)
+      return -10
     else
-      return ( market.market_earning.to_f - budget.to_f - (market.market_employee.to_f)*LABOURCOST ).to_s.to_d.floor(2).to_f
+      return -20
     end
+    # if team.histories.any?
+    #   return (0 - budget.to_f)
+    # else
+    #   return ( market.market_earning.to_f - budget.to_f - (market.market_employee.to_f)*LABOURCOST ).to_s.to_d.floor(2).to_f
+    # end
   end
   
   def cal_params_market_recruiting
@@ -82,34 +87,34 @@ class Investment < ApplicationRecord
   LABOURCOST = 0.3
   
   MARKETSIZE = [4.3,29.4,7.4,17.8,5.0,1.5,2.2,1.9,5.5,69.6,1.5,34.0,15.6,1.5,53.7,14.7,36.9]
-  MARKETSHARE = [0.233,0.034,0.135,0.056,0.200,0.667,0.455,0.526,0.182,0.014,0.667,0.029,0.064,0.667,0.019,0.068,0.027]
+  MARKETSHARE = [23.3,3.4,13.5,5.6,20.0,66.7,45.5,52.6,18.2,1.4,66.7,2.9,6.4,66.7,1.9,6.8,2.7]
   
-  EATH_MARKET_VALUES_B = [0.102,8.25,1.0137]
-  EATH_MARKET_VALUES_C = [0.094,3.80,1.0028]
-  EATH_MARKET_VALUES_D = [0.086,7.59,1.0050]
-  EATH_MARKET_VALUES_E = [0.055,2.35,1.0084]
-  EATH_MARKET_VALUES_F = [0.164,4.85,1.0108]
-  EATH_MARKET_VALUES_G = [0.050,1.72,0.9986]
-  EATH_MARKET_VALUES_H = [0.152,2.36,1.0074]
-  EATH_MARKET_VALUES_I = [0.050,6.44,1.0034]
-  EATH_MARKET_VALUES_J = [0.168,4.59,1.0100]
-  EATH_MARKET_VALUES_K = [0.084,5.37,1.0013]
-  EATH_MARKET_VALUES_L = [0.086,3.20,1.0041]
-  EATH_MARKET_VALUES_M = [0.113,1.69,1.0016]
-  EATH_MARKET_VALUES_N = [0.149,4.21,1.0108]
-  EATH_MARKET_VALUES_O = [0.010,0.84,0.9994]
-  EATH_MARKET_VALUES_P = [0.102,7.62,1.0116]
-  EATH_MARKET_VALUES_Q = [0.074,8.08,1.0023]
-  EATH_MARKET_VALUES_R = [0.020,0.03,1.0025]
+  EATH_MARKET_VALUES_A = [10.2, 8.25, 1.0137]
+  EATH_MARKET_VALUES_B = [9.40, 4.80, 1.0028]
+  EATH_MARKET_VALUES_C = [8.65, 7.94, 1.0050]
+  EATH_MARKET_VALUES_D = [5.50, 11.4, 1.0084]
+  EATH_MARKET_VALUES_E = [13.4, 4.85, 1.0108]
+  EATH_MARKET_VALUES_F = [5.21, 13.5, 0.9986]
+  EATH_MARKET_VALUES_G = [15.2, 3.91, 1.0074]
+  EATH_MARKET_VALUES_H = [8.93, 8.44, 1.0034]
+  EATH_MARKET_VALUES_I = [13.8, 4.59, 1.0100]
+  EATH_MARKET_VALUES_J = [8.40, 5.37, 1.0013]
+  EATH_MARKET_VALUES_K = [8.61, 4.29, 1.0041]
+  EATH_MARKET_VALUES_L = [7.43, 6.69, 1.0016]
+  EATH_MARKET_VALUES_M = [14.9, 3.21, 1.0108]
+  EATH_MARKET_VALUES_N = [5.97, 15.1, 0.9994]
+  EATH_MARKET_VALUES_O = [10.2, 7.62, 1.0116]
+  EATH_MARKET_VALUES_P = [7.40, 12.5, 1.0023]
+  EATH_MARKET_VALUES_Q = [6.91, 7.21, 1.0025]
   
-  MARKET_VALUES = [ EATH_MARKET_VALUES_B, EATH_MARKET_VALUES_C, EATH_MARKET_VALUES_D, 
-                    EATH_MARKET_VALUES_E, EATH_MARKET_VALUES_F, EATH_MARKET_VALUES_G, 
-                    EATH_MARKET_VALUES_H, EATH_MARKET_VALUES_I, EATH_MARKET_VALUES_J, 
-                    EATH_MARKET_VALUES_K, EATH_MARKET_VALUES_L, EATH_MARKET_VALUES_M, 
-                    EATH_MARKET_VALUES_N, EATH_MARKET_VALUES_O, EATH_MARKET_VALUES_P, 
-                    EATH_MARKET_VALUES_Q, EATH_MARKET_VALUES_R ]
+  MARKET_VALUES = [ EATH_MARKET_VALUES_A, EATH_MARKET_VALUES_B, EATH_MARKET_VALUES_C, 
+                    EATH_MARKET_VALUES_D, EATH_MARKET_VALUES_E, EATH_MARKET_VALUES_F, 
+                    EATH_MARKET_VALUES_G, EATH_MARKET_VALUES_H, EATH_MARKET_VALUES_I, 
+                    EATH_MARKET_VALUES_J, EATH_MARKET_VALUES_K, EATH_MARKET_VALUES_L, 
+                    EATH_MARKET_VALUES_M, EATH_MARKET_VALUES_N, EATH_MARKET_VALUES_O, 
+                    EATH_MARKET_VALUES_P, EATH_MARKET_VALUES_Q ]
   
-  BALANCE_VALUES = [0.31,0.53,0.55,0.95,0.38,0.92,0.50,0.34,0.21,0.70,0.81,0.93,0.56,0.33,0.31,0.30,0.95]
+  BALANCE_VALUES = [0.10,0.63,0.55,0.89,0.28,0.80,0.50,0.34,0.11,0.70,0.97,0.93,0.56,0.33,0.19,0.20,0.90]
   
   # def cal_params_market_earning
   #   if market.market_master_id == 1
@@ -175,24 +180,24 @@ class Investment < ApplicationRecord
   # end
   
   def cal_market_budget_earning(a,b,c) #a = 資本の効率性,b = 人的リソースの効率性,c = 市場の成長性
-    investment_value = ((Math.sqrt(budget)*((a*10)**3))*Math.sqrt(market.market_employee + assigning)*(b**2)*c*rand(8000..12000)/100000).to_f
+    investment_value = ((Math.sqrt(budget)*(a**3))*Math.sqrt((market.market_employee + assigning)*(b**2))*c/100).to_f
     if investment_value < 500
-      return ((MARKETSIZE[market.market_master_id-2]*MARKETSHARE[market.market_master_id-2]*1.0)*(investment_value**2)/1000).to_f
+      return ((MARKETSIZE[market.market_master_id-2]*MARKETSHARE[market.market_master_id-2]*1.0)*(investment_value**2)*rand(8000..12000)/10000000).to_f
     elsif investment_value < 20000
-      return (((MARKETSIZE[market.market_master_id-2]*MARKETSHARE[market.market_master_id-2]*1.2)*investment_value)/2).to_f
+      return (((MARKETSIZE[market.market_master_id-2]*MARKETSHARE[market.market_master_id-2]*1.2)*investment_value)*rand(8000..12000)/20000000).to_f
     else
-      return ((MARKETSIZE[market.market_master_id-2]*MARKETSHARE[market.market_master_id-2]*1.5)*((investment_value*50)**(0.666666666667))).to_f
+      return ((MARKETSIZE[market.market_master_id-2]*MARKETSHARE[market.market_master_id-2]*1.5)*((investment_value*50)**(0.666666666667))*rand(8000..12000)/10000000).to_f
     end
   end
   
   def cal_market_balance_earning(a,b,c) #a = 資本の効率性,b = 人的リソースの効率性,c = 市場の成長性
-    investment_value = ((Math.sqrt(market.balance)*((a*10)**3))*Math.sqrt(market.market_employee + assigning)*(b**2)*c*rand(8000..12000)/100000).to_f
+    investment_value = ((Math.sqrt(market.balance)*(a**3))*Math.sqrt((market.market_employee + assigning)*(b**2))*c/100).to_f
     if investment_value < 500
-      return ((MARKETSIZE[market.market_master_id-2]*MARKETSHARE[market.market_master_id-2]*1.0)*(investment_value**2)/1000).to_f
+      return ((MARKETSIZE[market.market_master_id-2]*MARKETSHARE[market.market_master_id-2]*1.0)*(investment_value**2)*rand(8000..12000)/10000000).to_f
     elsif investment_value < 20000
-      return (((MARKETSIZE[market.market_master_id-2]*MARKETSHARE[market.market_master_id-2]*1.2)*investment_value)/2).to_f
+      return (((MARKETSIZE[market.market_master_id-2]*MARKETSHARE[market.market_master_id-2]*1.2)*investment_value)*rand(8000..12000)/20000000).to_f
     else
-      return ((MARKETSIZE[market.market_master_id-2]*MARKETSHARE[market.market_master_id-2]*1.5)*((investment_value*50)**(0.666666666667))).to_f
+      return ((MARKETSIZE[market.market_master_id-2]*MARKETSHARE[market.market_master_id-2]*1.5)*((investment_value*50)**(0.666666666667))*rand(8000..12000)/10000000).to_f
     end
   end
   
