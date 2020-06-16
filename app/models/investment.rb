@@ -179,25 +179,23 @@ class Investment < ApplicationRecord
   #   end
   # end
   
-  def cal_market_budget_earning(a,b,c) #a = 資本の効率性,b = 人的リソースの効率性,c = 市場の成長性
-    investment_value = ((Math.sqrt(budget)*(a**3))*Math.sqrt((market.market_employee + assigning)*(b**2))*c/100).to_f
-    if investment_value < 500
-      return ((MARKETSIZE[market.market_master_id-2]*MARKETSHARE[market.market_master_id-2]*1.0)*(investment_value**2)*rand(8000..12000)/10000000).to_f
-    elsif investment_value < 20000
-      return (((MARKETSIZE[market.market_master_id-2]*MARKETSHARE[market.market_master_id-2]*1.2)*investment_value)*rand(8000..12000)/20000000).to_f
-    else
-      return ((MARKETSIZE[market.market_master_id-2]*MARKETSHARE[market.market_master_id-2]*1.5)*((investment_value*50)**(0.666666666667))*rand(8000..12000)/10000000).to_f
-    end
+  def cal_market_budget_earning(a,b,c) #a = 資本集約性,b = 労働集約性,c = 市場成長性
+    investment_value = ((Math.sqrt(Math.sqrt(budget)*(a**3)))*(Math.sqrt(Math.sqrt(cal_market_employee)*(b**2)))*c/100).to_f
+    return cal_market_earning(investment_value)
   end
   
-  def cal_market_balance_earning(a,b,c) #a = 資本の効率性,b = 人的リソースの効率性,c = 市場の成長性
-    investment_value = ((Math.sqrt(market.balance)*(a**3))*Math.sqrt((market.market_employee + assigning)*(b**2))*c/100).to_f
-    if investment_value < 500
-      return ((MARKETSIZE[market.market_master_id-2]*MARKETSHARE[market.market_master_id-2]*1.0)*(investment_value**2)*rand(8000..12000)/10000000).to_f
-    elsif investment_value < 20000
-      return (((MARKETSIZE[market.market_master_id-2]*MARKETSHARE[market.market_master_id-2]*1.2)*investment_value)*rand(8000..12000)/20000000).to_f
+  def cal_market_balance_earning(a,b,c) #a = 資本集約性,b = 労働集約性,c = 市場成長性
+    investment_value = ((Math.sqrt((market.balance)*(a**3)))*(Math.sqrt((cal_market_employee)*(b**2)))*c/100).to_f
+    return cal_market_earning(investment_value)
+  end
+  
+  def cal_market_earning(a)
+    if a < 500
+      return ((MARKETSIZE[market.market_master_id-2]*MARKETSHARE[market.market_master_id-2])*(a**2)*rand(8000..12000)/10000000).to_f
+    elsif a < 1238
+      return (((MARKETSIZE[market.market_master_id-2]*MARKETSHARE[market.market_master_id-2])*(a)*rand(8000..12000))/100000 + 200).to_f
     else
-      return ((MARKETSIZE[market.market_master_id-2]*MARKETSHARE[market.market_master_id-2]*1.5)*((investment_value*50)**(0.666666666667))*rand(8000..12000)/10000000).to_f
+      return ((MARKETSIZE[market.market_master_id-2]*MARKETSHARE[market.market_master_id-2])*(16*(Math.log2(1000*a)*rand(8000..12000)))).to_f
     end
   end
   
