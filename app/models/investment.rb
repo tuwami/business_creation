@@ -65,15 +65,10 @@ class Investment < ApplicationRecord
   
   def cal_profit
     if team.histories.any?
-      return -10
+      return (0 - budget.to_f)
     else
-      return -20
+      return ( market.market_earning.to_f - budget.to_f - (market.market_employee.to_f)*LABOURCOST ).to_s.to_d.floor(2).to_f
     end
-    # if team.histories.any?
-    #   return (0 - budget.to_f)
-    # else
-    #   return ( market.market_earning.to_f - budget.to_f - (market.market_employee.to_f)*LABOURCOST ).to_s.to_d.floor(2).to_f
-    # end
   end
   
   def cal_params_market_recruiting
@@ -158,12 +153,12 @@ class Investment < ApplicationRecord
   end
   
   def cal_market_budget_earning(a,b,c) #a = 資本集約性,b = 労働集約性,c = 市場成長性
-    investment_value = (Math.sqrt(Math.sqrt(budget)*(a**3))*Math.sqrt(Math.sqrt(cal_market_employee)*(b**2))*c/100).to_f
+    investment_value = ((((budget**(0.65))*(a**3))**(0.5))*(((cal_market_employee**(0.65))*(b**2))**(0.5))*c/100).to_f
     return cal_market_earning(investment_value)
   end
   
   def cal_market_balance_earning(a,b,c) #a = 資本集約性,b = 労働集約性,c = 市場成長性
-    investment_value = ((Math.sqrt(Math.sqrt(market.balance)*(a**3)))*(Math.sqrt(Math.sqrt(cal_market_employee)*(b**2)))*c/100).to_f
+    investment_value = ((((market.balance**(0.65))*(a**3))**(0.5))*(((cal_market_employee**(0.65))*(b**2))**(0.5))*c/100).to_f
     return cal_market_earning(investment_value)
   end
   

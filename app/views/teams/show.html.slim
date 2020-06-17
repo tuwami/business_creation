@@ -16,7 +16,7 @@ div.row
               td = "#{@team.current_employee}人(#{sprintf("%+d",@use_histories.last.employee - @use_histories.last(2)[0].employee)}人)"
               td = "#{@team.current_novice}人(#{sprintf("%+d", @use_histories.last.novice - @use_histories.last(2)[0].novice)}人)"
             - elsif @use_histories.count == 1
-              td = "#{@team.current_fund}百万円(#{sprintf("%+.2f",@team.origin_fund - @use_histories.last(2)[0].fund)}百万円)"
+              td = "#{@team.current_fund}百万円(#{sprintf("%+.2f",@use_histories.last(2)[0].fund - @team.origin_fund)}百万円)"
               td = "#{@team.current_employee}人(#{sprintf("%+d",@use_histories.last.employee - @use_histories.last(2)[0].employee)}人)"
               td = "#{@team.current_novice}人(#{sprintf("%+d", @use_histories.last.novice - @use_histories.last(2)[0].novice)}人)"
             - elsif @use_histories.count == 0 

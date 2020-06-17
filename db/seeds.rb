@@ -5,7 +5,7 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-Team.create!(name: "team_a", origin_fund: 102)
+Team.create!(name: "team_a", origin_fund: 100)
 Team.create!(name: "team_b", origin_fund: 100)
 Team.create!(name: "team_c", origin_fund: 100)
 Team.create!(name: "team_d", origin_fund: 100)
