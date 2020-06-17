@@ -158,23 +158,19 @@ class Investment < ApplicationRecord
   end
   
   def cal_market_budget_earning(a,b,c) #a = 資本集約性,b = 労働集約性,c = 市場成長性
-    if budget > 0 && cal_market_employee > 0
-      investment_value = ((Math.sqrt(budget*(a**3)))*(Math.sqrt(cal_market_employee*(b**2)))*c/100).to_f
-      #investment_value = ((Math.sqrt(budget)*(a**3)+Math.sqrt(cal_market_employee)*(b**2))*c/100).to_f
-      return cal_market_earning(investment_value)
-    else
-      return 0
-    end
+    investment_value = (Math.sqrt(Math.sqrt(budget)*(a**3))*Math.sqrt(Math.sqrt(cal_market_employee)*(b**2))*c/100).to_f
+    return cal_market_earning(investment_value)
   end
   
   def cal_market_balance_earning(a,b,c) #a = 資本集約性,b = 労働集約性,c = 市場成長性
-    investment_value = ((Math.sqrt(Math.sqrt(market.balance)*(a**3)))*(Math.sqrt(Math.log(cal_market_employee)*(b**2)))*c/100).to_f
-    #investment_value = ((Math.sqrt(market.balance)*(a**3)+Math.sqrt(cal_market_employee)*(b**2))*c/100).to_f
+    investment_value = ((Math.sqrt(Math.sqrt(market.balance)*(a**3)))*(Math.sqrt(Math.sqrt(cal_market_employee)*(b**2)))*c/100).to_f
     return cal_market_earning(investment_value)
   end
   
   def cal_market_earning(a)
-    if a < 500
+    if a < 100
+      return ((MARKETSIZE[market.market_master_id-2]*MARKETSHARE[market.market_master_id-2])*(a**2)/1000).to_f
+    elsif a < 500
       return ((MARKETSIZE[market.market_master_id-2]*MARKETSHARE[market.market_master_id-2])*(a**2)*rand(8000..12000)/10000000).to_f
     elsif a < 1238
       return (((MARKETSIZE[market.market_master_id-2]*MARKETSHARE[market.market_master_id-2])*(a)*rand(8000..12000))/100000 + 200).to_f

@@ -11,15 +11,15 @@ div.row
             td 未配属
         tbody
           tr
-            - if @use_histories.size > 2
+            - if @use_histories.count > 1
               td = "#{@team.current_fund}百万円(#{sprintf("%+.2f",@use_histories.last.fund - @use_histories.last(2)[0].fund)}百万円)"
               td = "#{@team.current_employee}人(#{sprintf("%+d",@use_histories.last.employee - @use_histories.last(2)[0].employee)}人)"
               td = "#{@team.current_novice}人(#{sprintf("%+d", @use_histories.last.novice - @use_histories.last(2)[0].novice)}人)"
-            - elsif @use_histories.size == 2
+            - elsif @use_histories.count == 1
               td = "#{@team.current_fund}百万円(#{sprintf("%+.2f",@team.origin_fund - @use_histories.last(2)[0].fund)}百万円)"
               td = "#{@team.current_employee}人(#{sprintf("%+d",@use_histories.last.employee - @use_histories.last(2)[0].employee)}人)"
               td = "#{@team.current_novice}人(#{sprintf("%+d", @use_histories.last.novice - @use_histories.last(2)[0].novice)}人)"
-            - elsif @use_histories.size == 1 
+            - elsif @use_histories.count == 0 
               td = "#{@team.origin_fund}百万円"
               td = "#{@team.current_employee}人"
               td = "#{@team.current_novice}人"
@@ -94,9 +94,7 @@ div.row
                   = f.number_field :assigning, class: "form-control", min: 0, max: 1
                 div class="text-center"
                   = f.submit "投資", class: "btn btn-primary"
-          
-            
-    
+
     section.jumbotron
       h2 事業ごとの数値
       h5 予算
@@ -133,7 +131,7 @@ div.row
       h5 従業員数
       button.graph8-button.btn.btn-primary style = "font-size:12px;"= '表示切替'
       div class="graph8"
-        = line_chart @team.markets.order(:market_master_id).map { |market| {name: market.name, data: market.histories.pluck(:each_market_employee).map.with_index{|each_market_employee,i| [i+1, each_market_employee] }.insert(0,[0,0])}}, xtitle: :id, ytitle: :"各事業ごとの従業員(人)"
+        = line_chart @team.markets.order(:market_master_id).map { |market| {name: market.name, data: market.histories.pluck(:each_market_employee).map.with_index{|each_market_employee,i| [i+1, each_market_employee] }.insert(0,[0,market.default_each_market_employee])}}, xtitle: :id, ytitle: :"各事業ごとの従業員(人)"
     
   div.col-md-3
     section.tron style="background-color: white;margin:50px 0;"
