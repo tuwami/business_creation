@@ -159,7 +159,7 @@ class Investment < ApplicationRecord
   
   def cal_market_budget_earning(a,b,c) #a = 資本集約性,b = 労働集約性,c = 市場成長性
     if budget > 0 && cal_market_employee > 0
-      investment_value = ((Math.sqrt(Math.sqrt(budget)*(a**3)))*(Math.sqrt(Math.sqrt(cal_market_employee)*(b**2)))*c/100).to_f
+      investment_value = ((Math.sqrt(budget*(a**3)))*(Math.sqrt(cal_market_employee*(b**2)))*c/100).to_f
       #investment_value = ((Math.sqrt(budget)*(a**3)+Math.sqrt(cal_market_employee)*(b**2))*c/100).to_f
       return cal_market_earning(investment_value)
     else
@@ -168,13 +168,9 @@ class Investment < ApplicationRecord
   end
   
   def cal_market_balance_earning(a,b,c) #a = 資本集約性,b = 労働集約性,c = 市場成長性
-    if market.balance > 0 && cal_market_employee > 0
-      investment_value = ((Math.sqrt(Math.sqrt(market.balance)*(a**3)))*(Math.sqrt(Math.sqrt(cal_market_employee)*(b**2)))*c/100).to_f
-      #investment_value = ((Math.sqrt(market.balance)*(a**3)+Math.sqrt(cal_market_employee)*(b**2))*c/100).to_f
-      return cal_market_earning(investment_value)
-    else
-      return 0
-    end
+    investment_value = ((Math.sqrt(Math.sqrt(market.balance)*(a**3)))*(Math.sqrt(Math.log(cal_market_employee)*(b**2)))*c/100).to_f
+    #investment_value = ((Math.sqrt(market.balance)*(a**3)+Math.sqrt(cal_market_employee)*(b**2))*c/100).to_f
+    return cal_market_earning(investment_value)
   end
   
   def cal_market_earning(a)
