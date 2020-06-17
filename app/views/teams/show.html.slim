@@ -16,17 +16,17 @@ div.row
               td = "#{@team.current_employee}人(#{sprintf("%+d",@use_histories.last.employee - @use_histories.last(2)[0].employee)}人)"
               td = "#{@team.current_novice}人(#{sprintf("%+d", @use_histories.last.novice - @use_histories.last(2)[0].novice)}人)"
             - else
-              td = "#{@team.current_fund}百万円"
+              td = "#{@team.origin_fund}百万円"
               td = "#{@team.current_employee}人"
               td = "#{@team.current_novice}人"
             end
 
     section.jumbotron
       div class="graph1"
-        = line_chart [{name: "資本",data: @use_histories.pluck(:fund).map.with_index{|a,i| [i+1,a]}.insert(0,[0,100])}, \
+        = line_chart [{name: "資本",data: @use_histories.pluck(:fund).map.with_index{|a,i| [i+1,a]}.insert(0,[0,@team.origin_fund])}, \
                       {name: "利益", data: @use_histories.pluck(:profit).map.with_index{|a,i| [i+1,a]}.insert(0,[0,0])},\
                       {name: "従業員数",data: @use_histories.pluck(:employee).map.with_index{|a,i| [i+1,a]}.insert(0,[0,10])},\
-                      {name: "未配属", data: @use_histories.pluck(:novice).map.with_index{|a,i| [i+1,a]}.insert(0,[0,10])} \
+                      {name: "未配属", data: @use_histories.pluck(:novice).map.with_index{|a,i| [i+1,a]}.insert(0,[0,9])} \
                     ], xtitle: :id
     section.jumbotron style="background-color: white"
       div style="text-align: center;"
@@ -36,23 +36,42 @@ div.row
       div class="modal-dialog" role="document"
         div class="modal-content"
           - if @team.current_fund >= 0
-            div class="modal-header"
-              h5 class="modal-title" id="exampleModalLabel" 投資を行います
-              button type="button" class="close" data-dismiss="modal" aria-label="Close"
-                span aria-hidden="true" &times;
-            div class="modal-body"
-              = form_with model: [@team, @investment], local: true do |f|
-                div class="form-group"
-                  label 事業 :
-                  = f.select :market_id, @team.markets.order(:market_master_id).map { |m| [ m.name, m.id ] }.insert(0,["事業を選択してください",0])
-                div class="form-group"
-                  label 予算(百万円) :
-                  = f.number_field :budget, class: "form-control", min: 0, max: @team.current_fund
-                div class="form-group"
-                  label 配属(人) :
-                  = f.number_field :assigning, class: "form-control", min: 0, max: @team.current_novice
-                div class="text-center"
-                  = f.submit "投資", class: "btn btn-primary"
+            - if @use_histories.count == 0
+              div class="modal-header"
+                h5 class="modal-title" id="exampleModalLabel" 投資を行います
+                button type="button" class="close" data-dismiss="modal" aria-label="Close"
+                  span aria-hidden="true" &times;
+              div class="modal-body"
+                = form_with model: [@team, @investment], local: true do |f|
+                  div class="form-group"
+                    label 事業 :
+                    = f.select :market_id, @team.markets.order(:market_master_id).map { |m| [ m.name, m.id ] }.insert(0,["事業を選択してください",0])
+                  div class="form-group"
+                    label 予算(百万円) :
+                    = f.number_field :budget, class: "form-control", min: 0, max: @team.origin_fund
+                  div class="form-group"
+                    label 配属(人) :
+                    = f.number_field :assigning, class: "form-control", min: 0, max: @team.current_novice
+                  div class="text-center"
+                    = f.submit "投資", class: "btn btn-primary"
+            - else @use_histories.count > 0
+              div class="modal-header"
+                h5 class="modal-title" id="exampleModalLabel" 投資を行います
+                button type="button" class="close" data-dismiss="modal" aria-label="Close"
+                  span aria-hidden="true" &times;
+              div class="modal-body"
+                = form_with model: [@team, @investment], local: true do |f|
+                  div class="form-group"
+                    label 事業 :
+                    = f.select :market_id, @team.markets.order(:market_master_id).map { |m| [ m.name, m.id ] }.insert(0,["事業を選択してください",0])
+                  div class="form-group"
+                    label 予算(百万円) :
+                    = f.number_field :budget, class: "form-control", min: 0, max: @team.current_fund
+                  div class="form-group"
+                    label 配属(人) :
+                    = f.number_field :assigning, class: "form-control", min: 0, max: @team.current_novice
+                  div class="text-center"
+                    = f.submit "投資", class: "btn btn-primary"
           - else
             div class="modal-header"
               h5 class="modal-title" id="exampleModalLabel" 投資を行います

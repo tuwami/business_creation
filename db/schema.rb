@@ -67,6 +67,7 @@ ActiveRecord::Schema.define(version: 2020_05_25_052652) do
     t.integer "market_recruiting", default: 0
     t.integer "market_employee", default: 0
     t.integer "balance", default: 0
+    t.integer "default_each_market_employee", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -75,8 +76,9 @@ ActiveRecord::Schema.define(version: 2020_05_25_052652) do
     t.string "name"
     t.float "current_fund", default: 100.0
     t.integer "current_employee", default: 10
-    t.integer "current_novice", default: 10
+    t.integer "current_novice", default: 9
     t.float "current_profit", default: 0.0
+    t.float "origin_fund", default: 100.0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

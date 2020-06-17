@@ -43,7 +43,7 @@ class Investment < ApplicationRecord
     if team.histories.any?
       return ((team.histories.last.fund - budget + market.market_earning).to_f - (market.market_employee.to_f)*LABOURCOST).to_s.to_d.floor(2).to_f
     else
-      return ((team.current_fund - budget + market.market_earning).to_f - (market.market_employee.to_f)*LABOURCOST).to_s.to_d.floor(2).to_f
+      return ((team.origin_fund - budget + market.market_earning).to_f - (market.market_employee.to_f)*LABOURCOST).to_s.to_d.floor(2).to_f
     end
   end
 
@@ -115,18 +115,7 @@ class Investment < ApplicationRecord
                     EATH_MARKET_VALUES_P, EATH_MARKET_VALUES_Q ]
   
   BALANCE_VALUES = [0.10,0.63,0.55,0.89,0.28,0.80,0.50,0.34,0.11,0.70,0.97,0.93,0.56,0.33,0.19,0.20,0.90]
-  
-  # def cal_params_market_earning
-  #   if market.market_master_id == 1
-  #     return 0
-  #   else
-  #     (2..18).each do |num|
-  #       if num == market.market_master_id
-  #         return cal_market_earning(*MARKET_VALUES[num - 2]).to_s.to_d.floor(2).to_f
-  #       end
-  #     end
-  #   end
-  # end
+
   
   def cal_params_market_budget_earning
     if market.market_master_id == 1
@@ -164,29 +153,28 @@ class Investment < ApplicationRecord
     end
   end
   
-  def cal_market_recruiting(a,b) #a = 資本の効率性,b = 人的リソースの効率性
+  def cal_market_recruiting(a,b)  #a = 資本集約性,b = 労働集約性
     return Math.sqrt((budget*a)*((market.market_employee + assigning)*b*rand(5000..15000)) / 30000)
   end
-
-  # def cal_market_earning(a,b,c) #a = 資本の効率性,b = 人的リソースの効率性,c = 市場の成長性
-  #   investment_value = (((Math.sqrt(market.balance) + Math.sqrt(budget))*((a*10)**3))*Math.sqrt(market.market_employee + assigning)*(b**2)*c*rand(8000..12000)/100000).to_f
-  #   if investment_value < 500
-  #     return ((MARKETSIZE[market.market_master_id-2]*MARKETSHARE[market.market_master_id-2]*1.0)*(investment_value**2)/1000).to_f
-  #   elsif investment_value < 20000
-  #     return (((MARKETSIZE[market.market_master_id-2]*MARKETSHARE[market.market_master_id-2]*1.2)*investment_value)/2).to_f
-  #   else
-  #     return ((MARKETSIZE[market.market_master_id-2]*MARKETSHARE[market.market_master_id-2]*1.5)*((investment_value*50)**(0.666666666667))).to_f
-  #   end
-  # end
   
   def cal_market_budget_earning(a,b,c) #a = 資本集約性,b = 労働集約性,c = 市場成長性
-    investment_value = ((Math.sqrt(Math.sqrt(budget)*(a**3)))*(Math.sqrt(Math.sqrt(cal_market_employee)*(b**2)))*c/100).to_f
-    return cal_market_earning(investment_value)
+    if budget > 0 && cal_market_employee > 0
+      investment_value = ((Math.sqrt(Math.sqrt(budget)*(a**3)))*(Math.sqrt(Math.sqrt(cal_market_employee)*(b**2)))*c/100).to_f
+      #investment_value = ((Math.sqrt(budget)*(a**3)+Math.sqrt(cal_market_employee)*(b**2))*c/100).to_f
+      return cal_market_earning(investment_value)
+    else
+      return 0
+    end
   end
   
   def cal_market_balance_earning(a,b,c) #a = 資本集約性,b = 労働集約性,c = 市場成長性
-    investment_value = ((Math.sqrt((market.balance)*(a**3)))*(Math.sqrt((cal_market_employee)*(b**2)))*c/100).to_f
-    return cal_market_earning(investment_value)
+    if market.balance > 0 && cal_market_employee > 0
+      investment_value = ((Math.sqrt((market.balance)*(a**3)))*(Math.sqrt((cal_market_employee)*(b**2)))*c/100).to_f
+      #investment_value = ((Math.sqrt(market.balance)*(a**3)+Math.sqrt(cal_market_employee)*(b**2))*c/100).to_f
+      return cal_market_earning(investment_value)
+    else
+      return 0
+    end
   end
   
   def cal_market_earning(a)
@@ -200,261 +188,18 @@ class Investment < ApplicationRecord
   end
   
   def cal_market_employee
-    return market.market_employee + assigning
+    if market.market_master_id == 1
+        if team.histories.any?
+          return market.market_employee + assigning
+        else
+          return market.default_each_market_employee + assigning
+        end
+    else
+      return market.market_employee + assigning
+    end
   end
   
   def cal_balance(a)
     return ( market.balance + budget ) * a
   end
 end
-
-
-  
-  # def cal_params_market_earning
-  #   if market.market_master_id == 1
-  #     return 0
-  #   elsif market.market_master_id == 2
-  #     if market.market_employee < 10
-  #       ret_val = cal_market_earning(0.182,4.20,1.0137)
-  #     elsif market.market_employee < 500
-  #       ret_val = cal_market_earning(0.182,4.20,1.0137)
-  #     elsif market.market_employee < 1000
-  #       ret_val = cal_market_earning(0.182,4.20,1.0137)
-  #     else
-  #       ret_val = cal_market_earning(0.182,4.20,1.0137)
-  #     end
-  #     return ret_val
-  #   elsif market.market_master_id == 3
-  #     if market.market_employee < 10
-  #       ret_val = cal_market_earning(0.094,3.80,1.0028)
-  #     elsif market.market_employee < 500
-  #       ret_val = cal_market_earning(0.094,3.80,1.0028)
-  #     elsif market.market_employee < 1000
-  #       ret_val = cal_market_earning(0.094,3.80,1.0028)
-  #     else
-  #       ret_val = cal_market_earning(0.094,3.80,1.0028)
-  #     end
-  #     return ret_val
-  #   elsif market.market_master_id == 4
-  #     if market.market_employee < 10
-  #       ret_val = cal_market_earning(0.086,7.59,1.0050)
-  #     elsif market.market_employee < 500
-  #       ret_val = cal_market_earning(0.086,7.59,1.0050)
-  #     elsif market.market_employee < 1000
-  #       ret_val = cal_market_earning(0.086,7.59,1.0050)
-  #     else
-  #       ret_val = cal_market_earning(0.086,7.59,1.0050)
-  #     end
-  #     return ret_val
-  #   elsif market.market_master_id == 5
-  #     if market.market_employee < 10
-  #       ret_val = cal_market_earning(0.055,2.35,1.0084)
-  #     elsif market.market_employee < 500
-  #       ret_val = cal_market_earning(0.055,2.35,1.0084)
-  #     elsif market.market_employee < 1000
-  #       ret_val = cal_market_earning(0.055,2.35,1.0084)
-  #     else
-  #       ret_val = cal_market_earning(0.055,2.35,1.0084)
-  #     end
-  #     return ret_val
-  #   elsif market.market_master_id == 6
-  #     if market.market_employee < 10
-  #       ret_val = cal_market_earning(0.164,4.85,1.0108)
-  #     elsif market.market_employee < 500
-  #       ret_val = cal_market_earning(0.164,4.85,1.0108)
-  #     elsif market.market_employee < 1000
-  #       ret_val = cal_market_earning(0.164,4.85,1.0108)
-  #     else
-  #       ret_val = cal_market_earning(0.164,4.85,1.0108)
-  #     end
-  #     return ret_val
-  #   elsif market.market_master_id == 7
-  #     if market.market_employee < 10
-  #       ret_val = cal_market_earning(0.05,1.72,0.9986)
-  #     elsif market.market_employee < 500
-  #       ret_val = cal_market_earning(0.05,1.72,0.9986)
-  #     elsif market.market_employee < 1000
-  #       ret_val = cal_market_earning(0.05,1.72,0.9986)
-  #     else
-  #       ret_val = cal_market_earning(0.05,1.72,0.9986)
-  #     end
-  #   elsif market.market_master_id == 8
-  #     if market.market_employee < 10
-  #       ret_val = cal_market_earning(0.152,2.36,1.0074)
-  #     elsif market.market_employee < 500
-  #       ret_val = cal_market_earning(0.152,2.36,1.0074)
-  #     elsif market.market_employee < 1000
-  #       ret_val = cal_market_earning(0.152,2.36,1.0074)
-  #     else
-  #       ret_val = cal_market_earning(0.152,2.36,1.0074)
-  #     end
-  #     return ret_val
-  #   elsif market.market_master_id == 9
-  #     if market.market_employee < 10
-  #       ret_val = cal_market_earning(0.05,6.44,1.0034)
-  #     elsif market.market_employee < 500
-  #       ret_val = cal_market_earning(0.05,6.44,1.0034)
-  #     elsif market.market_employee < 1000
-  #       ret_val = cal_market_earning(0.05,6.44,1.0034)
-  #     else
-  #       ret_val = cal_market_earning(0.05,6.44,1.0034)
-  #     end
-  #     return ret_val
-  #   elsif market.market_master_id == 10
-  #     if market.market_employee < 10
-  #       ret_val = cal_market_earning(0.168,4.59,1.01)
-  #     elsif market.market_employee < 500
-  #       ret_val = cal_market_earning(0.168,4.59,1.01)
-  #     elsif market.market_employee < 1000
-  #       ret_val = cal_market_earning(0.168,4.59,1.01)
-  #     else
-  #       ret_val = cal_market_earning(0.168,4.59,1.01)
-  #     end
-  #     return ret_val
-  #   elsif market.market_master_id == 11
-  #     if market.market_employee < 10
-  #       ret_val = cal_market_earning(0.084,5.37,1.0013)
-  #     elsif market.market_employee < 500
-  #       ret_val = cal_market_earning(0.084,5.37,1.0013)
-  #     elsif market.market_employee < 1000
-  #       ret_val = cal_market_earning(0.084,5.37,1.0013)
-  #     else
-  #       ret_val = cal_market_earning(0.084,5.37,1.0013)
-  #     end
-  #     return ret_val
-  #   elsif market.market_master_id == 12
-  #     if market.market_employee < 10
-  #       ret_val = cal_market_earning(0.086,3.20,1.0041)
-  #     elsif market.market_employee < 500
-  #       ret_val = cal_market_earning(0.086,3.20,1.0041)
-  #     elsif market.market_employee < 1000
-  #       ret_val = cal_market_earning(0.086,3.20,1.0041)
-  #     else
-  #       ret_val = cal_market_earning(0.086,3.20,1.0041)
-  #     end
-  #     return ret_val
-  #   elsif market.market_master_id == 13
-  #     if market.market_employee < 10
-  #       ret_val = cal_market_earning(0.113,1.69,1.0016)
-  #     elsif market.market_employee < 500
-  #       ret_val = cal_market_earning(0.113,1.69,1.0016)
-  #     elsif market.market_employee < 1000
-  #       ret_val = cal_market_earning(0.113,1.69,1.0016)
-  #     else
-  #       ret_val = cal_market_earning(0.113,1.69,1.0016)
-  #     end
-  #     return ret_val
-  #   elsif market.market_master_id == 14
-  #     if market.market_employee < 10
-  #       ret_val = cal_market_earning(0.149,4.21,1.0108)
-  #     elsif market.market_employee < 500
-  #       ret_val = cal_market_earning(0.149,4.21,1.0108)
-  #     elsif market.market_employee < 1000
-  #       ret_val = cal_market_earning(0.149,4.21,1.0108)
-  #     else
-  #       ret_val = cal_market_earning(0.149,4.21,1.0108)
-  #     end
-  #     return ret_val
-  #   elsif market.market_master_id == 15
-  #     if market.market_employee < 10
-  #       ret_val = cal_market_earning(0.010,0.84,0.9994)
-  #     elsif market.market_employee < 500
-  #       ret_val = cal_market_earning(0.010,0.84,0.9994)
-  #     elsif market.market_employee < 1000
-  #       ret_val = cal_market_earning(0.010,0.84,0.9994)
-  #     else
-  #       ret_val = cal_market_earning(0.010,0.84,0.9994)
-  #     end
-  #     return ret_val
-  #   elsif market.market_master_id == 16
-  #     if market.market_employee < 10
-  #       ret_val = cal_market_earning(0.102,7.62,1.0116)
-  #     elsif market.market_employee < 500
-  #       ret_val = cal_market_earning(0.102,7.62,1.0116)
-  #     elsif market.market_employee < 1000
-  #       ret_val = cal_market_earning(0.102,7.62,1.0116)
-  #     else
-  #       ret_val = cal_market_earning(0.102,7.62,1.0116)
-  #     end
-  #     return ret_val
-  #   elsif market.market_master_id == 17
-  #     if market.market_employee < 10
-  #       ret_val = cal_market_earning(0.074,8.08,1.0023)
-  #     elsif market.market_employee < 500
-  #       ret_val = cal_market_earning(0.074,8.08,1.0023)
-  #     elsif market.market_employee < 1000
-  #       ret_val = cal_market_earning(0.074,8.08,1.0023)
-  #     else
-  #       ret_val = cal_market_earning(0.074,8.08,1.0023)
-  #     end
-  #     return ret_val
-  #   elsif market.market_master_id == 18
-  #     if market.market_employee < 10
-  #       ret_val = cal_market_earning(0.020,0.03,1.0025)
-  #     elsif market.market_employee < 500
-  #       ret_val = cal_market_earning(0.020,0.03,1.0025)
-  #     elsif market.market_employee < 1000
-  #       ret_val = cal_market_earning(0.020,0.03,1.0025)
-  #     else
-  #       ret_val = cal_market_earning(0.020,0.03,1.0025)
-  #     end
-  #     return ret_val
-  #   end
-  # end
-  
-  # def cal_params_balance
-  #   if market.market_master_id == 1
-  #     return 0
-  #   elsif market.market_master_id == 2
-  #     ret_val = cal_balance(0.30)
-  #     return ret_val
-  #   elsif market.market_master_id == 3
-  #     ret_val = cal_balance(0.30)
-  #     return ret_val
-  #   elsif market.market_master_id == 4
-  #     ret_val = cal_balance(0.50)
-  #     return ret_val
-  #   elsif market.market_master_id == 5
-  #     ret_val = cal_balance(0.95)
-  #     return ret_val
-  #   elsif market.market_master_id == 6
-  #     ret_val = cal_balance(0.60)
-  #     return ret_val
-  #   elsif market.market_master_id == 7
-  #     ret_val = cal_balance(0.95)
-  #     return ret_val
-  #   elsif market.market_master_id == 8
-  #     ret_val = cal_balance(0.30)
-  #     return ret_val
-  #   elsif market.market_master_id == 9
-  #     ret_val = cal_balance(0.30)
-  #     return ret_val
-  #   elsif market.market_master_id == 10
-  #     ret_val = cal_balance(0.30)
-  #     return ret_val
-  #   elsif market.market_master_id == 11
-  #     ret_val = cal_balance(0.30)
-  #     return ret_val
-  #   elsif market.market_master_id == 12
-  #     ret_val = cal_balance(0.30)
-  #     return ret_val
-  #   elsif market.market_master_id == 13
-  #     ret_val = cal_balance(0.30)
-  #     return ret_val
-  #   elsif market.market_master_id == 14
-  #     ret_val = cal_balance(0.80)
-  #     return ret_val
-  #   elsif market.market_master_id == 15
-  #     ret_val = cal_balance(0.90)
-  #     return ret_val
-  #   elsif market.market_master_id == 16
-  #     ret_val = cal_balance(0.50)
-  #     return ret_val
-  #   elsif market.market_master_id == 17
-  #     ret_val = cal_balance(0.30)
-  #     return ret_val
-  #   elsif market.market_master_id == 18
-  #     ret_val = cal_balance(0.30)
-  #     return ret_val
-  #   end
-  # end

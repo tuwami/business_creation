@@ -9,6 +9,8 @@ class CreateMarkets < ActiveRecord::Migration[5.2]
       t.integer :market_recruiting, default: 0
       t.integer :market_employee ,default: 0
       t.integer :balance, default: 0 #残高
+      t.integer :default_each_market_employee, default: 0
+      
       t.timestamps
     end
   end
