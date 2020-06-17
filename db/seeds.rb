@@ -15,6 +15,7 @@ Team.create!(name: "team_g", origin_fund: 100)
 Team.create!(name: "team_h")
 
 Admin.create!(email: "admin@waqoo.jp", password: "adminadmin")
+Admin.create!(email: "aa@aa", password: "pppppp")
 User.create!(email: "uwami.ti@waqoo.jp", password: "taiseiuwami", team_id: 1)
 User.create!(email: "miyakawa@waqoo.jp", password: "miyakawa.waqoo", team_id: 2)
 User.create!(email: "takaya@waqoo.jp", password: "takaya.waqoo", team_id: 3)

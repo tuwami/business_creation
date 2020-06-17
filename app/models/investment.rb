@@ -183,7 +183,7 @@ class Investment < ApplicationRecord
     elsif a < 1238
       return (((MARKETSIZE[market.market_master_id-2]*MARKETSHARE[market.market_master_id-2])*(a)*rand(8000..12000))/100000 + 200).to_f
     else
-      return ((MARKETSIZE[market.market_master_id-2]*MARKETSHARE[market.market_master_id-2])*(16*(Math.log2(1000*a)*rand(8000..12000)))).to_f
+      return ((MARKETSIZE[market.market_master_id-2]*MARKETSHARE[market.market_master_id-2])*(16*(Math.log2(1000*a)*rand(8000..12000)/10000))).to_f
     end
   end
   
