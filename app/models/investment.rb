@@ -65,9 +65,9 @@ class Investment < ApplicationRecord
   
   def cal_profit
     if team.histories.any?
-      return (0 - budget.to_f)
+      return (team.histories.last.fund - team.histories.last(18)[0].fund).to_s.to_d.floor(2).to_f
     else
-      return ( market.market_earning.to_f - budget.to_f - (market.market_employee.to_f)*LABOURCOST ).to_s.to_d.floor(2).to_f
+      return ( 0 - budget).to_s.to_d.floor(2).to_f
     end
   end
   
