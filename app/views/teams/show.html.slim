@@ -28,7 +28,6 @@ div.row
     section.jumbotron
       div class="graph1"
         = line_chart [{name: "Fund",data: @use_histories.pluck(:fund).map.with_index{|a,i| [i+1,a]}.insert(0,[0,@team.origin_fund])}, \
-                      {name: "Profit", data: @use_histories.pluck(:profit).map.with_index{|a,i| [i+1,a]}.insert(0,[0,0])},\
                       {name: "Entire Employee",data: @use_histories.pluck(:employee).map.with_index{|a,i| [i+1,a]}.insert(0,[0,10])},\
                       {name: "Novice", data: @use_histories.pluck(:novice).map.with_index{|a,i| [i+1,a]}.insert(0,[0,9])} \
                     ], xtitle: :turn
