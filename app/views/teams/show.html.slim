@@ -53,7 +53,7 @@ div.row
                     label Budget(million) :
                     = f.number_field :budget, class: "form-control", min: 0, max: @team.origin_fund
                   div class="form-group"
-                    label Assigning(people) :
+                    label Assign(people) :
                     = f.number_field :assigning, class: "form-control", min: 0, max: @team.current_novice
                   div class="text-center"
                     = f.submit "DONE!", class: "btn btn-primary"
@@ -71,7 +71,7 @@ div.row
                     label Budget(million) :
                     = f.number_field :budget, class: "form-control", min: 0, max: @team.current_fund
                   div class="form-group"
-                    label Assigning(people) :
+                    label Assign(people) :
                     = f.number_field :assigning, class: "form-control", min: 0, max: @team.current_novice
                   div class="text-center"
                     = f.submit "DONE!", class: "btn btn-primary"
@@ -89,7 +89,7 @@ div.row
                   label Budget(million) :
                   = f.number_field :budget, class: "form-control", min: 0, max: 10
                 div class="form-group"
-                  label Assigning(people) :
+                  label Assign(people) :
                   = f.number_field :assigning, class: "form-control", min: 0, max: 1
                 div class="text-center"
                   = f.submit "DONE!", class: "btn btn-primary"
@@ -102,20 +102,20 @@ div.row
         = line_chart @team.markets.order(:market_master_id).map { |market| {name: market.name, data: market.investments.pluck(:budget).map.with_index{|budget,i| [i+1, budget] }.insert(0,[0,0])}}, xtitle: :turn, ytitle: :"Budget(million)"
       // line_chart @team.markets.map { |market| {name: market.market_master.market_name, data: market.investments.pluck(:id, :budget)}
       
-      h5 Assigning
+      h5 Assign
       button.graph3-button.btn.btn-primary style = "font-size:12px;"= 'Switch'
       div class="graph3"
-        = line_chart @team.markets.order(:market_master_id).map { |market| {name: market.name, data: market.investments.pluck(:assigning).map.with_index{|assigning,i| [i+1, assigning] }.insert(0,[0,0])}}, xtitle: :turn, ytitle: :"Assigning(people)"
+        = line_chart @team.markets.order(:market_master_id).map { |market| {name: market.name, data: market.investments.pluck(:assigning).map.with_index{|assigning,i| [i+1, assigning] }.insert(0,[0,0])}}, xtitle: :turn, ytitle: :"Assign(people)"
       
       h5 Total Sales
       button.graph4-button.btn.btn-primary style = "font-size:12px;"= 'Switch'
       div class="graph4"
         = line_chart @team.markets.order(:market_master_id).map { |market| {name: market.name, data: market.histories.pluck(:earning).map.with_index{|earning,i| [i+1, earning] }.insert(0,[0,0])}}, xtitle: :turn, ytitle: :"Total Sales(million)"
       
-      h5 Sales
+      h5 Initial Sales
       button.graph5-button.btn.btn-primary style = "font-size:12px;"= 'Switch'
       div class="graph5"
-        = line_chart @team.markets.order(:market_master_id).map { |market| {name: market.name, data: market.histories.pluck(:budget_earning).map.with_index{|earning,i| [i+1, earning] }.insert(0,[0,0])}}, xtitle: :turn, ytitle: :"Sales(million)"
+        = line_chart @team.markets.order(:market_master_id).map { |market| {name: market.name, data: market.histories.pluck(:budget_earning).map.with_index{|earning,i| [i+1, earning] }.insert(0,[0,0])}}, xtitle: :turn, ytitle: :"Initial Sales(million)"
         
       h5 Retention Sales
       button.graph6-button.btn.btn-primary style = "font-size:12px;"= 'Switch'
@@ -127,10 +127,10 @@ div.row
       div class="graph7"
         = line_chart @team.markets.order(:market_master_id).map { |market| {name: market.name, data: market.histories.pluck(:recruiting).map.with_index{|recruiting,i| [i+1, recruiting] }.insert(0,[0,0])}}, xtitle: :turn, ytitle: :"Recruiting(people)"
       
-      h5 Each Employee
+      h5 Employee
       button.graph8-button.btn.btn-primary style = "font-size:12px;"= 'Switch'
       div class="graph8"
-        = line_chart @team.markets.order(:market_master_id).map { |market| {name: market.name, data: market.histories.pluck(:each_market_employee).map.with_index{|each_market_employee,i| [i+1, each_market_employee] }.insert(0,[0,market.default_each_market_employee])}}, xtitle: :turn, ytitle: :"Each Employee(people)"
+        = line_chart @team.markets.order(:market_master_id).map { |market| {name: market.name, data: market.histories.pluck(:each_market_employee).map.with_index{|each_market_employee,i| [i+1, each_market_employee] }.insert(0,[0,market.default_each_market_employee])}}, xtitle: :turn, ytitle: :"Employee(people)"
     
   div.col-md-3
     section.tron style="background-color: white;margin:30px 0;"
