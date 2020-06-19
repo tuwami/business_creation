@@ -25,17 +25,16 @@ User.create!(email: "matsunaga@waqoo.jp", password: "matsunaga.waqoo", team_id: 
 User.create!(email: "yokotsuka@waqoo.jp", password: "yokotsuka.waqoo", team_id: 7)
 User.create!(email: "inoue@waqoo.jp", password: "waqoo.inc", team_id: 8)
 
-MarketMaster.create!(market_name: "人事部")
-[*'A'..'Q'].each do |alphabet|
-  MarketMaster.create!(market_name: "#{alphabet}事業")
+[*'A'..'R'].each do |alphabet|
+  MarketMaster.create!(market_name: "#{alphabet}")
 end
 
-8.times do |n|
-  18.times do |m|
-    if m == 0
-      Market.create!(market_master_id: 1,team_id: n+1,default_each_market_employee: 1)
+(1..8).each do |n|
+  (1..18).each do |m|
+    if m == 18
+      Market.create!(market_master_id: m,team_id: n,default_each_market_employee: 1)
     else
-      Market.create!(market_master_id: m+1,team_id: n+1,default_each_market_employee: 0)
+      Market.create!(market_master_id: m,team_id: n,default_each_market_employee: 0)
     end
   end
 end

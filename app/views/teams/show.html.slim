@@ -2,39 +2,39 @@ h1 = @message
 div.row
   div.col-md-9
     section.jumbotron style="background-color: white;margin-bottom:0px;"
-      h3 会社全体の数値
+      h3 Company Status
       table.table.table-striped
         thead.thead-light
           tr
-            td 資本
-            td 従業員数
-            td 未配属
+            td Fund
+            td Entire Employee
+            td Novice
         tbody
           tr
             - if @use_histories.count > 1
-              td = "#{@team.current_fund}百万円(#{sprintf("%+.2f",@use_histories.last.fund - @use_histories.last(2)[0].fund)}百万円)"
-              td = "#{@team.current_employee}人(#{sprintf("%+d",@use_histories.last.employee - @use_histories.last(2)[0].employee)}人)"
-              td = "#{@team.current_novice}人(#{sprintf("%+d", @use_histories.last.novice - @use_histories.last(2)[0].novice)}人)"
+              td = "￥#{@team.current_fund} million(#{sprintf("%+.2f",@use_histories.last.fund - @use_histories.last(2)[0].fund)})"
+              td = "#{@team.current_employee} people(#{sprintf("%+d",@use_histories.last.employee - @use_histories.last(2)[0].employee)})"
+              td = "#{@team.current_novice} people(#{sprintf("%+d", @use_histories.last.novice - @use_histories.last(2)[0].novice)})"
             - elsif @use_histories.count == 1
-              td = "#{@team.current_fund}百万円(#{sprintf("%+.2f",@use_histories.last(2)[0].fund - @team.origin_fund)}百万円)"
-              td = "#{@team.current_employee}人(#{sprintf("%+d",@use_histories.last.employee - @use_histories.last(2)[0].employee)}人)"
-              td = "#{@team.current_novice}人(#{sprintf("%+d", @use_histories.last.novice - @use_histories.last(2)[0].novice)}人)"
+              td = "￥#{@team.current_fund} million(#{sprintf("%+.2f",@use_histories.last(2)[0].fund - @team.origin_fund)})"
+              td = "#{@team.current_employee} people(#{sprintf("%+d",@use_histories.last.employee - @use_histories.last(2)[0].employee)})"
+              td = "#{@team.current_novice} people(#{sprintf("%+d", @use_histories.last.novice - @use_histories.last(2)[0].novice)})"
             - elsif @use_histories.count == 0 
-              td = "#{@team.origin_fund}百万円"
-              td = "#{@team.current_employee}人"
-              td = "#{@team.current_novice}人"
+              td = "￥#{@team.origin_fund} million"
+              td = "#{@team.current_employee} people"
+              td = "#{@team.current_novice} people"
             end
 
     section.jumbotron
       div class="graph1"
-        = line_chart [{name: "資本",data: @use_histories.pluck(:fund).map.with_index{|a,i| [i+1,a]}.insert(0,[0,@team.origin_fund])}, \
-                      {name: "利益", data: @use_histories.pluck(:profit).map.with_index{|a,i| [i+1,a]}.insert(0,[0,0])},\
-                      {name: "従業員数",data: @use_histories.pluck(:employee).map.with_index{|a,i| [i+1,a]}.insert(0,[0,10])},\
-                      {name: "未配属", data: @use_histories.pluck(:novice).map.with_index{|a,i| [i+1,a]}.insert(0,[0,9])} \
-                    ], xtitle: :id
+        = line_chart [{name: "Fund",data: @use_histories.pluck(:fund).map.with_index{|a,i| [i+1,a]}.insert(0,[0,@team.origin_fund])}, \
+                      {name: "Profit", data: @use_histories.pluck(:profit).map.with_index{|a,i| [i+1,a]}.insert(0,[0,0])},\
+                      {name: "Entire Employee",data: @use_histories.pluck(:employee).map.with_index{|a,i| [i+1,a]}.insert(0,[0,10])},\
+                      {name: "Novice", data: @use_histories.pluck(:novice).map.with_index{|a,i| [i+1,a]}.insert(0,[0,9])} \
+                    ], xtitle: :turn
     section.jumbotron style="background-color: white"
       div style="text-align: center;"
-        button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" 投資を行う
+        button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" Make an investment
 
     div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true"
       div class="modal-dialog" role="document"
@@ -42,111 +42,118 @@ div.row
           - if @team.current_fund >= 0
             - if @use_histories.count == 0
               div class="modal-header"
-                h5 class="modal-title" id="exampleModalLabel" 投資を行います
+                h5 class="modal-title" id="exampleModalLabel" Investment
                 button type="button" class="close" data-dismiss="modal" aria-label="Close"
                   span aria-hidden="true" &times;
               div class="modal-body"
                 = form_with model: [@team, @investment], local: true do |f|
                   div class="form-group"
-                    label 事業 :
-                    = f.select :market_id, @team.markets.order(:market_master_id).map { |m| [ m.name, m.id ] }.insert(0,["事業を選択してください",0])
+                    label Business seeds :
+                    = f.select :market_id, @team.markets.order(:market_master_id).map { |m| [ m.name, m.id ] }.insert(0,["Select business seeds",0])
                   div class="form-group"
-                    label 予算(百万円) :
+                    label Budget(million) :
                     = f.number_field :budget, class: "form-control", min: 0, max: @team.origin_fund
                   div class="form-group"
-                    label 配属(人) :
+                    label Assigning(people) :
                     = f.number_field :assigning, class: "form-control", min: 0, max: @team.current_novice
                   div class="text-center"
-                    = f.submit "投資", class: "btn btn-primary"
+                    = f.submit "DONE!", class: "btn btn-primary"
             - else @use_histories.count > 0
               div class="modal-header"
-                h5 class="modal-title" id="exampleModalLabel" 投資を行います
+                h5 class="modal-title" id="exampleModalLabel" Investment
                 button type="button" class="close" data-dismiss="modal" aria-label="Close"
                   span aria-hidden="true" &times;
               div class="modal-body"
                 = form_with model: [@team, @investment], local: true do |f|
                   div class="form-group"
-                    label 事業 :
-                    = f.select :market_id, @team.markets.order(:market_master_id).map { |m| [ m.name, m.id ] }.insert(0,["事業を選択してください",0])
+                    label Business seeds :
+                    = f.select :market_id, @team.markets.order(:market_master_id).map { |m| [ m.name, m.id ] }.insert(0,["Select business seeds",0])
                   div class="form-group"
-                    label 予算(百万円) :
+                    label Budget(million) :
                     = f.number_field :budget, class: "form-control", min: 0, max: @team.current_fund
                   div class="form-group"
-                    label 配属(人) :
+                    label Assigning(people) :
                     = f.number_field :assigning, class: "form-control", min: 0, max: @team.current_novice
                   div class="text-center"
-                    = f.submit "投資", class: "btn btn-primary"
+                    = f.submit "DONE!", class: "btn btn-primary"
           - else
             div class="modal-header"
-              h5 class="modal-title" id="exampleModalLabel" 投資を行います
+              h5 class="modal-title" id="exampleModalLabel" Investment
               button type="button" class="close" data-dismiss="modal" aria-label="Close"
                 span aria-hidden="true" &times;
             div class="modal-body"
               = form_with model: [@team, @investment], local: true do |f|
                 div class="form-group"
-                  label 事業 :
-                  = f.select :market_id, @team.markets.order(:market_master_id).map { |m| [ m.name, m.id ] }.insert(0,["事業を選択してください",0])
+                  label Business seeds :
+                  = f.select :market_id, @team.markets.order(:market_master_id).map { |m| [ m.name, m.id ] }.insert(0,["Select business seeds",0])
                 div class="form-group"
-                  label 予算(百万円) :
-                  = f.number_field :budget, class: "form-control", min: 0, max: 1
+                  label Budget(million) :
+                  = f.number_field :budget, class: "form-control", min: 0, max: 10
                 div class="form-group"
-                  label 配属(人) :
+                  label Assigning(people) :
                   = f.number_field :assigning, class: "form-control", min: 0, max: 1
                 div class="text-center"
-                  = f.submit "投資", class: "btn btn-primary"
+                  = f.submit "DONE!", class: "btn btn-primary"
 
     section.jumbotron
-      h2 事業ごとの数値
-      h5 予算
-      button.graph2-button.btn.btn-primary style = "font-size:12px;"= '表示切替'
+      h2 Each business
+      h5 Budget
+      button.graph2-button.btn.btn-primary style = "font-size:12px;"= 'Switch'
       div class="graph2"
-        = line_chart @team.markets.order(:market_master_id).map { |market| {name: market.name, data: market.investments.pluck(:budget).map.with_index{|budget,i| [i+1, budget] }.insert(0,[0,0])}}, xtitle: :id, ytitle: :"予算(百万円)"
+        = line_chart @team.markets.order(:market_master_id).map { |market| {name: market.name, data: market.investments.pluck(:budget).map.with_index{|budget,i| [i+1, budget] }.insert(0,[0,0])}}, xtitle: :turn, ytitle: :"Budget(million)"
       // line_chart @team.markets.map { |market| {name: market.market_master.market_name, data: market.investments.pluck(:id, :budget)}
       
-      h5 配属
-      button.graph3-button.btn.btn-primary style = "font-size:12px;"= '表示切替'
+      h5 Assigning
+      button.graph3-button.btn.btn-primary style = "font-size:12px;"= 'Switch'
       div class="graph3"
-        = line_chart @team.markets.order(:market_master_id).map { |market| {name: market.name, data: market.investments.pluck(:assigning).map.with_index{|assigning,i| [i+1, assigning] }.insert(0,[0,0])}}, xtitle: :id, ytitle: :"配属(人)"
+        = line_chart @team.markets.order(:market_master_id).map { |market| {name: market.name, data: market.investments.pluck(:assigning).map.with_index{|assigning,i| [i+1, assigning] }.insert(0,[0,0])}}, xtitle: :turn, ytitle: :"Assigning(people)"
       
-      h5 売上(合算)
-      button.graph4-button.btn.btn-primary style = "font-size:12px;"= '表示切替'
+      h5 Total Sales
+      button.graph4-button.btn.btn-primary style = "font-size:12px;"= 'Switch'
       div class="graph4"
-        = line_chart @team.markets.order(:market_master_id).map { |market| {name: market.name, data: market.histories.pluck(:earning).map.with_index{|earning,i| [i+1, earning] }.insert(0,[0,0])}}, xtitle: :id, ytitle: :"売上(百万円)"
+        = line_chart @team.markets.order(:market_master_id).map { |market| {name: market.name, data: market.histories.pluck(:earning).map.with_index{|earning,i| [i+1, earning] }.insert(0,[0,0])}}, xtitle: :turn, ytitle: :"Total Sales(million)"
       
-      h5 売上(新規)
-      button.graph5-button.btn.btn-primary style = "font-size:12px;"= '表示切替'
+      h5 Sales
+      button.graph5-button.btn.btn-primary style = "font-size:12px;"= 'Switch'
       div class="graph5"
-        = line_chart @team.markets.order(:market_master_id).map { |market| {name: market.name, data: market.histories.pluck(:budget_earning).map.with_index{|earning,i| [i+1, earning] }.insert(0,[0,0])}}, xtitle: :id, ytitle: :"新規売上(百万円)"
+        = line_chart @team.markets.order(:market_master_id).map { |market| {name: market.name, data: market.histories.pluck(:budget_earning).map.with_index{|earning,i| [i+1, earning] }.insert(0,[0,0])}}, xtitle: :turn, ytitle: :"Sales(million)"
         
-      h5 売上(継続)
-      button.graph6-button.btn.btn-primary style = "font-size:12px;"= '表示切替'
+      h5 Retention Sales
+      button.graph6-button.btn.btn-primary style = "font-size:12px;"= 'Switch'
       div class="graph6"
-        = line_chart @team.markets.order(:market_master_id).map { |market| {name: market.name, data: market.histories.pluck(:balance_earning).map.with_index{|earning,i| [i+1, earning] }.insert(0,[0,0])}}, xtitle: :id, ytitle: :"継続売上(百万円)"
+        = line_chart @team.markets.order(:market_master_id).map { |market| {name: market.name, data: market.histories.pluck(:balance_earning).map.with_index{|earning,i| [i+1, earning] }.insert(0,[0,0])}}, xtitle: :turn, ytitle: :"Retention Sales(million)"
       
-      h5 採用人数
-      button.graph7-button.btn.btn-primary style = "font-size:12px;"= '表示切替'
+      h5 Recruiting
+      button.graph7-button.btn.btn-primary style = "font-size:12px;"= 'Switch'
       div class="graph7"
-        = line_chart @team.markets.order(:market_master_id).map { |market| {name: market.name, data: market.histories.pluck(:recruiting).map.with_index{|recruiting,i| [i+1, recruiting] }.insert(0,[0,0])}}, xtitle: :id, ytitle: :"採用(人)"
+        = line_chart @team.markets.order(:market_master_id).map { |market| {name: market.name, data: market.histories.pluck(:recruiting).map.with_index{|recruiting,i| [i+1, recruiting] }.insert(0,[0,0])}}, xtitle: :turn, ytitle: :"Recruiting(people)"
       
-      h5 従業員数
-      button.graph8-button.btn.btn-primary style = "font-size:12px;"= '表示切替'
+      h5 Each Employee
+      button.graph8-button.btn.btn-primary style = "font-size:12px;"= 'Switch'
       div class="graph8"
-        = line_chart @team.markets.order(:market_master_id).map { |market| {name: market.name, data: market.histories.pluck(:each_market_employee).map.with_index{|each_market_employee,i| [i+1, each_market_employee] }.insert(0,[0,market.default_each_market_employee])}}, xtitle: :id, ytitle: :"各事業ごとの従業員(人)"
+        = line_chart @team.markets.order(:market_master_id).map { |market| {name: market.name, data: market.histories.pluck(:each_market_employee).map.with_index{|each_market_employee,i| [i+1, each_market_employee] }.insert(0,[0,market.default_each_market_employee])}}, xtitle: :turn, ytitle: :"Each Employee(people)"
     
   div.col-md-3
-    section.tron style="background-color: white;margin:50px 0;"
-      h3 会社名
-      h5 = @team.name
+    section.tron style="background-color: white;margin:30px 0;"
+      h1 = @team.name
+    hr
 
-    section.tron style="background-color: white;margin:50px 0;"
-      h3 創業者
+    section.tron style="background-color: white;margin:30px 0;"
+      h3 Founders
       - @users.each do |user|
         li = user.email
       end
       
     section.tron style="background-color: white"
-      h3 経過月数
-      h5 = "#{@use_histories.count}ヶ月目"
+      h3 Turn
+      - if @use_histories.count == 0
+        h5 = "#{@use_histories.count+1}st turn"
+      - elsif @use_histories.count == 1
+        h5 = "#{@use_histories.count+1}nd turn"
+      - elsif @use_histories.count == 2
+        h5 = "#{@use_histories.count+1}rd turn"
+      - elsif @use_histories.count > 2
+        h5 = "#{@use_histories.count+1}th turn"
       end
     
     //h3 実績

@@ -65,14 +65,14 @@ class Investment < ApplicationRecord
   
   def cal_profit
     if team.histories.any?
-      return (team.histories.last.fund - team.histories.last(18)[0].fund).to_s.to_d.floor(2).to_f
+      return (team.histories.last.fund - team.histories.last(19)[0].fund).to_s.to_d.floor(2).to_f
     else
       return ( 0 - budget).to_s.to_d.floor(2).to_f
     end
   end
   
   def cal_params_market_recruiting
-    if market.market_master_id == 1
+    if market.market_master_id == 18
       return cal_market_recruiting(5,5)
     else
       return 0
@@ -113,36 +113,36 @@ class Investment < ApplicationRecord
 
   
   def cal_params_market_budget_earning
-    if market.market_master_id == 1
+    if market.market_master_id == 18
       return 0
     else
-      (2..18).each do |num|
+      (1..17).each do |num|
         if num == market.market_master_id
-          return cal_market_budget_earning(*MARKET_VALUES[num - 2]).to_s.to_d.floor(2).to_f
+          return cal_market_budget_earning(*MARKET_VALUES[num - 1]).to_s.to_d.floor(2).to_f
         end
       end
     end
   end
   
   def cal_params_market_balance_earning
-    if market.market_master_id == 1
+    if market.market_master_id == 18
       return 0
     else
-      (2..18).each do |num|
+      (1..17).each do |num|
         if num == market.market_master_id
-          return cal_market_balance_earning(*MARKET_VALUES[num - 2]).to_s.to_d.floor(2).to_f
+          return cal_market_balance_earning(*MARKET_VALUES[num - 1]).to_s.to_d.floor(2).to_f
         end
       end
     end
   end
   
   def cal_params_balance
-    if market.market_master_id == 1
+    if market.market_master_id == 18
       return 0
     else
-      (2..18).each do |num|
+      (1..17).each do |num|
         if num == market.market_master_id
-          return cal_balance(BALANCE_VALUES[num - 2])
+          return cal_balance(BALANCE_VALUES[num - 1])
         end
       end
     end
@@ -164,19 +164,19 @@ class Investment < ApplicationRecord
   
   def cal_market_earning(a)
     if a < 100
-      return ((MARKETSIZE[market.market_master_id-2]*MARKETSHARE[market.market_master_id-2])*(a**2)/1000).to_f
+      return ((MARKETSIZE[market.market_master_id-1]*MARKETSHARE[market.market_master_id-1])*(a**2)/1000).to_f
     elsif a < 500
-      return ((MARKETSIZE[market.market_master_id-2]*MARKETSHARE[market.market_master_id-2])*(a**2)*rand(8000..12000)/10000000).to_f
+      return ((MARKETSIZE[market.market_master_id-1]*MARKETSHARE[market.market_master_id-1])*(a**2)*rand(8000..12000)/10000000).to_f
     elsif a < 1238
-      return (((MARKETSIZE[market.market_master_id-2]*MARKETSHARE[market.market_master_id-2])*(a)*rand(8000..12000))/100000 + 200).to_f
+      return ((MARKETSIZE[market.market_master_id-1]*MARKETSHARE[market.market_master_id-1])*(a)*rand(8000..12000)/100000 + 200).to_f
     else
-      return ((MARKETSIZE[market.market_master_id-2]*MARKETSHARE[market.market_master_id-2])*(16*(Math.log2(1000*a)*rand(8000..12000)/10000))).to_f
+      return ((MARKETSIZE[market.market_master_id-1]*MARKETSHARE[market.market_master_id-1])*(16*(Math.log2(1000*a)*rand(8000..12000)/10000))).to_f
     end
   end
   
   def cal_market_employee
-    if market.market_master_id == 1
-        if team.histories.any?
+    if market.market_master_id == 18
+        if market.histories.any?
           return market.market_employee + assigning
         else
           return market.default_each_market_employee + assigning
