@@ -16,6 +16,7 @@ Team.create!(name: "team_h", origin_fund: 100)
 Team.create!(name: "team_i", origin_fund: 100)
 Team.create!(name: "team_j", origin_fund: 100)
 Team.create!(name: "team_k", origin_fund: 100)
+Team.create!(name: "team_l", origin_fund: 100)
 
 Admin.create!(email: "admin@waqoo.jp", password: "adminadmin")
 Admin.create!(email: "aa@aa", password: "pppppp")
