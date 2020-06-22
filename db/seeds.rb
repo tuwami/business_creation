@@ -30,7 +30,7 @@ User.create!(email: "inoue@waqoo.jp", password: "waqoo.inc", team_id: 8)
 User.create!(email: "soda@waqoo.jp", password: "soda.waqoo", team_id: 9)
 User.create!(email: "fuchina@waqoo.jp", password: "fuchina.waqoo", team_id: 10)
 User.create!(email: "kareshi@waqoo.jp", password: "kareshi.waqoo", team_id: 11)
-User.create!(email: "kareshi@waqoo.jp", password: "kareshi.waqoo", team_id: 12)
+User.create!(email: "tanishi@waqoo.jp", password: "tanishi.waqoo", team_id: 12)
 
 [*'A'..'R'].each do |alphabet|
   MarketMaster.create!(market_name: "#{alphabet}")
