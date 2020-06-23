@@ -79,7 +79,7 @@ class Investment < ApplicationRecord
     end
   end
   
-  LABOURCOST = 0.3
+  LABOURCOST = 0.5
   
   MARKETSIZE = [4.3,29.4,7.4,17.8,5.0,1.5,2.2,1.9,5.5,69.6,1.5,34.0,15.6,1.5,53.7,14.7,36.9]
   MARKETSHARE = [23.3,3.4,13.5,5.6,20.0,66.7,45.5,52.6,18.2,1.4,66.7,2.9,6.4,66.7,1.9,6.8,2.7]
