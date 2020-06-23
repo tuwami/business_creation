@@ -12,7 +12,7 @@
 
 - elsif admin_signed_in?
   h1 Ranking
-  = column_chart @teams.pluck(:name, :current_fund)
+  = column_chart @teams.order(current_fund: "DESC").pluck(:name, :current_fund)
 
   hr
   h1 Teams
@@ -26,7 +26,7 @@
             th Edit
             th Delete
         tbody
-          - @teams.each do |team|
+          - @teams.sort.each do |team|
             tr
               td = team.id
               td = link_to team.name, team_path(team)
