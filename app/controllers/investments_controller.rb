@@ -7,9 +7,9 @@ class InvestmentsController < ApplicationController
   def create
     @team = current_user.team
     @users = @team.users
-    if @team.investments.length != 0 && Time.zone.now - @team.investments.last.created_at < 1
+    if @team.investments.length != 0 && Time.zone.now - @team.investments.last.created_at < 10
       laps = Time.zone.now - @team.investments.last.created_at
-      render_error("前の投資から1秒以内に投資することはできません。後" + (1-laps).to_i.to_s + "秒待ってください。")
+      render_error("前の投資から10秒以内に投資することはできません。後" + (10-laps).to_i.to_s + "秒待ってください。")
       return
     end
     if params[:investment][:budget].empty? || params[:investment][:assigning].empty?
@@ -21,7 +21,7 @@ class InvestmentsController < ApplicationController
       return
     end
     if @team.investments.any?
-      if @team.investments.count / 18 >= 20
+      if @team.investments.count / 18 >= 5
         render_error("ゲーム終了です")
         return
       end
