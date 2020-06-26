@@ -79,7 +79,7 @@ class Investment < ApplicationRecord
     end
   end
   
-  LABOURCOST = 0.5
+  LABOURCOST = 0.3
   
   MARKETSIZE = [4.3,29.4,7.4,17.8,5.0,1.5,2.2,1.9,5.5,69.6,1.5,34.0,15.6,1.5,53.7,14.7,36.9]
   MARKETSHARE = [23.3,3.4,13.5,5.6,20.0,66.7,45.5,52.6,18.2,1.4,66.7,2.9,6.4,66.7,1.9,6.8,2.7]
@@ -149,7 +149,11 @@ class Investment < ApplicationRecord
   end
   
   def cal_market_recruiting(a,b)  #a = 資本集約性,b = 労働集約性
-    return Math.sqrt((budget*a)*((market.market_employee + assigning)*b*rand(5000..15000)) / 30000)
+    if budget*cal_market_employee < 50
+      return Math.sqrt(budget*a*cal_market_employee*b / 3)
+    else
+      return Math.sqrt(budget*a*cal_market_employee*b*rand(5000..15000) / 30000)
+    end
   end
   
   def cal_market_budget_earning(a,b,c) #a = 資本集約性,b = 労働集約性,c = 市場成長性
