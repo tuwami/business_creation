@@ -5,19 +5,19 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-Team.create!(name: "team_a", origin_fund: 100)
-Team.create!(name: "team_b", origin_fund: 100)
+Team.create!(name: "Apple", origin_fund: 124)
+Team.create!(name: "Banana", origin_fund: 124)
 
 Admin.create!(email: "admin@waqoo.jp", password: "adminadmin")
 Admin.create!(email: "aa@aa", password: "pppppp")
+User.create!(email: "ariyasu.kn@waqoo.jp", password: "ariyasu.kn.waqoo", team_id: 1)
+User.create!(email: "son@waqoo.jp", password: "son.waqoo", team_id: 1)
 User.create!(email: "furiya.ys@waqoo.jp", password: "furiya.ys.waqoo", team_id: 1)
 User.create!(email: "matano.rh@waqoo.jp", password: "matano.rh.waqoo", team_id: 1)
-User.create!(email: "otsuki.ys@waqoo.jp", password: "otsuki.ys.waqoo", team_id: 1)
-User.create!(email: "son@waqoo.jp", password: "son.waqoo", team_id: 1)
+User.create!(email: "otsuki.ys@waqoo.jp", password: "otsuki.ys.waqoo", team_id: 2)
 User.create!(email: "nagaki.so@waqoo.jp", password: "nagaki.so.waqoo", team_id: 2)
-User.create!(email: "yoneda.nn@waqoo.jp", password: "yoneda.nn.waqoo", team_id: 2)
-User.create!(email: "ariyasu.kn@waqoo.jp", password: "ariyasu.kn.waqoo", team_id: 2)
 User.create!(email: "miyata.ro@waqoo.jp", password: "miyata.ro.waqoo", team_id: 2)
+User.create!(email: "yoneda.nn@waqoo.jp", password: "yoneda.nn.waqoo", team_id: 2)
 
 [*'A'..'R'].each do |alphabet|
   MarketMaster.create!(market_name: "#{alphabet}")
