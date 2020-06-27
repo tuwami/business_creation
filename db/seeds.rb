@@ -7,6 +7,7 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 Team.create!(name: "Apple", origin_fund: 124)
 Team.create!(name: "Banana", origin_fund: 124)
+Team.create!(name: "Sample", origin_fund: 100)
 
 Admin.create!(email: "admin@waqoo.jp", password: "adminadmin")
 Admin.create!(email: "aa@aa", password: "pppppp")
@@ -18,12 +19,14 @@ User.create!(email: "otsuki.ys@waqoo.jp", password: "otsuki.ys.waqoo", team_id: 
 User.create!(email: "nagaki.so@waqoo.jp", password: "nagaki.so.waqoo", team_id: 2)
 User.create!(email: "miyata.ro@waqoo.jp", password: "miyata.ro.waqoo", team_id: 2)
 User.create!(email: "yoneda.nn@waqoo.jp", password: "yoneda.nn.waqoo", team_id: 2)
+User.create!(email: "takaya@waqoo.jp", password: "takaya.waqoo", team_id: 3)
+
 
 [*'A'..'R'].each do |alphabet|
   MarketMaster.create!(market_name: "#{alphabet}")
 end
 
-(1..2).each do |n|
+(1..3).each do |n|
   (1..18).each do |m|
     if m == 18
       Market.create!(market_master_id: m,team_id: n,default_each_market_employee: 1)
