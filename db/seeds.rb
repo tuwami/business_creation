@@ -5,8 +5,8 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-Team.create!(name: "Apple", origin_fund: 124)
-Team.create!(name: "Banana", origin_fund: 124)
+Team.create!(name: "Moneykineko", origin_fund: 124)
+Team.create!(name: "フルーツ", origin_fund: 124)
 Team.create!(name: "Sample", origin_fund: 100)
 
 Admin.create!(email: "admin@waqoo.jp", password: "adminadmin")
