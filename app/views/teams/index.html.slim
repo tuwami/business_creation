@@ -6,7 +6,7 @@
   div
     span You belong to 
     span .
-  - current_user.teams.each do |team|
+  - current_user.teams.order(:id).each do |team|
     div = link_to 'Move to Investment System', team_path(team)
     span = team.name
   br
