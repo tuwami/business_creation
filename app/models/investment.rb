@@ -43,7 +43,7 @@ class Investment < ApplicationRecord
     if team.histories.any?
       return ((team.histories.last.fund - budget + market.market_earning).to_f - (market.market_employee.to_f)*LABOURCOST).to_s.to_d.floor(2).to_f
     else
-      return ((team.origin_fund - budget + market.market_earning).to_f - (market.market_employee.to_f)*LABOURCOST).to_s.to_d.floor(2).to_f
+      return ((team.current_fund - budget + market.market_earning).to_f - (market.market_employee.to_f)*LABOURCOST).to_s.to_d.floor(2).to_f
     end
   end
 

@@ -7,7 +7,7 @@ class TeamsController < ApplicationController
   end
   
   def show
-    if current_admin || (current_user && current_user.team.id == params[:id].to_i)
+    if current_admin || (current_user && current_user.teams.pluck(:id).include?(params[:id].to_i))
       @team = Team.find(params[:id])
       @users = @team.users
       @investment = Investment.new

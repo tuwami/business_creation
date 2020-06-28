@@ -5,9 +5,10 @@
     span .
   div
     span You belong to 
-    span = current_user.team.name
     span .
-  div = link_to 'Move to Investment System', team_path(current_user.team)
+  - current_user.teams.each do |team|
+    div = link_to 'Move to Investment System', team_path(team)
+    span = team.name
   br
 
 - elsif admin_signed_in?
