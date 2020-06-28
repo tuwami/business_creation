@@ -1,12 +1,12 @@
 - if user_signed_in?
   div
-    span You log as 
+    span You log as
     span = current_user.email
     span .
   div
-    span You belong to 
+    span You belong to
     span .
-  - current_user.teams.each do |team|
+  - current_user.teams.order(:id).each do |team|
     div = link_to 'Move to Investment System', team_path(team)
     span = team.name
   br

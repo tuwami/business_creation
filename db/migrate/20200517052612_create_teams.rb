@@ -8,7 +8,7 @@ class CreateTeams < ActiveRecord::Migration[5.2]
       t.float :current_profit, default: 0
       t.float :origin_fund, default: 100
       t.integer :investment_limit
-      
+
       t.timestamps
     end
   end
