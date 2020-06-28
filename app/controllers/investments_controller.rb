@@ -22,7 +22,7 @@ class InvestmentsController < ApplicationController
       return
     end
     if @team.investments.any?
-      if @team.investments.count / 18 >= 20
+      if @team.investments.count / 18 >= @team.investment_limit
         render_error("ゲーム終了です")
         return
       end
