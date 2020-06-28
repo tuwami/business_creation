@@ -5,7 +5,8 @@ class InvestmentsController < ApplicationController
     redirect_to team_path(current_user.team)
   end
   def create
-    @team = current_user.team
+    #@team = current_user.team
+    @team = Team.find(params[:team_id])
     @users = @team.users
     if @team.investments.length != 0 && Time.zone.now - @team.investments.last.created_at < 10
       laps = Time.zone.now - @team.investments.last.created_at

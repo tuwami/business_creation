@@ -13,15 +13,15 @@ div.row
         tbody
           tr
             - if @use_histories.count > 1
-              td = "￥#{@team.current_fund} million(#{sprintf("%+.2f",@use_histories.last.fund - @use_histories.last(2)[0].fund)})"
-              td = "#{@team.current_employee} person(#{sprintf("%+d",@use_histories.last.employee - @use_histories.last(2)[0].employee)})"
-              td = "#{@team.current_novice} person(#{sprintf("%+d", @use_histories.last.novice - @use_histories.last(2)[0].novice)})"
+              td = "￥#{@team.current_fund} million(#{sprintf("%+.2f",@use_histories.last.fund - @use_histories[-2].fund)})"
+              td = "#{@team.current_employee} person(#{sprintf("%+d",@use_histories.last.employee - @use_histories[-2].employee)})"
+              td = "#{@team.current_novice} person(#{sprintf("%+d", @use_histories.last.novice - @use_histories[-2].novice)})"
             - elsif @use_histories.count == 1
-              td = "￥#{@team.current_fund} million(#{sprintf("%+.2f",@use_histories.last(2)[0].fund - @team.origin_fund)})"
-              td = "#{@team.current_employee} person(#{sprintf("%+d",@use_histories.last.employee - @use_histories.last(2)[0].employee)})"
-              td = "#{@team.current_novice} person(#{sprintf("%+d", @use_histories.last.novice - @use_histories.last(2)[0].novice)})"
+              td = "￥#{@team.current_fund} million(#{sprintf("%+.2f",@use_histories.last.fund - @team.origin_fund)})"
+              td = "#{@team.current_employee} person(#{sprintf("%+d",@use_histories.last.employee - 10)})"
+              td = "#{@team.current_novice} person(#{sprintf("%+d", @use_histories.last.novice - 9)})"
             - elsif @use_histories.count == 0 
-              td = "￥#{@team.origin_fund} million"
+              td = "￥#{@team.current_fund} million"
               td = "#{@team.current_employee} person"
               td = "#{@team.current_novice} person"
             end
@@ -37,61 +37,25 @@ div.row
     div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true"
       div class="modal-dialog" role="document"
         div class="modal-content"
-          - if @team.current_fund >= 0
-            - if @use_histories.count == 0
-              div class="modal-header"
-                h5 class="modal-title" id="exampleModalLabel" Investment
-                button type="button" class="close" data-dismiss="modal" aria-label="Close"
-                  span aria-hidden="true" &times;
-              div class="modal-body"
-                = form_with model: [@team, @investment], local: true do |f|
-                  div class="form-group"
-                    label Code Name :
-                    = f.select :market_id, @team.markets.order(:market_master_id).map { |m| [ m.name, m.id ] }.insert(0,["Select an initial of the Code Name.",0])
-                  div class="form-group"
-                    label Budget(million) :
-                    = f.number_field :budget, class: "form-control", min: 0, max: @team.origin_fund
-                  div class="form-group"
-                    label Assign(person) :
-                    = f.number_field :assigning, class: "form-control", min: 0, max: @team.current_novice
-                  div class="text-center"
-                    = f.submit "DONE!", class: "btn btn-primary"
-            - else @use_histories.count > 0
-              div class="modal-header"
-                h5 class="modal-title" id="exampleModalLabel" Investment
-                button type="button" class="close" data-dismiss="modal" aria-label="Close"
-                  span aria-hidden="true" &times;
-              div class="modal-body"
-                = form_with model: [@team, @investment], local: true do |f|
-                  div class="form-group"
-                    label Code Name :
-                    = f.select :market_id, @team.markets.order(:market_master_id).map { |m| [ m.name, m.id ] }.insert(0,["Select an initial of the Code Name.",0])
-                  div class="form-group"
-                    label Budget(million) :
-                    = f.number_field :budget, class: "form-control", min: 0, max: @team.current_fund
-                  div class="form-group"
-                    label Assign(person) :
-                    = f.number_field :assigning, class: "form-control", min: 0, max: @team.current_novice
-                  div class="text-center"
-                    = f.submit "DONE!", class: "btn btn-primary"
-          - else
-            div class="modal-header"
-              h5 class="modal-title" id="exampleModalLabel" Investment
-              button type="button" class="close" data-dismiss="modal" aria-label="Close"
-                span aria-hidden="true" &times;
-            div class="modal-body"
-              = form_with model: [@team, @investment], local: true do |f|
-                div class="form-group"
-                  label Code Name :
-                  = f.select :market_id, @team.markets.order(:market_master_id).map { |m| [ m.name, m.id ] }.insert(0,["Select an initial of the Code Name.",0])
-                div class="form-group"
-                  label Budget(million) :
-                  = f.number_field :budget, class: "form-control", min: 0, max: 10
-                div class="form-group"
-                  label Assign(person) :
-                  = f.number_field :assigning, class: "form-control", min: 0, max: 1
-                div class="text-center"
-                  = f.submit "DONE!", class: "btn btn-primary"
+          div class="modal-header"
+            h5 class="modal-title" id="exampleModalLabel" Investment
+            button type="button" class="close" data-dismiss="modal" aria-label="Close"
+              span aria-hidden="true" &times;
+          div class="modal-body"
+            = form_with model: [@team, @investment], local: true do |f|
+              div class="form-group"
+                label Code Name :
+                = f.select :market_id, @team.markets.order(:market_master_id).map { |m| [ m.name, m.id ] }.insert(0,["Select an initial of the Code Name.",0])
+              div class="form-group"
+                label Budget(million) :
+                = f.number_field :budget, class: "form-control", min: 0, max: (@team.current_fund >= 0 ? @team.current_fund : 10)
+              div class="form-group"
+                label Assign(person) :
+                = f.number_field :assigning, class: "form-control", min: 0, max: @team.current_novice
+              div class="form-group"
+                = f.hidden_field :team_id, class: "form-control", value: @team.id
+              div class="text-center"
+                = f.submit "DONE!", class: "btn btn-primary"
 
     section.jumbotron
       h2 Each Business
