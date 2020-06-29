@@ -1,14 +1,23 @@
 - if user_signed_in?
   div
-    span You log as
+    span You log as_
     span = current_user.email
-    span .
-  div
-    span You belong to
-    span .
-  - current_user.teams.order(:id).each do |team|
-    div = link_to 'Move to Investment System', team_path(team)
-    span = team.name
+    br
+    span You belong to_
+    span = current_user.teams.first.name
+  div.row
+    div.col-md-8
+      table.table.table-striped
+        tbody
+          - current_user.teams.order(:id).each do |team|
+            - if team.id == 1
+              td = link_to 'Roll Playing', team_path(team)
+            - elsif team.id == 2
+              td = link_to '1st STAGE', team_path(team)
+            - elsif team.id == 3
+              td = link_to '2nd STAGE', team_path(team)
+            - elsif team.id == 4
+              td = link_to '3rd STAGE', team_path(team)
   br
 
 - elsif admin_signed_in?
