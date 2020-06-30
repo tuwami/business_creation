@@ -5,15 +5,15 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-Team.create!(name: "Moneykineko", current_fund: 124, origin_fund: 124, investment_limit: 5)
-Team.create!(name: "Moneykineko", current_fund: 124, origin_fund: 124, investment_limit: 10)
-Team.create!(name: "Moneykineko", current_fund: 124, origin_fund: 124, investment_limit: 15)
-Team.create!(name: "Moneykineko", current_fund: 124, origin_fund: 124, investment_limit: 20)
+Team.create!(name: "Moneykineko,Inc.", current_fund: 124, origin_fund: 124, investment_limit: 5)
+Team.create!(name: "Moneykineko,Inc.", current_fund: 124, origin_fund: 124, investment_limit: 10)
+Team.create!(name: "Moneykineko,Inc.", current_fund: 124, origin_fund: 124, investment_limit: 15)
+Team.create!(name: "Moneykineko,Inc.", current_fund: 124, origin_fund: 124, investment_limit: 20)
 
-Team.create!(name: "フルーツ", current_fund: 124, origin_fund: 124, investment_limit: 5)
-Team.create!(name: "フルーツ", current_fund: 124, origin_fund: 124, investment_limit: 10)
-Team.create!(name: "フルーツ", current_fund: 124, origin_fund: 124, investment_limit: 15)
-Team.create!(name: "フルーツ", current_fund: 124, origin_fund: 124, investment_limit: 20)
+Team.create!(name: "フルーツ,Inc", current_fund: 124, origin_fund: 124, investment_limit: 5)
+Team.create!(name: "フルーツ,Inc", current_fund: 124, origin_fund: 124, investment_limit: 10)
+Team.create!(name: "フルーツ,Inc", current_fund: 124, origin_fund: 124, investment_limit: 15)
+Team.create!(name: "フルーツ,Inc", current_fund: 124, origin_fund: 124, investment_limit: 20)
 
 Admin.create!(email: "admin@waqoo.jp", password: "adminadmin")
 Admin.create!(email: "aa@aa", password: "pppppp")
