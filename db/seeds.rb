@@ -5,69 +5,59 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-Team.create!(name: "Moneykineko,Inc.", current_fund: 124, origin_fund: 124, investment_limit: 5)
-Team.create!(name: "Moneykineko,Inc.", current_fund: 124, origin_fund: 124, investment_limit: 10)
-Team.create!(name: "Moneykineko,Inc.", current_fund: 124, origin_fund: 124, investment_limit: 15)
-Team.create!(name: "Moneykineko,Inc.", current_fund: 124, origin_fund: 124, investment_limit: 20)
 
-Team.create!(name: "フルーツ,Inc", current_fund: 124, origin_fund: 124, investment_limit: 5)
-Team.create!(name: "フルーツ,Inc", current_fund: 124, origin_fund: 124, investment_limit: 10)
-Team.create!(name: "フルーツ,Inc", current_fund: 124, origin_fund: 124, investment_limit: 15)
-Team.create!(name: "フルーツ,Inc", current_fund: 124, origin_fund: 124, investment_limit: 20)
+#Apple
+(1..4).each do |num|
+  Team.create!(name: "Apple,Inc.", current_fund: 100, origin_fund: 100, investment_limit: 5*num)
+end
+#Banana
+(1..4).each do |num|
+  Team.create!(name: "Banana,Inc.", current_fund: 100, origin_fund: 100, investment_limit: 5*num)
+end
+#Coconut
+(1..4).each do |num|
+  Team.create!(name: "Coconut,Inc.", current_fund: 100, origin_fund: 100, investment_limit: 5*num)
+end
+#Dragonfruit
+(1..4).each do |num|
+  Team.create!(name: "Dragonfruit,Inc.", current_fund: 100, origin_fund: 100, investment_limit: 5*num)
+iend
 
 Admin.create!(email: "admin@waqoo.jp", password: "adminadmin")
 Admin.create!(email: "aa@aa", password: "pppppp")
 
-User.create!(email: "ariyasu.kn@waqoo.jp", password: "ariyasu.kn.waqoo")
-User.create!(email: "son@waqoo.jp", password: "son.waqoo")
-User.create!(email: "furiya.ys@waqoo.jp", password: "furiya.ys.waqoo")
-User.create!(email: "matano.rh@waqoo.jp", password: "matano.rh.waqoo")
-User.create!(email: "otsuki.ys@waqoo.jp", password: "otsuki.ys.waqoo")
-User.create!(email: "nagaki.so@waqoo.jp", password: "nagaki.so.waqoo")
-User.create!(email: "miyata.ro@waqoo.jp", password: "miyata.ro.waqoo")
-User.create!(email: "yoneda.nn@waqoo.jp", password: "yoneda.nn.waqoo")
+#Apple
+User.create!(email: "Apple1@waqoo.jp", password: "Apple1.waqoo")
+User.create!(email: "Apple2@waqoo.jp", password: "Apple2.waqoo")
+User.create!(email: "Apple3@waqoo.jp", password: "Apple3.waqoo")
+User.create!(email: "Apple4@waqoo.jp", password: "Apple4.waqoo")
 
-# teamの塊一つ目
-UserTeam.create!(team_id: 1,user_id: 1)
-UserTeam.create!(team_id: 1,user_id: 2)
-UserTeam.create!(team_id: 1,user_id: 3)
-UserTeam.create!(team_id: 1,user_id: 4)
+#Banana
+User.create!(email: "Banana1@waqoo.jp", password: "Banana1.waqoo")
+User.create!(email: "Banana2@waqoo.jp", password: "Banana2.waqoo")
+User.create!(email: "Banana3@waqoo.jp", password: "Banana3.waqoo")
+User.create!(email: "Banana4@waqoo.jp", password: "Banana4.waqoo")
 
-UserTeam.create!(team_id: 2,user_id: 1)
-UserTeam.create!(team_id: 2,user_id: 2)
-UserTeam.create!(team_id: 2,user_id: 3)
-UserTeam.create!(team_id: 2,user_id: 4)
+#Cocnut
+User.create!(email: "Coconut1@waqoo.jp", password: "Coconut1.waqoo")
+User.create!(email: "Coconut2@waqoo.jp", password: "Coconut2.waqoo")
+User.create!(email: "Coconut3@waqoo.jp", password: "Coconut3.waqoo")
+User.create!(email: "Coconut4@waqoo.jp", password: "Coconut4.waqoo")
 
-UserTeam.create!(team_id: 3,user_id: 1)
-UserTeam.create!(team_id: 3,user_id: 2)
-UserTeam.create!(team_id: 3,user_id: 3)
-UserTeam.create!(team_id: 3,user_id: 4)
+#Dragonfruit
+User.create!(email: "Dragonfruit1@waqoo.jp", password: "Dragonfruit1.waqoo")
+User.create!(email: "Dragonfruit2@waqoo.jp", password: "Dragonfruit2.waqoo")
+User.create!(email: "Dragonfruit3@waqoo.jp", password: "Dragonfruit3.waqoo")
+User.create!(email: "Dragonfruit4@waqoo.jp", password: "Dragonfruit4.waqoo")
 
-UserTeam.create!(team_id: 4,user_id: 1)
-UserTeam.create!(team_id: 4,user_id: 2)
-UserTeam.create!(team_id: 4,user_id: 3)
-UserTeam.create!(team_id: 4,user_id: 4)
-
-# teamの塊２つ目
-UserTeam.create!(team_id: 5,user_id: 5)
-UserTeam.create!(team_id: 5,user_id: 6)
-UserTeam.create!(team_id: 5,user_id: 7)
-UserTeam.create!(team_id: 5,user_id: 8)
-
-UserTeam.create!(team_id: 6,user_id: 5)
-UserTeam.create!(team_id: 6,user_id: 6)
-UserTeam.create!(team_id: 6,user_id: 7)
-UserTeam.create!(team_id: 6,user_id: 8)
-
-UserTeam.create!(team_id: 7,user_id: 5)
-UserTeam.create!(team_id: 7,user_id: 6)
-UserTeam.create!(team_id: 7,user_id: 7)
-UserTeam.create!(team_id: 7,user_id: 8)
-
-UserTeam.create!(team_id: 8,user_id: 5)
-UserTeam.create!(team_id: 8,user_id: 6)
-UserTeam.create!(team_id: 8,user_id: 7)
-UserTeam.create!(team_id: 8,user_id: 8)
+#チームの塊
+(1..4).each do |l|
+  ((4*l - 3)..(4*l)).each do |m|
+    ((4*l - 3)..(4*l)).each do |n|
+      UserTeam.create!(team_id: m,user_id: n)
+    end
+  end
+end
 
 [*'A'..'R'].each do |alphabet|
   MarketMaster.create!(market_name: "#{alphabet}")
