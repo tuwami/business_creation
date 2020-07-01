@@ -21,34 +21,34 @@ end
 #Dragonfruit
 (1..4).each do |num|
   Team.create!(name: "Dragonfruit,Inc.", current_fund: 100, origin_fund: 100, investment_limit: 5*num)
-iend
+end
 
 Admin.create!(email: "admin@waqoo.jp", password: "adminadmin")
 Admin.create!(email: "aa@aa", password: "pppppp")
 
 #Apple
-User.create!(email: "Apple1@waqoo.jp", password: "Apple1.waqoo")
-User.create!(email: "Apple2@waqoo.jp", password: "Apple2.waqoo")
-User.create!(email: "Apple3@waqoo.jp", password: "Apple3.waqoo")
-User.create!(email: "Apple4@waqoo.jp", password: "Apple4.waqoo")
+User.create!(name: "Apple1", email: "Apple1@waqoo.jp", password: "Apple1.waqoo")
+User.create!(name: "Apple2", email: "Apple2@waqoo.jp", password: "Apple2.waqoo")
+User.create!(name: "Apple3", email: "Apple3@waqoo.jp", password: "Apple3.waqoo")
+User.create!(name: "Apple4", email: "Apple4@waqoo.jp", password: "Apple4.waqoo")
 
 #Banana
-User.create!(email: "Banana1@waqoo.jp", password: "Banana1.waqoo")
-User.create!(email: "Banana2@waqoo.jp", password: "Banana2.waqoo")
-User.create!(email: "Banana3@waqoo.jp", password: "Banana3.waqoo")
-User.create!(email: "Banana4@waqoo.jp", password: "Banana4.waqoo")
+User.create!(name: "Banana1", email: "Banana1@waqoo.jp", password: "Banana1.waqoo")
+User.create!(name: "Banana2", email: "Banana2@waqoo.jp", password: "Banana2.waqoo")
+User.create!(name: "Banana3", email: "Banana3@waqoo.jp", password: "Banana3.waqoo")
+User.create!(name: "Banana4", email: "Banana4@waqoo.jp", password: "Banana4.waqoo")
 
 #Cocnut
-User.create!(email: "Coconut1@waqoo.jp", password: "Coconut1.waqoo")
-User.create!(email: "Coconut2@waqoo.jp", password: "Coconut2.waqoo")
-User.create!(email: "Coconut3@waqoo.jp", password: "Coconut3.waqoo")
-User.create!(email: "Coconut4@waqoo.jp", password: "Coconut4.waqoo")
+User.create!(name: "Coconut1", email: "Coconut1@waqoo.jp", password: "Coconut1.waqoo")
+User.create!(name: "Coconut2", email: "Coconut2@waqoo.jp", password: "Coconut2.waqoo")
+User.create!(name: "Coconut3", email: "Coconut3@waqoo.jp", password: "Coconut3.waqoo")
+User.create!(name: "Coconut4", email: "Coconut4@waqoo.jp", password: "Coconut4.waqoo")
 
 #Dragonfruit
-User.create!(email: "Dragonfruit1@waqoo.jp", password: "Dragonfruit1.waqoo")
-User.create!(email: "Dragonfruit2@waqoo.jp", password: "Dragonfruit2.waqoo")
-User.create!(email: "Dragonfruit3@waqoo.jp", password: "Dragonfruit3.waqoo")
-User.create!(email: "Dragonfruit4@waqoo.jp", password: "Dragonfruit4.waqoo")
+User.create!(name: "Dragonfruit1", email: "Dragonfruit1@waqoo.jp", password: "Dragonfruit1.waqoo")
+User.create!(name: "Dragonfruit2", email: "Dragonfruit2@waqoo.jp", password: "Dragonfruit2.waqoo")
+User.create!(name: "Dragonfruit3", email: "Dragonfruit3@waqoo.jp", password: "Dragonfruit3.waqoo")
+User.create!(name: "Dragonfruit4", email: "Dragonfruit4@waqoo.jp", password: "Dragonfruit4.waqoo")
 
 #チームの塊
 (1..4).each do |l|
