@@ -28,7 +28,7 @@ class Investment < ApplicationRecord
     team.current_profit = cal_profit.to_f
     team.save!
   end
-  
+
   def calculate_market_status
     market.market_recruiting = cal_params_market_recruiting
     market.market_budget_earning = cal_params_market_budget_earning.to_f
@@ -62,7 +62,7 @@ class Investment < ApplicationRecord
       return team.current_novice - assigning + market.market_recruiting
     end
   end
-  
+
   def cal_profit
     if team.histories.any?
       return (team.histories.last.fund - team.histories.last(18)[0].fund).to_s.to_d.floor(2).to_f
@@ -70,7 +70,7 @@ class Investment < ApplicationRecord
       return ( 0 - budget).to_s.to_d.floor(2).to_f
     end
   end
-  
+
   def cal_params_market_recruiting
     if market.market_master_id == 18
       return cal_market_recruiting(5,5)
@@ -78,12 +78,12 @@ class Investment < ApplicationRecord
       return 0
     end
   end
-  
+
   LABOURCOST = 0.3
-  
+
   MARKETSIZE = [4.3,29.4,7.4,17.8,5.0,1.5,2.2,1.9,5.5,69.6,1.5,34.0,15.6,1.5,53.7,14.7,36.9]
   MARKETSHARE = [23.3,3.4,13.5,5.6,20.0,66.7,45.5,52.6,18.2,1.4,66.7,2.9,6.4,66.7,1.9,6.8,2.7]
-  
+
   EATH_MARKET_VALUES_A = [10.2, 8.25, 1.0137]
   EATH_MARKET_VALUES_B = [9.40, 4.80, 1.0028]
   EATH_MARKET_VALUES_C = [8.65, 7.94, 1.0050]
@@ -101,17 +101,17 @@ class Investment < ApplicationRecord
   EATH_MARKET_VALUES_O = [10.2, 7.62, 1.0116]
   EATH_MARKET_VALUES_P = [7.40, 12.5, 1.0023]
   EATH_MARKET_VALUES_Q = [6.91, 7.21, 1.0025]
-  
-  MARKET_VALUES = [ EATH_MARKET_VALUES_A, EATH_MARKET_VALUES_B, EATH_MARKET_VALUES_C, 
-                    EATH_MARKET_VALUES_D, EATH_MARKET_VALUES_E, EATH_MARKET_VALUES_F, 
-                    EATH_MARKET_VALUES_G, EATH_MARKET_VALUES_H, EATH_MARKET_VALUES_I, 
-                    EATH_MARKET_VALUES_J, EATH_MARKET_VALUES_K, EATH_MARKET_VALUES_L, 
-                    EATH_MARKET_VALUES_M, EATH_MARKET_VALUES_N, EATH_MARKET_VALUES_O, 
+
+  MARKET_VALUES = [ EATH_MARKET_VALUES_A, EATH_MARKET_VALUES_B, EATH_MARKET_VALUES_C,
+                    EATH_MARKET_VALUES_D, EATH_MARKET_VALUES_E, EATH_MARKET_VALUES_F,
+                    EATH_MARKET_VALUES_G, EATH_MARKET_VALUES_H, EATH_MARKET_VALUES_I,
+                    EATH_MARKET_VALUES_J, EATH_MARKET_VALUES_K, EATH_MARKET_VALUES_L,
+                    EATH_MARKET_VALUES_M, EATH_MARKET_VALUES_N, EATH_MARKET_VALUES_O,
                     EATH_MARKET_VALUES_P, EATH_MARKET_VALUES_Q ]
-  
+
   BALANCE_VALUES = [0.10,0.63,0.55,0.89,0.28,0.80,0.50,0.34,0.11,0.70,0.97,0.93,0.56,0.33,0.19,0.20,0.90]
 
-  
+
   def cal_params_market_budget_earning
     if market.market_master_id == 18
       return 0
@@ -123,7 +123,7 @@ class Investment < ApplicationRecord
       end
     end
   end
-  
+
   def cal_params_market_balance_earning
     if market.market_master_id == 18
       return 0
@@ -135,7 +135,7 @@ class Investment < ApplicationRecord
       end
     end
   end
-  
+
   def cal_params_balance
     if market.market_master_id == 18
       return 0
@@ -147,37 +147,35 @@ class Investment < ApplicationRecord
       end
     end
   end
-  
+
   def cal_market_recruiting(a,b)  #a = 資本集約性,b = 労働集約性
-    if budget*cal_market_employee < 50
+    if budget*cal_market_employee < 100
       return Math.sqrt(budget*a*cal_market_employee*b / 3)
     else
       return Math.sqrt(budget*a*cal_market_employee*b*rand(5000..15000) / 30000)
     end
   end
-  
+
   def cal_market_budget_earning(a,b,c) #a = 資本集約性,b = 労働集約性,c = 市場成長性
-    investment_value = ((((budget**(0.65))*(a**3))**(0.51))*(((cal_market_employee**(0.65))*(b**2))**(0.49))*c/100).to_f
+    investment_value = ((((budget**(0.6))*(a**3))**(0.51))*(((cal_market_employee**(0.55))*(b**2))**(0.49))*c/100).to_f
     return cal_market_earning(investment_value)
   end
-  
+
   def cal_market_balance_earning(a,b,c) #a = 資本集約性,b = 労働集約性,c = 市場成長性
-    investment_value = ((((market.balance**(0.65))*(a**3))**(0.51))*(((cal_market_employee**(0.65))*(b**2))**(0.49))*c/100).to_f
+    investment_value = ((((market.balance**(0.6))*(a**3))**(0.51))*(((cal_market_employee**(0.55))*(b**2))**(0.49))*c/100).to_f
     return cal_market_earning(investment_value)
   end
-  
+
   def cal_market_earning(a)
-    if a < 100
+    if a < 200
       return ((MARKETSIZE[market.market_master_id-1]*MARKETSHARE[market.market_master_id-1])*(a**2)/1000).to_f
-    elsif a < 500
-      return ((MARKETSIZE[market.market_master_id-1]*MARKETSHARE[market.market_master_id-1])*(a**2)*rand(8000..12000)/10000000).to_f
-    elsif a < 1238
-      return ((MARKETSIZE[market.market_master_id-1]*MARKETSHARE[market.market_master_id-1])*(a)*rand(8000..12000)/100000 + 200).to_f
+    elsif a < 820
+      return ((MARKETSIZE[market.market_master_id-1]*MARKETSHARE[market.market_master_id-1])*(a)*rand(8000..12000)/200000 + 30).to_f
     else
-      return ((MARKETSIZE[market.market_master_id-1]*MARKETSHARE[market.market_master_id-1])*(16*(Math.log2(1000*a)*rand(8000..12000)/10000))).to_f
+      return ((MARKETSIZE[market.market_master_id-1]*MARKETSHARE[market.market_master_id-1])*(12*(Math.log10(1000*a)*rand(8000..12000)/10000))).to_f
     end
   end
-  
+
   def cal_market_employee
     if market.market_master_id == 18
         if market.histories.any?
@@ -189,7 +187,7 @@ class Investment < ApplicationRecord
       return market.market_employee + assigning
     end
   end
-  
+
   def cal_balance(a)
     return ( market.balance + budget ) * a
   end

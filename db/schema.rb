@@ -48,6 +48,7 @@ ActiveRecord::Schema.define(version: 2020_06_28_084406) do
     t.integer "team_id"
     t.integer "budget", default: 0
     t.integer "assigning", default: 0
+    t.string "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

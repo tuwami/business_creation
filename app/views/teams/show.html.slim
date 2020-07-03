@@ -20,7 +20,7 @@ div.row
               td = "￥#{@team.current_fund} million(#{sprintf("%+.2f",@use_histories.last.fund - @team.origin_fund)})"
               td = "#{@team.current_employee} person(#{sprintf("%+d",@use_histories.last.employee - 10)})"
               td = "#{@team.current_novice} person(#{sprintf("%+d", @use_histories.last.novice - 9)})"
-            - elsif @use_histories.count == 0 
+            - elsif @use_histories.count == 0
               td = "￥#{@team.current_fund} million"
               td = "#{@team.current_employee} person"
               td = "#{@team.current_novice} person"
@@ -54,6 +54,9 @@ div.row
                 = f.number_field :assigning, class: "form-control", min: 0, max: @team.current_novice
               div class="form-group"
                 = f.hidden_field :team_id, class: "form-control", value: @team.id
+              div class="form-group"
+                label Description :
+                = f.text_area :description, class: "form-control"
               div class="text-center"
                 = f.submit "DONE!", class: "btn btn-primary"
 
@@ -65,37 +68,76 @@ div.row
       div class="graph2"
         = line_chart @team.markets.order(:market_master_id).map { |market| {name: market.name, data: market.investments.pluck(:budget).map.with_index{|budget,i| [i+1, budget] }.insert(0,[0,0])}}, xtitle: :Turn, ytitle: :"Budget (million)"
       // line_chart @team.markets.map { |market| {name: market.market_master.market_name, data: market.investments.pluck(:id, :budget)}
-      
+
       h5 Assign
       button.graph3-button.btn.btn-primary style = "font-size:12px;"= 'Switch'
       div class="graph3"
         = line_chart @team.markets.order(:market_master_id).map { |market| {name: market.name, data: market.investments.pluck(:assigning).map.with_index{|assigning,i| [i+1, assigning] }.insert(0,[0,0])}}, xtitle: :Turn, ytitle: :"Assign (person)"
-      
+
       h5 Total Sales
       button.graph4-button.btn.btn-primary style = "font-size:12px;"= 'Switch'
       div class="graph4"
         = line_chart @team.markets.order(:market_master_id).map { |market| {name: market.name, data: market.histories.pluck(:earning).map.with_index{|earning,i| [i+1, earning] }.insert(0,[0,0])}}, xtitle: :Turn, ytitle: :"Total Sales (million)"
-      
+
       h5 Initial Sales
       button.graph5-button.btn.btn-primary style = "font-size:12px;"= 'Switch'
       div class="graph5"
         = line_chart @team.markets.order(:market_master_id).map { |market| {name: market.name, data: market.histories.pluck(:budget_earning).map.with_index{|earning,i| [i+1, earning] }.insert(0,[0,0])}}, xtitle: :Turn, ytitle: :"Initial Sales (million)"
-        
+
       h5 Retention Sales
       button.graph6-button.btn.btn-primary style = "font-size:12px;"= 'Switch'
       div class="graph6"
         = line_chart @team.markets.order(:market_master_id).map { |market| {name: market.name, data: market.histories.pluck(:balance_earning).map.with_index{|earning,i| [i+1, earning] }.insert(0,[0,0])}}, xtitle: :Turn, ytitle: :"Retention Sales (million)"
-      
+
       h5 Recruiting
       button.graph7-button.btn.btn-primary style = "font-size:12px;"= 'Switch'
       div class="graph7"
         = line_chart @team.markets.order(:market_master_id).map { |market| {name: market.name, data: market.histories.pluck(:recruiting).map.with_index{|recruiting,i| [i+1, recruiting] }.insert(0,[0,0])}}, xtitle: :Turn, ytitle: :"Recruiting (person)"
-      
+
       h5 Employee
       button.graph8-button.btn.btn-primary style = "font-size:12px;"= 'Switch'
       div class="graph8"
         = line_chart @team.markets.order(:market_master_id).map { |market| {name: market.name, data: market.histories.pluck(:each_market_employee).map.with_index{|each_market_employee,i| [i+1, each_market_employee] }.insert(0,[0,market.default_each_market_employee])}}, xtitle: :Turn, ytitle: :"Employee (person)"
-    
+
+    h3 Result
+    div
+      table.table.table-striped
+        - if @team.investments.any?
+          thead.thead-light
+            tr
+              td Turn
+              td Initial
+              td Budget
+              td Assign
+              td Employee
+              td Initial Sales
+              td Recruiting
+              td Description
+          tbody
+            - @team.investments.each do |investment|
+              - unless investment.description.blank?
+                tr
+                  - if investment.id / 18 <= 5
+                    td = ((investment.id - 1) / 18) + 1 - 0
+                  - elsif investment.id / 18 <= 15
+                    td = ((investment.id - 1) / 18) + 1 - 5
+                  - elsif investment.id / 18 <= 30
+                    td = ((investment.id - 1) / 18) + 1 - 15
+                  - elsif investment.id / 18 <= 50
+                    td = ((investment.id - 1) / 18) + 1 - 30
+                  td = investment.market.market_master.market_name
+                  td = investment.budget
+                  td = investment.assigning
+                  td = investment.history.each_market_employee
+                  td = investment.history.budget_earning
+                  td = investment.history.recruiting
+                  td = investment.description
+              end
+            end
+        - else
+          p Not yet
+        end
+
   div.col-md-3
     section.tron style="background-color: white;margin:30px 0;"
       h1 = @team.name
@@ -104,9 +146,9 @@ div.row
     section.tron style="background-color: white;margin:30px 0;"
       h3 Founders
       - @users.each do |user|
-        li = user.email
+        li = user.name
       end
-      
+
     section.tron style="background-color: white;margin:30px 0;"
       h3 Turn
       - if @use_histories.count == 0
@@ -118,7 +160,7 @@ div.row
       - elsif @use_histories.count > 2
         h5 = "#{@use_histories.count+1}th Turn"
       end
-     
+
     section.tron style="background-color:white;margin:0 30px;"
       div.row
         div.col-md-16
@@ -182,37 +224,5 @@ div.row
               tr
                 td R
                 td Recruitment
-    
-    //h3 実績
-    //button.graph7-button.btn.btn-primary style = "font-size:12px;"= '表示切替'
-    //div class="graph7"
-      table.table.table-striped
-        - if @team.investments.any?
-          thead.thead-light
-            tr
-              td ID
-              td 事業
-              td 予算
-              td 配属
-              td 売上
-              td 採用
-              td 資本
-              td 従業員数
-              td 未配属
-          tbody
-            - @team.investments.each do |investment|
-              tr
-                td = investment.id
-                td = investment.market.market_master.market_name
-                td = investment.budget
-                td = investment.assigning
-                td = investment.history.earning
-                td = investment.history.recruiting
-                td = investment.history.fund
-                td = investment.history.employee
-                td = investment.history.novice
-            end
-        - else
-          p まだ実績はありません。
-        end
-    
+
+

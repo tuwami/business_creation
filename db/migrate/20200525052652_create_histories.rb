@@ -14,6 +14,7 @@ class CreateHistories < ActiveRecord::Migration[5.2]
       t.integer :each_market_employee,default: 0
       t.integer :investment_id
       t.integer :market_id
+
       t.timestamps
     end
   end

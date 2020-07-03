@@ -8,9 +8,9 @@ class InvestmentsController < ApplicationController
     #@team = current_user.team
     @team = Team.find(params[:team_id])
     @users = @team.users
-    if @team.investments.length != 0 && Time.zone.now - @team.investments.last.created_at < 10
+    if @team.investments.length != 0 && Time.zone.now - @team.investments.last.created_at < 1
       laps = Time.zone.now - @team.investments.last.created_at
-      render_error("前の投資から10秒以内に投資することはできません。後" + (10-laps).to_i.to_s + "秒待ってください。")
+      render_error("前の投資から1秒以内に投資することはできません。後" + (1-laps).to_i.to_s + "秒待ってください。")
       return
     end
     if params[:investment][:budget].empty? || params[:investment][:assigning].empty?
@@ -19,6 +19,10 @@ class InvestmentsController < ApplicationController
     end
     if params[:investment][:market_id].to_i == 0
       render_error("投資する事業を選択してください")
+      return
+    end
+    if params[:investment][:description].blank?
+      render_error("投資する意図の説明をしてください")
       return
     end
     if @team.investments.any?
@@ -47,10 +51,10 @@ class InvestmentsController < ApplicationController
     end
     redirect_to team_path(params[:team_id]), notice: 'Success!'
   end
-  
+
   private
   def investment_params
-    params.require(:investment).permit(:budget, :assigning,:market_id)
+    params.require(:investment).permit(:budget, :assigning,:market_id, :description)
   end
 
   def render_error(message)
