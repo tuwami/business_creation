@@ -114,16 +114,25 @@ div.row
               td Recruiting
               td Description
           tbody
-            - @team.investments.where.not(description: nil).each_with_index do |investment,i|
-              tr
-                td = i+1
-                td = investment.market.market_master.market_name
-                td = investment.budget
-                td = investment.assigning
-                td = investment.history.each_market_employee
-                td = investment.history.budget_earning
-                td = investment.history.recruiting
-                td = investment.description
+            - @team.investments.each do |investment|
+              - unless investment.description.blank?
+                tr
+                  - if investment.id / 18 <= 5
+                    td = ((investment.id - 1) / 18) + 1 - 0
+                  - elsif investment.id / 18 <= 15
+                    td = ((investment.id - 1) / 18) + 1 - 5
+                  - elsif investment.id / 18 <= 30
+                    td = ((investment.id - 1) / 18) + 1 - 15
+                  - elsif investment.id / 18 <= 50
+                    td = ((investment.id - 1) / 18) + 1 - 30
+                  td = investment.market.market_master.market_name
+                  td = investment.budget
+                  td = investment.assigning
+                  td = investment.history.each_market_employee
+                  td = investment.history.budget_earning
+                  td = investment.history.recruiting
+                  td = investment.description
+              end
             end
         - else
           p Not yet
@@ -142,7 +151,15 @@ div.row
 
     section.tron style="background-color: white;margin:30px 0;"
       h3 Turn
-      h5 = "#{(@use_histories.count+1).ordinalize} Turn"
+      - if @use_histories.count == 0
+        h5 = "#{@use_histories.count+1}st Turn"
+      - elsif @use_histories.count == 1
+        h5 = "#{@use_histories.count+1}nd Turn"
+      - elsif @use_histories.count == 2
+        h5 = "#{@use_histories.count+1}rd Turn"
+      - elsif @use_histories.count > 2
+        h5 = "#{@use_histories.count+1}th Turn"
+      end
 
     section.tron style="background-color:white;margin:0 30px;"
       div.row
