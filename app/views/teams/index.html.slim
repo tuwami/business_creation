@@ -95,7 +95,7 @@
             th Edit
             th Delete
         tbody
-          - @teams.sort.each do |team|
+          - @teams.order(:id).each do |team|
             tr
               td = team.id
               td = link_to team.name, team_path(team)
