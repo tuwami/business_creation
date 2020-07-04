@@ -10,20 +10,79 @@
       table.table.table-striped
         tbody
           - current_user.teams.order(:id).each do |team|
-            - if team.id == 1
+            - if team.id % 4 == 1
               td = link_to 'Roll Playing', team_path(team)
-            - elsif team.id == 2
+            - elsif team.id % 4 == 2
               td = link_to '1st STAGE', team_path(team)
-            - elsif team.id == 3
+            - elsif team.id % 4 == 3
               td = link_to '2nd STAGE', team_path(team)
-            - elsif team.id == 4
+            - elsif team.id % 4 == 0
               td = link_to '3rd STAGE', team_path(team)
   br
 
 - elsif admin_signed_in?
-  h1 Ranking
-  = column_chart @teams.order(current_fund: "DESC").pluck(:name, :current_fund)
-
+  br
+  br
+  br
+  br
+  br
+  br
+  br
+  br
+  br
+  br
+  br
+  h1 Ranking_Roll Playing
+  = column_chart @teams.order(current_fund: "DESC").find(1,5,9,13).pluck(:name, :current_fund)
+  br
+  br
+  br
+  br
+  br
+  br
+  br
+  br
+  br
+  br
+  h1 Ranking_1st STAGE
+  = column_chart @teams.order(current_fund: "DESC").find(2,6,10,14).pluck(:name, :current_fund)
+  br
+  br
+  br
+  br
+  br
+  br
+  br
+  br
+  br
+  br
+  br
+  h1 Ranking_2nd STAGE
+  = column_chart @teams.order(current_fund: "DESC").find(3,7,11,15).pluck(:name, :current_fund)
+  br
+  br
+  br
+  br
+  br
+  br
+  br
+  br
+  br
+  br
+  br
+  h1 Ranking_3rd STAGE
+  = column_chart @teams.order(current_fund: "DESC").find(4,8,12,16).pluck(:name, :current_fund)
+  br
+  br
+  br
+  br
+  br
+  br
+  br
+  br
+  br
+  br
+  br
   hr
   h1 Teams
   div.row
