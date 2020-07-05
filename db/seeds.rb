@@ -8,19 +8,19 @@
 
 #Apple
 (1..4).each do |num|
-  Team.create!(name: "Apple,Inc.", current_fund: 124, origin_fund: 124, investment_limit: 5*num)
+  Team.create!(name: "taoo,Inc.", current_fund: 124, origin_fund: 124, investment_limit: 5*num)
 end
 #Banana
 (1..4).each do |num|
-  Team.create!(name: "Banana,Inc.", current_fund: 100, origin_fund: 100, investment_limit: 5*num)
+  Team.create!(name: "Victory,Inc.", current_fund: 100, origin_fund: 100, investment_limit: 5*num)
 end
 #Coconut
 (1..4).each do |num|
-  Team.create!(name: "Coconut,Inc.", current_fund: 100, origin_fund: 100, investment_limit: 5*num)
+  Team.create!(name: "MIMI,Inc.", current_fund: 100, origin_fund: 100, investment_limit: 5*num)
 end
 #Dragonfruit
 (1..4).each do |num|
-  Team.create!(name: "Dragonfruit,Inc.", current_fund: 124, origin_fund: 124, investment_limit: 5*num)
+  Team.create!(name: "Dragon,Inc.", current_fund: 124, origin_fund: 124, investment_limit: 5*num)
 end
 
 Admin.create!(email: "admin@waqoo.jp", password: "adminadmin")
