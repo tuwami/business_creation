@@ -49,6 +49,7 @@ User.create!(name: "Seita Matsushita", email: "matsushitaseita@waqoo.jp", passwo
 User.create!(name: "Fumihiro Ohashi", email: "ohashifumihiro@waqoo.jp", password: "ohashifumihiro.waqoo")
 User.create!(name: "Kanna Teramoto", email: "teramotokanna@waqoo.jp", password: "teramotokanna.waqoo")
 User.create!(name: "Ryota Watanuki", email: "watanukiryota@waqoo.jp", password: "watanukiryota.waqoo")
+User.create!(name: "USER", email: "user@waqoo.jp", password: "user.waqoo")
 
 #チームの塊
 (1..4).each do |l|
