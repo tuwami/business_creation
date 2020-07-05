@@ -114,7 +114,7 @@ div.row
               td Recruiting
               td Description
           tbody
-            - @team.investments.where.not(description: nil).each_with_index do |investment,i|
+            - @team.investments.order(:id).where.not(description: nil).each_with_index do |investment,i|
               tr
                 td = i+1
                 td = investment.market.market_master.market_name
