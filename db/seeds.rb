@@ -29,8 +29,8 @@ Admin.create!(email: "aa@aa", password: "pppppp")
 #Apple
 User.create!(name: "Nanaka Aoki", email: "aokinanaka@waqoo.jp", password: "aokinanaka.waqoo")
 User.create!(name: "Ryotaro Okamoto", email: "okamotoryotaro@waqoo.jp", password: "okamotoryotaro.waqoo")
+User.create!(name: "Yuta Ono", email: "onoyuta@waqoo.jp", password: "onoyuta.waqoo")
 User.create!(name: "Yuto Tsuchie", email: "tsuchieyuto@waqoo.jp", password: "tsuchieyuto.waqoo")
-User.create!(name: "Seiichi Hata", email: "hataseiichi@waqoo.jp", password: "hataseiichi.waqoo")
 
 #Banana
 User.create!(name: "Kazuya Iwata", email: "iwatakazuya@waqoo.jp", password: "iwatakazuya.waqoo")
@@ -46,7 +46,6 @@ User.create!(name: "Seita Matsushita", email: "matsushitaseita@waqoo.jp", passwo
 
 
 #Dragonfruit
-User.create!(name: "Yuta Ono", email: "onoyuta@waqoo.jp", password: "onoyuta.waqoo")
 User.create!(name: "Fumihiro Ohashi", email: "ohashifumihiro@waqoo.jp", password: "ohashifumihiro.waqoo")
 User.create!(name: "Kanna Teramoto", email: "teramotokanna@waqoo.jp", password: "teramotokanna.waqoo")
 User.create!(name: "Ryota Watanuki", email: "watanukiryota@waqoo.jp", password: "watanukiryota.waqoo")
