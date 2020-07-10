@@ -48,7 +48,7 @@ div.row
                 = f.select :market_id, @team.markets.order(:market_master_id).map { |m| [ m.name, m.id ] }.insert(0,["Select an initial of the Code Name.",0])
               div class="form-group"
                 label Budget(million) :
-                = f.number_field :budget, class: "form-control", min: 0, max: (@team.current_fund >= 0 ? @team.current_fund : 10)
+                = f.number_field :budget, class: "form-control", min: 0, max: (@team.current_fund > 0 ? @team.current_fund : 10)
               div class="form-group"
                 label Assign(person) :
                 = f.number_field :assigning, class: "form-control", min: 0, max: @team.current_novice
