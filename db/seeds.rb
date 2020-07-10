@@ -8,20 +8,17 @@
 
 #Apple
 (1..4).each do |num|
-  Team.create!(name: "taoo,Inc.", current_fund: 124, origin_fund: 124, investment_limit: 5*num)
+  Team.create!(name: "Apple,Inc.", current_fund: 124, origin_fund: 124, investment_limit: 5*num)
 end
 #Banana
 (1..4).each do |num|
-  Team.create!(name: "Dragon,Inc.", current_fund: 100, origin_fund: 100, investment_limit: 5*num)
+  Team.create!(name: "Banana,Inc.", current_fund: 100, origin_fund: 100, investment_limit: 5*num)
 end
 #Coconut
 (1..4).each do |num|
-  Team.create!(name: "MIMI,Inc.", current_fund: 100, origin_fund: 100, investment_limit: 5*num)
+  Team.create!(name: "Coconut,Inc.", current_fund: 100, origin_fund: 100, investment_limit: 5*num)
 end
-#Dragonfruit
-(1..4).each do |num|
-  Team.create!(name: "Victory,Inc.", current_fund: 124, origin_fund: 124, investment_limit: 5*num)
-end
+
 
 Admin.create!(email: "admin@waqoo.jp", password: "adminadmin")
 Admin.create!(email: "aa@aa", password: "pppppp")
@@ -42,9 +39,13 @@ User.create!(name: "Saki Inukai", email: "sakiinukai@waqoo.jp", password: "sakii
 User.create!(name: "Keima Nagao", email: "keimanagao@waqoo.jp", password: "keimanagao.waqoo")
 User.create!(name: "Takuma Matsunaga", email: "takumamatsunaga@waqoo.jp", password: "takumamatsunaga.waqoo")
 User.create!(name: "Reira Suzuki", email: "reirasuzuki@waqoo.jp", password: "reirasuzuki.waqoo")
+User.create!(name: "USER", email: "user@waqoo.jp", password: "user.waqoo")
+
+#Dragonfruit
+
 
 #チームの塊
-(1..4).each do |l|
+(1..3).each do |l|
   ((4*l - 3)..(4*l)).each do |m|
     ((4*l - 3)..(4*l)).each do |n|
       UserTeam.create!(team_id: m,user_id: n)
