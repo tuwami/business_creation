@@ -32,9 +32,6 @@
   br
   br
   br
-  h1 Ranking_Roll Playing
-  = column_chart @teams.order(current_fund: "DESC").find(1,5,9,13).pluck(:name, :current_fund)
-  br
   br
   br
   br
