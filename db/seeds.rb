@@ -8,15 +8,15 @@
 
 #Apple
 (1..4).each do |num|
-  Team.create!(name: "Apple,Inc.", current_fund: 104, origin_fund: 104, investment_limit: 5*num)
+  Team.create!(name: "Key3,Inc.", current_fund: 104, origin_fund: 104, investment_limit: 5*num)
 end
 #Banana
 (1..4).each do |num|
-  Team.create!(name: "Banana,Inc.", current_fund: 124, origin_fund: 124, investment_limit: 5*num)
+  Team.create!(name: "Kstsuuu,Inc.", current_fund: 124, origin_fund: 124, investment_limit: 5*num)
 end
 #Coconut
 (1..4).each do |num|
-  Team.create!(name: "Coconut,Inc.", current_fund: 120, origin_fund: 120, investment_limit: 5*num)
+  Team.create!(name: "TRI,Inc.", current_fund: 120, origin_fund: 120, investment_limit: 5*num)
 end
 
 
