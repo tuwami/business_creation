@@ -51,7 +51,7 @@ div.row
                 = f.number_field :budget, class: "form-control", min: 0, max: (@team.current_fund > 0 ? @team.current_fund : 10)
               div class="form-group"
                 label Assign(person) :
-                = f.number_field :assigning, class: "form-control", min: 0, max: @team.current_novice
+                = f.number_field :assigning, class: "form-control", min: 0, max: (@team.current_novice > 0 ? @team.current_novice : (@team.current_fund > 0 ? 0 : 1))
               div class="form-group"
                 = f.hidden_field :team_id, class: "form-control", value: @team.id
               div class="form-group"

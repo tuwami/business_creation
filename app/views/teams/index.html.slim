@@ -21,8 +21,14 @@
   br
 
 - elsif admin_signed_in?
-  h1 Ranking_1st STAGE
+  h1 style="margin: 100px 0 300px 0;" Ranking in Roll Playing
   = column_chart @teams.order(current_fund: "DESC").where(investment_limit: 5).pluck(:name, :current_fund)
+  h1 style="margin: 100px 0 300px 0" Ranking in 1st STAGE
+  = column_chart @teams.order(current_fund: "DESC").where(investment_limit: 10).pluck(:name, :current_fund)
+  h1 style="margin: 100px 0 300px 0;" Ranking in 2nd STAGE
+  = column_chart @teams.order(current_fund: "DESC").where(investment_limit: 15).pluck(:name, :current_fund)
+  h1 style="margin: 100px 0 300px 0;" Ranking in 3rd STAGE
+  = column_chart @teams.order(current_fund: "DESC").where(investment_limit: 20).pluck(:name, :current_fund)
   h1 Teams
   div.row
     div.col-md-12

@@ -59,7 +59,7 @@ class InvestmentsController < ApplicationController
 
   def render_error(message)
     @investment = Investment.new
-    @use_histories = @team.histories.where(market_id: @team.markets.last.id)
+    @use_histories = @team.histories.where(market_id: @team.markets.order(:id).last.id)
     flash[:alert] = message
     render 'teams/show'
   end
