@@ -24,25 +24,28 @@ Admin.create!(email: "admin@waqoo.jp", password: "adminadmin")
 Admin.create!(email: "aa@aa", password: "pppppp")
 
 #Apple
-User.create!(name: "Mizuki Saura", email: "mizukisaura@waqoo.jp", password: "mizukisaura.waqoo")
-User.create!(name: "Hisaki Shinohara", email: "hisakishinohara@waqoo.jp", password: "hisakishinohara.waqoo")
-User.create!(name: "Takuma Fujiwara", email: "takumafujiwara@waqoo.jp", password: "takumafujiwara.waqoo")
-User.create!(name: "USER1", email: "user1@waqoo.jp", password: "user1.waqoo")
+User.create!(name: "Haruto Asahina", email: "harutoasahina@waqoo.jp", password: "harutoasahina.waqoo")
+User.create!(name: "Risa Okamoto", email: "risaokamoto@waqoo.jp", password: "risaokamoto.waqoo")
+User.create!(name: "So Kuroki", email: "sokuroki@waqoo.jp", password: "sokuroki.waqoo")
+User.create!(name: "Shintaro Shimoda", email: "shintaroshimoda@waqoo.jp", password: "shintaroshimoda.waqoo")
 
 #Banana
-User.create!(name: "Yuta Ito", email: "yutaito@waqoo.jp", password: "yutaito.waqoo")
-User.create!(name: "Saki Inukai", email: "sakiinukai@waqoo.jp", password: "sakiinukai.waqoo")
-User.create!(name: "Kim DoHoon", email: "kimdohoon@waqoo.jp", password: "kimdohoon.waqoo")
-User.create!(name: "Shunya Watanabe", email: "shunyawatanabe@waqoo.jp", password: "shunyawatanabe.waqoo")
+User.create!(name: "Yuki Ishikawa", email: "yukiishikawa@waqoo.jp", password: "yukiishikawa.waqoo")
+User.create!(name: "Ayu Koide", email: "ayukoide@waqoo.jp", password: "ayukoide.waqoo")
+User.create!(name: "Shota Kobayashi", email: "shotakobayashi@waqoo.jp", password: "shotakobayashi.waqoo")
+User.create!(name: "Saki Maezawa", email: "sakimaezawa@waqoo.jp", password: "sakimaezawa.waqoo")
 
 #Cocnut
-User.create!(name: "Reira Suzuki", email: "reirasuzuki@waqoo.jp", password: "reirasuzuki.waqoo")
-User.create!(name: "Keima Nagao", email: "keimanagao@waqoo.jp", password: "keimanagao.waqoo")
-User.create!(name: "Takuma Matsunaga", email: "takumamatsunaga@waqoo.jp", password: "takumamatsunaga.waqoo")
-User.create!(name: "USER2", email: "user2@waqoo.jp", password: "user2.waqoo")
+User.create!(name: "tomokisato", email: "tomokisato@waqoo.jp", password: "tomokisato.waqoo")
+User.create!(name: "takuteshima", email: "takuteshima@waqoo.jp", password: "takuteshima.waqoo")
+User.create!(name: "akarimukaida", email: "akarimukaida@waqoo.jp", password: "akarimukaida.waqoo")
+User.create!(name: "shinjiwada", email: "shinjiwada@waqoo.jp", password: "shinjiwada.waqoo")
 
 #Dragonfruit
-
+User.create!(name: "Satoshi Takahara", email: "satoshitakahara@waqoo.jp", password: "satoshitakahara.waqoo")
+User.create!(name: "Yuki Terahata", email: "yukiterahata@waqoo.jp", password: "yukiterahata.waqoo")
+User.create!(name: "Mizuki Nakazawa", email: "mizukinakazawa@waqoo.jp", password: "mizukinakazawa.waqoo")
+User.create!(name: "Misaki Yoshioka", email: "misakiyoshioka@waqoo.jp", password: "misakiyoshioka.waqoo")
 
 #チームの塊
 (1..3).each do |l|
