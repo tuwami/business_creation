@@ -8,17 +8,20 @@
 
 #Apple
 (1..4).each do |num|
-  Team.create!(name: "Key3,Inc.", current_fund: 104, origin_fund: 104, investment_limit: 5*num)
+  Team.create!(name: "Apple,Inc.", current_fund: 104, origin_fund: 104, investment_limit: 5*num)
 end
 #Banana
 (1..4).each do |num|
-  Team.create!(name: "Kstsuuu,Inc.", current_fund: 124, origin_fund: 124, investment_limit: 5*num)
+  Team.create!(name: "Banana,Inc.", current_fund: 124, origin_fund: 124, investment_limit: 5*num)
 end
 #Coconut
 (1..4).each do |num|
-  Team.create!(name: "TRI,Inc.", current_fund: 120, origin_fund: 120, investment_limit: 5*num)
+  Team.create!(name: "Coconut,Inc.", current_fund: 120, origin_fund: 120, investment_limit: 5*num)
 end
-
+#Dragonfruit
+(1..4).each do |num|
+  Team.create!(name: "Dragonfruit,Inc.", current_fund: 120, origin_fund: 120, investment_limit: 5*num)
+end
 
 Admin.create!(email: "admin@waqoo.jp", password: "adminadmin")
 Admin.create!(email: "aa@aa", password: "pppppp")
@@ -48,7 +51,7 @@ User.create!(name: "Mizuki Nakazawa", email: "mizukinakazawa@waqoo.jp", password
 User.create!(name: "Misaki Yoshioka", email: "misakiyoshioka@waqoo.jp", password: "misakiyoshioka.waqoo")
 
 #チームの塊
-(1..3).each do |l|
+(1..4).each do |l|
   ((4*l - 3)..(4*l)).each do |m|
     ((4*l - 3)..(4*l)).each do |n|
       UserTeam.create!(team_id: m,user_id: n)
