@@ -26,9 +26,9 @@ div.row
               td = "#{@team.current_novice} person"
             end
       div class="graph1"
-        = line_chart [{name: "Fund",data: @use_histories.pluck(:fund).map.with_index{|a,i| [i+1,a]}.insert(0,[0,@team.origin_fund])}, \
-                      {name: "Entire Employee",data: @use_histories.pluck(:employee).map.with_index{|a,i| [i+1,a]}.insert(0,[0,10])},\
-                      {name: "Not Assigned", data: @use_histories.pluck(:novice).map.with_index{|a,i| [i+1,a]}.insert(0,[0,9])} \
+        = line_chart [{name: "Fund",data: @use_histories.order(:id).pluck(:fund).map.with_index{|a,i| [i+1,a]}.insert(0,[0,@team.origin_fund])}, \
+                      {name: "Entire Employee",data: @use_histories.order(:id).pluck(:employee).map.with_index{|a,i| [i+1,a]}.insert(0,[0,10])},\
+                      {name: "Not Assigned", data: @use_histories.order(:id).pluck(:novice).map.with_index{|a,i| [i+1,a]}.insert(0,[0,9])} \
                     ], xtitle: :Turn
     section.jumbotron style="background-color:"
       div style="text-align: center;"
