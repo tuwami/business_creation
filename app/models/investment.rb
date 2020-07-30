@@ -84,32 +84,32 @@ class Investment < ApplicationRecord
   MARKETSIZE = [4.3,29.4,7.4,17.8,5.0,1.5,2.2,1.9,5.5,69.6,1.5,34.0,15.6,1.5,53.7,14.7,36.9]
   MARKETSHARE = [23.3,3.4,13.5,5.6,20.0,66.7,45.5,52.6,18.2,1.4,66.7,2.9,6.4,66.7,1.9,6.8,2.7]
 
-  EATH_MARKET_VALUES_A = [10.2, 8.25, 1.0137]
-  EATH_MARKET_VALUES_B = [9.40, 4.80, 1.0028]
-  EATH_MARKET_VALUES_C = [8.65, 7.94, 1.0050]
-  EATH_MARKET_VALUES_D = [5.50, 11.4, 1.0084]
-  EATH_MARKET_VALUES_E = [13.4, 4.85, 1.0108]
-  EATH_MARKET_VALUES_F = [5.21, 13.5, 0.9986]
-  EATH_MARKET_VALUES_G = [15.2, 3.91, 1.0074]
-  EATH_MARKET_VALUES_H = [8.93, 8.44, 1.0034]
-  EATH_MARKET_VALUES_I = [13.8, 4.59, 1.0100]
-  EATH_MARKET_VALUES_J = [8.40, 5.37, 1.0013]
-  EATH_MARKET_VALUES_K = [8.61, 4.29, 1.0041]
-  EATH_MARKET_VALUES_L = [7.43, 6.69, 1.0016]
-  EATH_MARKET_VALUES_M = [14.9, 3.21, 1.0108]
-  EATH_MARKET_VALUES_N = [5.97, 15.1, 0.9994]
-  EATH_MARKET_VALUES_O = [10.2, 7.62, 1.0116]
-  EATH_MARKET_VALUES_P = [7.40, 12.5, 1.0023]
-  EATH_MARKET_VALUES_Q = [6.91, 7.21, 1.0025]
+  # EATH_MARKET_VALUES_A = [10.2, 8.25, 1.0137]
+  # EATH_MARKET_VALUES_B = [9.40, 4.80, 1.0028]
+  # EATH_MARKET_VALUES_C = [8.65, 7.94, 1.0050]
+  # EATH_MARKET_VALUES_D = [5.50, 11.4, 1.0084]
+  # EATH_MARKET_VALUES_E = [13.4, 4.85, 1.0108]
+  # EATH_MARKET_VALUES_F = [5.21, 13.5, 0.9986]
+  # EATH_MARKET_VALUES_G = [15.2, 3.91, 1.0074]
+  # EATH_MARKET_VALUES_H = [8.93, 8.44, 1.0034]
+  # EATH_MARKET_VALUES_I = [13.8, 4.59, 1.0100]
+  # EATH_MARKET_VALUES_J = [8.40, 5.37, 1.0013]
+  # EATH_MARKET_VALUES_K = [8.61, 4.29, 1.0041]
+  # EATH_MARKET_VALUES_L = [7.43, 6.69, 1.0016]
+  # EATH_MARKET_VALUES_M = [14.9, 3.21, 1.0108]
+  # EATH_MARKET_VALUES_N = [5.97, 15.1, 0.9994]
+  # EATH_MARKET_VALUES_O = [10.2, 7.62, 1.0116]
+  # EATH_MARKET_VALUES_P = [7.40, 12.5, 1.0023]
+  # EATH_MARKET_VALUES_Q = [6.91, 7.21, 1.0025]
 
-  MARKET_VALUES = [ EATH_MARKET_VALUES_A, EATH_MARKET_VALUES_B, EATH_MARKET_VALUES_C,
-                    EATH_MARKET_VALUES_D, EATH_MARKET_VALUES_E, EATH_MARKET_VALUES_F,
-                    EATH_MARKET_VALUES_G, EATH_MARKET_VALUES_H, EATH_MARKET_VALUES_I,
-                    EATH_MARKET_VALUES_J, EATH_MARKET_VALUES_K, EATH_MARKET_VALUES_L,
-                    EATH_MARKET_VALUES_M, EATH_MARKET_VALUES_N, EATH_MARKET_VALUES_O,
-                    EATH_MARKET_VALUES_P, EATH_MARKET_VALUES_Q ]
+  # MARKET_VALUES = [ EATH_MARKET_VALUES_A, EATH_MARKET_VALUES_B, EATH_MARKET_VALUES_C,
+  #                   EATH_MARKET_VALUES_D, EATH_MARKET_VALUES_E, EATH_MARKET_VALUES_F,
+  #                   EATH_MARKET_VALUES_G, EATH_MARKET_VALUES_H, EATH_MARKET_VALUES_I,
+  #                   EATH_MARKET_VALUES_J, EATH_MARKET_VALUES_K, EATH_MARKET_VALUES_L,
+  #                   EATH_MARKET_VALUES_M, EATH_MARKET_VALUES_N, EATH_MARKET_VALUES_O,
+  #                   EATH_MARKET_VALUES_P, EATH_MARKET_VALUES_Q ]
 
-  BALANCE_VALUES = [0.10,0.63,0.55,0.89,0.28,0.80,0.50,0.34,0.11,0.70,0.97,0.93,0.56,0.33,0.19,0.20,0.90]
+  # BALANCE_VALUES = [0.10,0.63,0.55,0.89,0.28,0.80,0.50,0.34,0.11,0.70,0.97,0.93,0.56,0.33,0.19,0.20,0.90]
 
 
   def cal_params_market_budget_earning
@@ -118,7 +118,7 @@ class Investment < ApplicationRecord
     else
       (1..17).each do |num|
         if num == market.market_master_id
-          return cal_market_budget_earning(*MARKET_VALUES[num - 1]).to_s.to_d.floor(2).to_f
+          return cal_market_budget_earning(market.market_master.capital_intensive_index, market.market_master.labor_intensive_index, market.market_master.market_growth_index).to_s.to_d.floor(2).to_f
         end
       end
     end
@@ -130,7 +130,7 @@ class Investment < ApplicationRecord
     else
       (1..17).each do |num|
         if num == market.market_master_id
-          return cal_market_balance_earning(*MARKET_VALUES[num - 1]).to_s.to_d.floor(2).to_f
+          return cal_market_balance_earning(market.market_master.capital_intensive_index, market.market_master.labor_intensive_index, market.market_master.market_growth_index).to_s.to_d.floor(2).to_f
         end
       end
     end
@@ -142,7 +142,7 @@ class Investment < ApplicationRecord
     else
       (1..17).each do |num|
         if num == market.market_master_id
-          return cal_balance(BALANCE_VALUES[num - 1])
+          return cal_balance(market.market_master.sales_retention_index)
         end
       end
     end
