@@ -75,10 +75,10 @@ end
             - else
               tr
                 td = market_master.market_name
-                td = market_master.market_growth_index
+                td = (market_master.market_growth_index.to_d.truncate(3))*10.to_d.truncate(3)
                 td = market_master.capital_intensive_index
                 td = market_master.labor_intensive_index
-                td = market_master.sales_retention_index
+                td = (market_master.sales_retention_index.to_d.truncate(3))*10.to_d.truncate(3)
               / tr
               /   td = market_master.market_name
               /   td = (market_master.market_growth_index.to_d.truncate(3) - 0.9)*50.to_d.truncate(3)
