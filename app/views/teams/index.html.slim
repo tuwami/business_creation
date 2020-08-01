@@ -65,12 +65,20 @@ end
             th Sales Retention Index
         tbody
           - @market_masters.each do |market_master|
-            tr
-              td = market_master.market_name
-              td = market_master.market_growth_index
-              td = market_master.capital_intensive_index
-              td = market_master.labor_intensive_index
-              td = market_master.sales_retention_index
+            - if market_master.id == 18
+              tr
+                td Recruitment
+                td -
+                td -
+                td -
+                td -
+            - else
+              tr
+                td = market_master.market_name
+                td = (market_master.market_growth_index.to_d.truncate(3) - 0.9)*50.to_d.truncate(3)
+                td = market_master.capital_intensive_index.to_d.truncate(3)
+                td = market_master.labor_intensive_index.to_d.truncate(3)
+                td = (market_master.sales_retention_index.to_d.truncate(3))*13.to_d.truncate(3)
 
   / div.row
   /     div.col-md-16
