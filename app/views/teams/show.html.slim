@@ -26,9 +26,9 @@ div.row
               td = "#{@team.current_novice} person"
             end
       div class="graph1"
-        = line_chart [{name: "Fund",data: @use_histories.pluck(:fund).map.with_index{|a,i| [i+1,a]}.insert(0,[0,@team.origin_fund])}, \
-                      {name: "Entire Employee",data: @use_histories.pluck(:employee).map.with_index{|a,i| [i+1,a]}.insert(0,[0,10])},\
-                      {name: "Not Assigned", data: @use_histories.pluck(:novice).map.with_index{|a,i| [i+1,a]}.insert(0,[0,9])} \
+        = line_chart [{name: "Fund",data: @use_histories.order(:id).pluck(:fund).map.with_index{|a,i| [i+1,a]}.insert(0,[0,@team.origin_fund])}, \
+                      {name: "Entire Employee",data: @use_histories.order(:id).pluck(:employee).map.with_index{|a,i| [i+1,a]}.insert(0,[0,10])},\
+                      {name: "Not Assigned", data: @use_histories.order(:id).pluck(:novice).map.with_index{|a,i| [i+1,a]}.insert(0,[0,9])} \
                     ], xtitle: :Turn
     section.jumbotron style="background-color:"
       div style="text-align: center;"
@@ -45,7 +45,7 @@ div.row
             = form_with model: [@team, @investment], local: true do |f|
               div class="form-group"
                 label Code Name :
-                = f.select :market_id, @team.markets.order(:market_master_id).map { |m| [ m.name, m.id ] }.insert(0,["Select an initial of the Code Name.",0])
+                = f.select :market_id, @team.markets.order(:market_master_id).map { |m| [ m.name, m.id ] }.insert(0,["Select the Code Name.",0])
               div class="form-group"
                 label Budget(million) :
                 = f.number_field :budget, class: "form-control", min: 0, max: (@team.current_fund > 0 ? @team.current_fund : 10)
@@ -134,7 +134,7 @@ div.row
       h1 = @team.name
     hr
 
-    section.tron style="background-color: white;margin:30px 0;"
+    /section.tron style="background-color: white;margin:30px 0;"
       h3 Founders
       - @users.each do |user|
         li = user.name
@@ -144,68 +144,68 @@ div.row
       h3 Turn
       h5 = "#{(@use_histories.count+1).ordinalize} Turn"
 
-    section.tron style="background-color:white;margin:0 30px;"
-      div.row
-        div.col-md-16
-          table.table.table-striped
-            thead.thead-light
-              tr
-                th Initial
-                th Code Name
-            tbody
-              tr
-                td A
-                td Apple
-              tr
-                td B
-                td Banana
-              tr
-                td C
-                td Coconut
-              tr
-                td D
-                td Dragonfruit
-              tr
-                td E
-                td Elderberry
-              tr
-                td F
-                td Fig
-              tr
-                td G
-                td Grape
-              tr
-                td H
-                td Honeydew
-              tr
-                td I
-                td Italian Plum
-              tr
-                td J
-                td Jujube
-              tr
-                td K
-                td Kiwi
-              tr
-                td L
-                td Lemon
-              tr
-                td M
-                td Muscat
-              tr
-                td N
-                td Nectarine
-              tr
-                td O
-                td Orange
-              tr
-                td P
-                td Peach
-              tr
-                td Q
-                td Quince
-              tr
-                td R
-                td Recruitment
+    / section.tron style="background-color:white;margin:0 30px;"
+    /   div.row
+    /     div.col-md-16
+    /       table.table.table-striped
+    /         thead.thead-light
+    /           tr
+    /             th Initial
+    /             th Code Name
+    /         tbody
+    /           tr
+    /             td A
+    /             td Apple
+    /           tr
+    /             td B
+    /             td Banana
+    /           tr
+    /             td C
+    /             td Coconut
+    /           tr
+    /             td D
+    /             td Dragonfruit
+    /           tr
+    /             td E
+    /             td Elderberry
+    /           tr
+    /             td F
+    /             td Fig
+    /           tr
+    /             td G
+    /             td Grape
+    /           tr
+    /             td H
+    /             td Honeydew
+    /           tr
+    /             td I
+    /             td Italian Plum
+    /           tr
+    /             td J
+    /             td Jujube
+    /           tr
+    /             td K
+    /             td Kiwi
+    /           tr
+    /             td L
+    /             td Lemon
+    /           tr
+    /             td M
+    /             td Muscat
+    /           tr
+    /             td N
+    /             td Nectarine
+    /           tr
+    /             td O
+    /             td Orange
+    /           tr
+    /             td P
+    /             td Peach
+    /           tr
+    /             td Q
+    /             td Quince
+    /           tr
+    /             td R
+    /             td Recruitment
 
 

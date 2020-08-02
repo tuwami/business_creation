@@ -55,6 +55,10 @@ ActiveRecord::Schema.define(version: 2020_06_28_084406) do
 
   create_table "market_masters", force: :cascade do |t|
     t.string "market_name"
+    t.float "market_growth_index"
+    t.float "capital_intensive_index"
+    t.float "labor_intensive_index"
+    t.float "sales_retention_index"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
