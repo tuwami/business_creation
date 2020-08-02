@@ -27,25 +27,25 @@ Admin.create!(email: "admin@waqoo.jp", password: "adminadmin")
 Admin.create!(email: "aa@aa", password: "pppppp")
 
 #Apple
-User.create!(name: "user01", email: "waqoo01@waqoo.jp", password: "20200723")
-User.create!(name: "user02", email: "waqoo02@waqoo.jp", password: "20200723")
-User.create!(name: "user03", email: "waqoo03@waqoo.jp", password: "20200723")
-User.create!(name: "user04", email: "waqoo04@waqoo.jp", password: "20200723")
-#Banana                                                            20200723
-User.create!(name: "user05", email: "waqoo05@waqoo.jp", password: "20200723")
-User.create!(name: "user06", email: "waqoo06@waqoo.jp", password: "20200723")
-User.create!(name: "user07", email: "waqoo07@waqoo.jp", password: "20200723")
-User.create!(name: "user08", email: "waqoo08@waqoo.jp", password: "20200723")
-#Cocnut                                                            20200723
-User.create!(name: "user09", email: "waqoo09@waqoo.jp", password: "20200723")
-User.create!(name: "user10", email: "waqoo10@waqoo.jp", password: "20200723")
-User.create!(name: "user11", email: "waqoo11@waqoo.jp", password: "20200723")
-User.create!(name: "user12", email: "waqoo12@waqoo.jp", password: "20200723")
-#Dragonfruit                                                       20200723
-User.create!(name: "user13", email: "waqoo13@waqoo.jp", password: "20200723")
-User.create!(name: "user14", email: "waqoo14@waqoo.jp", password: "20200723")
-User.create!(name: "user15", email: "waqoo15@waqoo.jp", password: "20200723")
-User.create!(name: "user16", email: "waqoo16@waqoo.jp", password: "20200723")
+User.create!(name: "user01", email: "waqoo01@waqoo.jp", password: "20200802")
+User.create!(name: "user02", email: "waqoo02@waqoo.jp", password: "20200802")
+User.create!(name: "user03", email: "waqoo03@waqoo.jp", password: "20200802")
+User.create!(name: "user04", email: "waqoo04@waqoo.jp", password: "20200802")
+#Banana                                                            20200802
+User.create!(name: "user05", email: "waqoo05@waqoo.jp", password: "20200802")
+User.create!(name: "user06", email: "waqoo06@waqoo.jp", password: "20200802")
+User.create!(name: "user07", email: "waqoo07@waqoo.jp", password: "20200802")
+User.create!(name: "user08", email: "waqoo08@waqoo.jp", password: "20200802")
+#Cocnut                                                            20200802
+User.create!(name: "user09", email: "waqoo09@waqoo.jp", password: "20200802")
+User.create!(name: "user10", email: "waqoo10@waqoo.jp", password: "20200802")
+User.create!(name: "user11", email: "waqoo11@waqoo.jp", password: "20200802")
+User.create!(name: "user12", email: "waqoo12@waqoo.jp", password: "20200802")
+#Dragonfruit                                                       20200802
+User.create!(name: "user13", email: "waqoo13@waqoo.jp", password: "20200802")
+User.create!(name: "user14", email: "waqoo14@waqoo.jp", password: "20200802")
+User.create!(name: "user15", email: "waqoo15@waqoo.jp", password: "20200802")
+User.create!(name: "user16", email: "waqoo16@waqoo.jp", password: "20200802")
 
 #チームの塊
 (1..4).each do |l|
@@ -99,9 +99,6 @@ MarketMaster.create!(market_name: "Orange", market_growth_index: 0.983, capital_
 MarketMaster.create!(market_name: "Peach", market_growth_index: 1.092, capital_intensive_index: 15.2, labor_intensive_index: 3.91, sales_retention_index: 0.50)
 MarketMaster.create!(market_name: "Quince", market_growth_index: 1.041, capital_intensive_index: 8.93, labor_intensive_index: 8.44, sales_retention_index: 0.34)
 MarketMaster.create!(market_name: "Rcruitment", market_growth_index: 0.000, capital_intensive_index: 0.00, labor_intensive_index: 0.00, sales_retention_index: 0.00)
-
-
-
 
 (1..Team.all.count).each do |n|
   (1..MarketMaster.all.count).each do |m|
