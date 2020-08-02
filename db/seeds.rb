@@ -52,7 +52,7 @@ User.create!(name: "user19", email: "waqoo19@waqoo.jp", password: "20200802")
 User.create!(name: "user20", email: "waqoo20@waqoo.jp", password: "20200802")
 
 #チームの塊
-(1..3).each do |l|
+(1..4).each do |l|
   ((4*l - 3)..(4*l)).each do |m|　#STAGE分
     ((5*l - 4)..(5*l)).each do |n|　#チームメンバー分
       UserTeam.create!(team_id: m,user_id: n)
