@@ -80,7 +80,6 @@ Admin.create!(email: "admin@waqoo.jp", password: "adminadmin")
 Admin.create!(email: "aa@aa", password: "pppppp")
 
 #Apple
-<<<<<<< HEAD
 User.create!(name: "a1", email: "a1@waqoo.jp", password: "a1.waqoo")
 User.create!(name: "a2", email: "a2@waqoo.jp", password: "a2.waqoo")
 User.create!(name: "a3", email: "a3@waqoo.jp", password: "a3.waqoo")
