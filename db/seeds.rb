@@ -53,7 +53,7 @@ User.create!(name: "user20", email: "waqoo20@waqoo.jp", password: "20200802")
 
 #チームの塊
 (1..4).each do |l|
-  ((5*l - 4)..(5*l)).each do |m|
+  ((4*l - 3)..(4*l)).each do |m|
     ((5*l - 4)..(5*l)).each do |n|
       UserTeam.create!(team_id: m,user_id: n)
     end
