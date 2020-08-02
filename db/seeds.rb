@@ -49,7 +49,7 @@ User.create!(name: "user16", email: "waqoo16@waqoo.jp", password: "20200802")
 User.create!(name: "user17", email: "waqoo17@waqoo.jp", password: "20200802")
 User.create!(name: "user18", email: "waqoo18@waqoo.jp", password: "20200802")
 User.create!(name: "user19", email: "waqoo19@waqoo.jp", password: "20200802")
-User.create!(name: "user19", email: "waqoo19@waqoo.jp", password: "20200802")
+User.create!(name: "user20", email: "waqoo20@waqoo.jp", password: "20200802")
 
 #チームの塊
 (1..4).each do |l|
