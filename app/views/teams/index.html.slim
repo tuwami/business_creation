@@ -84,7 +84,7 @@ end
                 td = (market_master.market_growth_index.to_d.truncate(3) - 0.9)*50.to_d.truncate(3)
                 td = market_master.capital_intensive_index.to_d.truncate(3)
                 td = market_master.labor_intensive_index.to_d.truncate(3)
-                td = (market_master.sales_retention_index.to_d.truncate(3)+5).to_d.truncate(3)
+                td = (market_master.sales_retention_index.to_d.truncate(3)*10+5).to_d.truncate(3)
 
   / div.row
   /     div.col-md-16
