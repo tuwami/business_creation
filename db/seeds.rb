@@ -44,7 +44,7 @@ User.create!(name: "user12", email: "waqoo12@waqoo.jp", password: "20200814")
 User.create!(name: "user13", email: "waqoo13@waqoo.jp", password: "20200814")
 User.create!(name: "user14", email: "waqoo14@waqoo.jp", password: "20200814")
 User.create!(name: "user15", email: "waqoo15@waqoo.jp", password: "20200814")
-#Dragonfruit                                                       20200814
+# #Dragonfruit                                                       20200814
 # User.create!(name: "user13", email: "waqoo13@waqoo.jp", password: "20200814")
 # User.create!(name: "user14", email: "waqoo14@waqoo.jp", password: "20200814")
 # User.create!(name: "user15", email: "waqoo15@waqoo.jp", password: "20200814")
