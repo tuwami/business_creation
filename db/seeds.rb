@@ -45,11 +45,11 @@ User.create!(name: "user13", email: "waqoo13@waqoo.jp", password: "20200825")
 User.create!(name: "user14", email: "waqoo14@waqoo.jp", password: "20200825")
 User.create!(name: "user15", email: "waqoo15@waqoo.jp", password: "20200825")
 #Dragonfruit                                                       20200825
-User.create!(name: "user16", email: "waqoo13@waqoo.jp", password: "20200825")
-User.create!(name: "user17", email: "waqoo14@waqoo.jp", password: "20200825")
-User.create!(name: "user18", email: "waqoo15@waqoo.jp", password: "20200825")
-User.create!(name: "user19", email: "waqoo16@waqoo.jp", password: "20200825")
-User.create!(name: "user20", email: "waqoo16@waqoo.jp", password: "20200825")
+User.create!(name: "user16", email: "waqoo16@waqoo.jp", password: "20200825")
+User.create!(name: "user17", email: "waqoo17@waqoo.jp", password: "20200825")
+User.create!(name: "user18", email: "waqoo18@waqoo.jp", password: "20200825")
+User.create!(name: "user19", email: "waqoo19@waqoo.jp", password: "20200825")
+User.create!(name: "user20", email: "waqoo20@waqoo.jp", password: "20200825")
 
 #チームの塊
 (1..4).each do |l|
