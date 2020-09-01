@@ -8,7 +8,7 @@
 
 #Apple
 (1..4).each do |num|
-  Team.create!(name: "ALL,Inc.", current_fund: 100, origin_fund: 100, investment_limit: 5*num)
+  Team.create!(name: "Fruits_Factory,Inc.", current_fund: 100, origin_fund: 100, investment_limit: 5*num)
 end
 #Banana
 (1..4).each do |num|
