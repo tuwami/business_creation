@@ -25,7 +25,7 @@ end
 #Elderberry
 (1..4).each do |num|
   Team.create!(name: "Hinako Shirasaka,Inc.", current_fund: 100, origin_fund: 100, investment_limit: 5*num)
-
+end
 
 Admin.create!(email: "admin@waqoo.jp", password: "adminadmin")
 Admin.create!(email: "aa@aa", password: "pppppp")
