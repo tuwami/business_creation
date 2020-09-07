@@ -8,19 +8,19 @@
 
 #Apple
 (1..4).each do |num|
-  Team.create!(name: "Apple,Inc.", current_fund: 108, origin_fund: 108, investment_limit: 5*num)
+  Team.create!(name: "sleep&drive,Inc.", current_fund: 108, origin_fund: 108, investment_limit: 5*num)
 end
 #Banana
 (1..4).each do |num|
-  Team.create!(name: "Banana,Inc.", current_fund: 121, origin_fund: 121, investment_limit: 5*num)
+  Team.create!(name: "OVER,Inc.", current_fund: 121, origin_fund: 121, investment_limit: 5*num)
 end
 #Coconut
 (1..4).each do |num|
-  Team.create!(name: "Coconut,Inc.", current_fund: 115, origin_fund: 115, investment_limit: 5*num)
+  Team.create!(name: "Borzoi,Inc.", current_fund: 115, origin_fund: 115, investment_limit: 5*num)
 end
 #Dragonfruit
 (1..4).each do |num|
-  Team.create!(name: "Dragonfruit,Inc.", current_fund: 111, origin_fund: 111, investment_limit: 5*num)
+  Team.create!(name: "PAKAYOCANON,Inc.", current_fund: 111, origin_fund: 111, investment_limit: 5*num)
 end
 #Elderberry
 (1..4).each do |num|
