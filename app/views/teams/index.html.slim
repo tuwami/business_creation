@@ -21,6 +21,9 @@
   br
 
 - elsif admin_signed_in?
+
+  = link_to "Reset DB", reset_db_path, method: :post
+
   h1 style="margin: 100px 0 300px 0;" Ranking in Roll Playing
   = column_chart @teams.order(current_fund: "DESC").where(investment_limit: 5).pluck(:name, :current_fund)
   h1 style="margin: 100px 0 300px 0" Ranking in 1st STAGE

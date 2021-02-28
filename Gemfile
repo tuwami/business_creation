@@ -73,3 +73,4 @@ gem 'jquery-rails'
 
 gem 'devise'
 gem 'pry-rails'
+gem "racc", "~> 1.4.0"
