@@ -70,7 +70,7 @@ end
             th Sales Retention Index
         tbody
           - @market_masters.each do |market_master|
-            - if market_master.id == 18
+            - if market_master.id % 18 == 0
               tr
                 td Recruitment
                 td -
