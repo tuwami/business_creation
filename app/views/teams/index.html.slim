@@ -41,15 +41,17 @@
             th ID
             th Name
             th Edit
-            th Delete
+            //th Delete
         tbody
           - @teams.order(:id).each do |team|
             tr
               td = team.id
               td = link_to team.name, team_path(team)
               td = link_to 'Edit', edit_team_path(team)
-              td = link_to 'Delete', team_path(team), method: :delete, data:{ confirm: 'Are you sure?' }
-  = link_to "New team", new_team_path, class: "btn btn-primary"
+              //td = link_to 'Delete', team_path(team), method: :delete, data:{ confirm: 'Are you sure?' }
+  //= link_to "New team", new_team_path, class: "btn btn-primary"
+
+  = link_to "Reset DB", reset_db_path, method: :post, class: "btn btn-primary"
 
   =
 - else
