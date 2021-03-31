@@ -97,7 +97,7 @@ div.row
       h5 Employee
       button.graph8-button.btn.btn-primary style = "font-size:12px;"= 'Switch'
       div class="graph8"
-        = pie_chart @team.markets.order(:market_master_id).map { |market| {name: market.name, data: market.histories.order(:id).pluck(:each_market_employee).map.with_index{|each_market_employee,i| [i+1, each_market_employee] }.insert(0,[0,market.default_each_market_employee])}}, xtitle: :Turn, ytitle: :"Employee (person)"
+        = line_chart @team.markets.order(:market_master_id).map { |market| {name: market.name, data: market.histories.order(:id).pluck(:each_market_employee).map.with_index{|each_market_employee,i| [i+1, each_market_employee] }.insert(0,[0,market.default_each_market_employee])}}, xtitle: :Turn, ytitle: :"Employee (person)"
 
     h3 Result
     div
