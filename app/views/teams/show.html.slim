@@ -30,7 +30,7 @@ div.row
                       {name: "Entire Employee",data: @use_histories.order(:id).pluck(:employee).map.with_index{|a,i| [i+1,a]}.insert(0,[0,10])},\
                       {name: "Not Assigned", data: @use_histories.order(:id).pluck(:novice).map.with_index{|a,i| [i+1,a]}.insert(0,[0,9])} \
                     ], xtitle: :Turn
-    section.jumbotron style="background-color:"
+    section.jumbotron style="background-color:#FFFFFF;"
       div style="text-align: center;"
         button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" Make an investment
 
@@ -60,7 +60,7 @@ div.row
               div class="text-center"
                 = f.submit "DONE!", class: "btn btn-primary"
 
-    section.jumbotron
+    section.jumbotron style="background-color:#FFFFFF;"
       h2 Each Business
       hr
       h5 Budget
