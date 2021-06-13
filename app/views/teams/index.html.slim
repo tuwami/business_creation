@@ -21,6 +21,7 @@
   br
 
 - elsif admin_signed_in?
+
   h1 style="margin: 100px 0 300px 0;" Ranking in Roll Playing
   = column_chart @teams.order(current_fund: "DESC").where(investment_limit: 5).pluck(:name, :current_fund)
   h1 style="margin: 100px 0 300px 0" Ranking in 1st STAGE
@@ -38,15 +39,19 @@
             th ID
             th Name
             th Edit
-            th Delete
+            //th Delete
         tbody
           - @teams.order(:id).each do |team|
             tr
               td = team.id
               td = link_to team.name, team_path(team)
               td = link_to 'Edit', edit_team_path(team)
-              td = link_to 'Delete', team_path(team), method: :delete, data:{ confirm: 'Are you sure?' }
-  = link_to "New team", new_team_path, class: "btn btn-primary"
+              //td = link_to 'Delete', team_path(team), method: :delete, data:{ confirm: 'Are you sure?' }
+  //= link_to "New team", new_team_path, class: "btn btn-primary"
+
+  = link_to "Reset DB", reset_db_path, method: :post, class: "btn btn-primary"
+
+  =
 - else
   div Not logged in
 end
@@ -65,7 +70,7 @@ end
             th Sales Retention Index
         tbody
           - @market_masters.each do |market_master|
-            - if market_master.id == 18
+            - if market_master.id % 18 == 0
               tr
                 td Recruitment
                 td -
@@ -73,18 +78,18 @@ end
                 td -
                 td -
             - else
-              tr
-                td = market_master.market_name
-                td = (market_master.market_growth_index.to_d.truncate(3))*10.to_d.truncate(3)
-                td = market_master.capital_intensive_index
-                td = market_master.labor_intensive_index
-                td = (market_master.sales_retention_index.to_d.truncate(3))*10.to_d.truncate(3)
               / tr
               /   td = market_master.market_name
-              /   td = (market_master.market_growth_index.to_d.truncate(3) - 0.9)*50.to_d.truncate(3)
-              /   td = market_master.capital_intensive_index.to_d.truncate(3)
-              /   td = market_master.labor_intensive_index.to_d.truncate(3)
-              /   td = (market_master.sales_retention_index.to_d.truncate(3))*13.to_d.truncate(3)
+              /   td = (market_master.market_growth_index.to_d.truncate(3))*10.to_d.truncate(3)
+              /   td = market_master.capital_intensive_index
+              /   td = market_master.labor_intensive_index
+              /   td = (market_master.sales_retention_index.to_d.truncate(3))*10.to_d.truncate(3)
+              tr
+                td = market_master.market_name
+                td = (market_master.market_growth_index.to_d.truncate(3) - 0.9)*50.to_d.truncate(3)
+                td = market_master.capital_intensive_index.to_d.truncate(3)
+                td = market_master.labor_intensive_index.to_d.truncate(3)
+                td = (market_master.sales_retention_index.to_d.truncate(3)*10+5).to_d.truncate(3)
 
   / div.row
   /     div.col-md-16

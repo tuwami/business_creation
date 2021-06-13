@@ -1,7 +1,7 @@
 h1 = @message
 div.row
   div.col-md-9
-    section.jumbotron style="background-color: #E9ECEF;margin-bottom:0px;"
+    section.jumbotron style="background-color: #FFFFFF;margin-bottom:0px;"
       h2 Company Status
       hr
       table.table style="margin-bottom:30px;"
@@ -30,7 +30,7 @@ div.row
                       {name: "Entire Employee",data: @use_histories.order(:id).pluck(:employee).map.with_index{|a,i| [i+1,a]}.insert(0,[0,10])},\
                       {name: "Not Assigned", data: @use_histories.order(:id).pluck(:novice).map.with_index{|a,i| [i+1,a]}.insert(0,[0,9])} \
                     ], xtitle: :Turn
-    section.jumbotron style="background-color:"
+    section.jumbotron style="background-color:#ffffff;"
       div style="text-align: center;"
         button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" Make an investment
 
@@ -60,7 +60,7 @@ div.row
               div class="text-center"
                 = f.submit "DONE!", class: "btn btn-primary"
 
-    section.jumbotron
+    section.jumbotron style="background-color:#ffffff;"
       h2 Each Business
       hr
       h5 Budget
