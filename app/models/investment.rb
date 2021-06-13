@@ -167,12 +167,22 @@ class Investment < ApplicationRecord
   end
 
   def cal_market_earning(a)
-    if a < 231
-      return ((MARKETSIZE[(market.market_master_id%18)-1]*MARKETSHARE[(market.market_master_id%18)-1])*(a**2)/1000).to_f
-    elsif a < 369
-      return ((MARKETSIZE[(market.market_master_id%18)-1]*MARKETSHARE[(market.market_master_id%18)-1])*(a)*rand(8000..12000)/100000 + 30).to_f
+    if team.histories.any?
+      if a < 231
+        return ((((MARKETSIZE[(market.market_master_id%18)-1]*MARKETSHARE[(market.market_master_id%18)-1]/100)**(6+team.investments.count/18))*100)*(a**2)/1000).to_f
+      elsif a < 369
+        return ((((MARKETSIZE[(market.market_master_id%18)-1]*MARKETSHARE[(market.market_master_id%18)-1]/100)**(6+team.investments.count/18))*100)*(a)*rand(8000..12000)/100000 + 30).to_f
+      else
+        return ((((MARKETSIZE[(market.market_master_id%18)-1]*MARKETSHARE[(market.market_master_id%18)-1]/100)**(6+team.investments.count/18))*100)*(12*(Math.log10(1000*a)*rand(8000..12000)/10000))).to_f
+      end
     else
-      return ((MARKETSIZE[(market.market_master_id%18)-1]*MARKETSHARE[(market.market_master_id%18)-1])*(12*(Math.log10(1000*a)*rand(8000..12000)/10000))).to_f
+      if a < 231
+        return ((((MARKETSIZE[(market.market_master_id%18)-1]*MARKETSHARE[(market.market_master_id%18)-1]/100)**6)*100)*(a**2)/1000).to_f
+      elsif a < 369
+        return ((((MARKETSIZE[(market.market_master_id%18)-1]*MARKETSHARE[(market.market_master_id%18)-1]/100)**6)*100)*(a)*rand(8000..12000)/100000 + 30).to_f
+      else
+        return ((((MARKETSIZE[(market.market_master_id%18)-1]*MARKETSHARE[(market.market_master_id%18)-1]/100)**6)*100)*(12*(Math.log10(1000*a)*rand(8000..12000)/10000))).to_f
+      end
     end
   end
 
