@@ -49,7 +49,7 @@
               //td = link_to 'Delete', team_path(team), method: :delete, data:{ confirm: 'Are you sure?' }
   //= link_to "New team", new_team_path, class: "btn btn-primary"
 
-  = link_to "Reset DB", reset_db_path, method: :post, class: "btn btn-primary"
+  = link_to "Reset DB", reset_db_path, method: :post, data: { confirm: "【確認】データベースを削除してもよろしいですか？" }, class: "btn btn-primary"
 
   =
 - else
