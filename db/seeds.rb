@@ -8,14 +8,14 @@
 
 #本番
 #Apple
-team = Team.create!(name: "Apple,Inc.", current_fund: 100, origin_fund: 100, investment_limit: 5*1)
-Team.create!(name: "Apple,Inc.", current_fund: 100, origin_fund: 100, investment_limit: 5*2)
-Team.create!(name: "Apple,Inc.", current_fund: 100, origin_fund: 100, investment_limit: 5*3)
-Team.create!(name: "Apple,Inc.", current_fund: 100, origin_fund: 100, investment_limit: 5*4)
+team = Team.create!(name: "TOTONOU,Inc.", current_fund: 100, origin_fund: 100, investment_limit: 5*1)
+Team.create!(name: "TOTONOU,Inc.", current_fund: 100, origin_fund: 100, investment_limit: 5*2)
+Team.create!(name: "TOTONOU,Inc.", current_fund: 100, origin_fund: 100, investment_limit: 5*3)
+Team.create!(name: "TOTONOU,Inc.", current_fund: 100, origin_fund: 100, investment_limit: 5*4)
 
 #Banana
 (1..4).each do |num|
-  Team.create!(name: "Banana,Inc.", current_fund: 100, origin_fund: 100, investment_limit: 5*num)
+  Team.create!(name: "GLOWtsm,Inc.", current_fund: 100, origin_fund: 100, investment_limit: 5*num)
 end
 #Coconut
 (1..4).each do |num|
