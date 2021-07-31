@@ -35,7 +35,7 @@ class Investment < ApplicationRecord
     market.market_balance_earning = cal_params_market_balance_earning.to_f
     market.market_earning = (market.market_budget_earning + market.market_balance_earning).to_s.to_d.floor(2).to_f
     market.market_employee = cal_market_employee
-    market.balance = cal_params_balance
+    market.balance = cal_params_balance.to_f
     market.save!
   end
 
@@ -130,7 +130,7 @@ class Investment < ApplicationRecord
     else
       (1..17).each do |num|
         if num == market.market_master_id % 18
-          return cal_market_balance_earning(market.market_master.capital_intensive_index, market.market_master.labor_intensive_index, market.market_master.market_growth_index).to_s.to_d.floor(2).to_f
+          return market.balance.to_s.to_d.floor(2).to_f
         end
       end
     end
@@ -158,11 +158,6 @@ class Investment < ApplicationRecord
 
   def cal_market_budget_earning(a,b,c) #a = 資本集約性,b = 労働集約性,c = 市場成長性
     investment_value = ((((budget**(0.6))*(a**3))**(0.51))*(((cal_market_employee**(0.6))*(b**2))**(0.49))*c/100).to_f
-    return cal_market_earning(investment_value)
-  end
-
-  def cal_market_balance_earning(a,b,c) #a = 資本集約性,b = 労働集約性,c = 市場成長性
-    investment_value = ((((market.balance**(0.6))*(a**3))**(0.51))*(((cal_market_employee**(0.6))*(b**2))**(0.49))*c/100).to_f
     return cal_market_earning(investment_value)
   end
 
@@ -199,6 +194,6 @@ class Investment < ApplicationRecord
   end
 
   def cal_balance(a)
-    return ( market.balance + budget ) * a
+    return ( market.balance + market.market_budget_earning ) * a
   end
 end

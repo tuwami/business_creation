@@ -71,7 +71,7 @@ ActiveRecord::Schema.define(version: 2020_06_28_084406) do
     t.float "market_balance_earning", default: 0.0
     t.integer "market_recruiting", default: 0
     t.integer "market_employee", default: 0
-    t.integer "balance", default: 0
+    t.float "balance", default: 0.0
     t.integer "default_each_market_employee", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
