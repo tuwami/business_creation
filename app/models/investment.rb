@@ -35,7 +35,7 @@ class Investment < ApplicationRecord
     market.market_balance_earning = cal_params_market_balance_earning.to_f
     market.market_earning = (market.market_budget_earning + market.market_balance_earning).to_s.to_d.floor(2).to_f
     market.market_employee = cal_market_employee
-    market.balance = cal_params_balance.to_f
+    market.balance = cal_params_balance
     market.save!
   end
 
@@ -130,7 +130,7 @@ class Investment < ApplicationRecord
     else
       (1..17).each do |num|
         if num == market.market_master_id % 18
-          return market.balance.to_s.to_d.floor(2).to_f
+          return market.balance.to_f
         end
       end
     end
@@ -152,7 +152,7 @@ class Investment < ApplicationRecord
     if budget*cal_market_employee < 100
       return Math.sqrt(budget*a*cal_market_employee*b / 3)
     else
-      return Math.sqrt(budget*a*cal_market_employee*b*rand(5000..15000) / 30000)
+      return Math.sqrt(budget*a*cal_market_employee*b*rand(10000..10000) / 30000)
     end
   end
 
@@ -166,17 +166,17 @@ class Investment < ApplicationRecord
       if a < 231
         return (((market.market_master.market_growth_index**(6+team.investments.count/18))*100)*(a**2)/1000).to_f
       elsif a < 369
-        return (((market.market_master.market_growth_index**(6+team.investments.count/18))*100)*(a)*rand(8000..12000)/100000 + 30).to_f
+        return (((market.market_master.market_growth_index**(6+team.investments.count/18))*100)*(a)*rand(10000..10000)/100000 + 30).to_f
       else
-        return (((market.market_master.market_growth_index**(6+team.investments.count/18))*100)*(12*(Math.log10(1000*a)*rand(8000..12000)/10000))).to_f
+        return (((market.market_master.market_growth_index**(6+team.investments.count/18))*100)*(12*(Math.log10(1000*a)*rand(10000..10000)/10000))).to_f
       end
     else
       if a < 231
         return (((market.market_master.market_growth_index**6)*100)*(a**2)/1000).to_f
       elsif a < 369
-        return (((market.market_master.market_growth_index**6)*100)*(a)*rand(8000..12000)/100000 + 30).to_f
+        return (((market.market_master.market_growth_index**6)*100)*(a)*rand(10000..10000)/100000 + 30).to_f
       else
-        return (((market.market_master.market_growth_index**6)*100)*(12*(Math.log10(1000*a)*rand(8000..12000)/10000))).to_f
+        return (((market.market_master.market_growth_index**6)*100)*(12*(Math.log10(1000*a)*rand(10000..10000)/10000))).to_f
       end
     end
   end

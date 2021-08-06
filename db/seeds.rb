@@ -8,26 +8,29 @@
 
 #本番
 #Apple
-team = Team.create!(name: "Apple,Inc.", current_fund: 100, origin_fund: 100, investment_limit: 5*1)
-Team.create!(name: "Apple,Inc.", current_fund: 100, origin_fund: 100, investment_limit: 5*2)
-Team.create!(name: "Apple,Inc.", current_fund: 100, origin_fund: 100, investment_limit: 5*3)
-Team.create!(name: "Apple,Inc.", current_fund: 100, origin_fund: 100, investment_limit: 5*4)
-
+team = Team.create!(name: "Apple,Inc.", current_fund: 50, origin_fund: 50, current_employee: 10, current_novice: 9, investment_limit: 5*1)
+(2..4).each do |num|
+  Team.create!(name: "Apple,Inc.", current_fund: 100, origin_fund: 100, current_employee: 20, current_novice: 19, investment_limit: 5*num)
+end
 #Banana
-(1..4).each do |num|
-  Team.create!(name: "Banana,Inc.", current_fund: 100, origin_fund: 100, investment_limit: 5*num)
+Team.create!(name: "Banana,Inc.", current_fund: 50, origin_fund: 50, current_employee: 10, current_novice: 9, investment_limit: 5*1)
+(2..4).each do |num|
+  Team.create!(name: "Banana,Inc.", current_fund: 100, origin_fund: 100, current_employee: 20, current_novice: 19, investment_limit: 5*num)
 end
 #Coconut
-(1..4).each do |num|
-  Team.create!(name: "Coconut,Inc.", current_fund: 100, origin_fund: 100, investment_limit: 5*num)
+Team.create!(name: "Coconut,Inc.", current_fund: 50, origin_fund: 50, current_employee: 10, current_novice: 9, investment_limit: 5*1)
+(2..4).each do |num|
+  Team.create!(name: "Coconut,Inc.", current_fund: 100, origin_fund: 100, current_employee: 20, current_novice: 19, investment_limit: 5*num)
 end
 #Dragonfruit
-(1..4).each do |num|
-  Team.create!(name: "Dragonfruit,Inc.", current_fund: 100, origin_fund: 100, investment_limit: 5*num)
+Team.create!(name: "Dragonfruit,Inc.", current_fund: 50, origin_fund: 50, current_employee: 10, current_novice: 9, investment_limit: 5*1)
+(2..4).each do |num|
+  Team.create!(name: "Dragonfruit,Inc.", current_fund: 100, origin_fund: 100, current_employee: 20, current_novice: 19, investment_limit: 5*num)
 end
 #Elderberry
-(1..4).each do |num|
-  Team.create!(name: "Elderberr,Inc.", current_fund: 100, origin_fund: 100, investment_limit: 5*num)
+Team.create!(name: "Elderberry,Inc.", current_fund: 50, origin_fund: 50, current_employee: 10, current_novice: 9, investment_limit: 5*1)
+(2..4).each do |num|
+  Team.create!(name: "Elderberr,Inc.", current_fund: 100, origin_fund: 100, current_employee: 20, current_novice: 19, investment_limit: 5*num)
 end
 
 Admin.create!(email: "admin@waqoo.jp", password: "adminadmin")
