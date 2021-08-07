@@ -10,7 +10,7 @@ class InvestmentsController < ApplicationController
     @users = @team.users
     if @team.investments.length != 0 && Time.zone.now - @team.investments.last.created_at < 3
       laps = Time.zone.now - @team.investments.last.created_at
-      render_error("前の投資から10秒以内に投資することはできません。後" + (3-laps).to_i.to_s + "秒待ってください。")
+      render_error("前の投資から3秒以内に投資することはできません。後" + (3-laps).to_i.to_s + "秒待ってください。")
       return
     end
     if params[:investment][:budget].empty? || params[:investment][:assigning].empty?

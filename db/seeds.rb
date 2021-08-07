@@ -6,78 +6,32 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-#本番
+# #本番
 # #Apple
-# team = Team.create!(name: "Apple,Inc.", current_fund: 100, origin_fund: 100, investment_limit: 5*1)
-# Team.create!(name: "Apple,Inc.", current_fund: 100, origin_fund: 100, investment_limit: 5*2)
-# Team.create!(name: "Apple,Inc.", current_fund: 100, origin_fund: 100, investment_limit: 5*3)
-# Team.create!(name: "Apple,Inc.", current_fund: 100, origin_fund: 100, investment_limit: 5*4)
-
+# team = Team.create!(name: "Apple,Inc.", current_fund: 50, origin_fund: 50, current_employee: 10, current_novice: 9, investment_limit: 5*1)
+# (2..4).each do |num|
+#   Team.create!(name: "Apple,Inc.", current_fund: 100, origin_fund: 100, current_employee: 20, current_novice: 19, investment_limit: 5*num)
+# end
 # #Banana
-# (1..4).each do |num|
-#   Team.create!(name: "Banana,Inc.", current_fund: 100, origin_fund: 100, investment_limit: 5*num)
+# Team.create!(name: "Banana,Inc.", current_fund: 50, origin_fund: 50, current_employee: 10, current_novice: 9, investment_limit: 5*1)
+# (2..4).each do |num|
+#   Team.create!(name: "Banana,Inc.", current_fund: 100, origin_fund: 100, current_employee: 20, current_novice: 19, investment_limit: 5*num)
 # end
 # #Coconut
-# (1..4).each do |num|
-#   Team.create!(name: "Coconut,Inc.", current_fund: 100, origin_fund: 100, investment_limit: 5*num)
+# Team.create!(name: "Coconut,Inc.", current_fund: 50, origin_fund: 50, current_employee: 10, current_novice: 9, investment_limit: 5*1)
+# (2..4).each do |num|
+#   Team.create!(name: "Coconut,Inc.", current_fund: 100, origin_fund: 100, current_employee: 20, current_novice: 19, investment_limit: 5*num)
 # end
 # #Dragonfruit
-# (1..4).each do |num|
-#   Team.create!(name: "Dragonfruit,Inc.", current_fund: 100, origin_fund: 100, investment_limit: 5*num)
+# Team.create!(name: "Dragonfruit,Inc.", current_fund: 50, origin_fund: 50, current_employee: 10, current_novice: 9, investment_limit: 5*1)
+# (2..4).each do |num|
+#   Team.create!(name: "Dragonfruit,Inc.", current_fund: 100, origin_fund: 100, current_employee: 20, current_novice: 19, investment_limit: 5*num)
 # end
 # #Elderberry
-# (1..4).each do |num|
-#   Team.create!(name: "Elderberry,Inc.", current_fund: 100, origin_fund: 100, investment_limit: 5*num)
+# Team.create!(name: "Elderberry,Inc.", current_fund: 50, origin_fund: 50, current_employee: 10, current_novice: 9, investment_limit: 5*1)
+# (2..4).each do |num|
+#   Team.create!(name: "Elderberr,Inc.", current_fund: 100, origin_fund: 100, current_employee: 20, current_novice: 19, investment_limit: 5*num)
 # end
-# #Fig
-# (1..4).each do |num|
-#   Team.create!(name: "Fig,Inc.", current_fund: 100, origin_fund: 100, investment_limit: 5*num)
-# end
-# #Grape
-# (1..4).each do |num|
-#   Team.create!(name: "Grape,Inc.", current_fund: 100, origin_fund: 100, investment_limit: 5*num)
-# end
-# #Honeydew
-# (1..4).each do |num|
-#   Team.create!(name: "Honeydew,Inc.", current_fund: 100, origin_fund: 100, investment_limit: 5*num)
-# end
-# #Italian Plum
-# (1..4).each do |num|
-#   Team.create!(name: "Italian Plum,Inc.", current_fund: 100, origin_fund: 100, investment_limit: 5*num)
-# end
-# #Jujube
-# (1..4).each do |num|
-#   Team.create!(name: "Jujube,Inc.", current_fund: 100, origin_fund: 100, investment_limit: 5*num)
-# end
-# #Kiwi
-# (1..4).each do |num|
-#   Team.create!(name: "Kiwi,Inc.", current_fund: 100, origin_fund: 100, investment_limit: 5*num)
-# end
-# #Lemon
-# (1..4).each do |num|
-#   Team.create!(name: "Lemon,Inc.", current_fund: 100, origin_fund: 100, investment_limit: 5*num)
-# end
-# #Muscat
-# (1..4).each do |num|
-#   Team.create!(name: "Muscat,Inc.", current_fund: 100, origin_fund: 100, investment_limit: 5*num)
-# end
-# #Nectarine
-# (1..4).each do |num|
-#   Team.create!(name: "Nectarine,Inc.", current_fund: 100, origin_fund: 100, investment_limit: 5*num)
-# end
-# #Orange
-# (1..4).each do |num|
-#   Team.create!(name: "Orange,Inc.", current_fund: 100, origin_fund: 100, investment_limit: 5*num)
-# end
-# #Peach
-# (1..4).each do |num|
-#   Team.create!(name: "Peach,Inc.", current_fund: 100, origin_fund: 100, investment_limit: 5*num)
-# end
-# #Quince
-# (1..4).each do |num|
-#   Team.create!(name: "Quince,Inc.", current_fund: 100, origin_fund: 100, investment_limit: 5*num)
-# end
-
 
 # Admin.create!(email: "admin@waqoo.jp", password: "adminadmin")
 # Admin.create!(email: "aa@aa", password: "pppppp")
@@ -126,76 +80,90 @@
 
 #Dev
 #Apple
-team = Team.create!(name: "Apple,Inc.", current_fund: 100, origin_fund: 100, investment_limit: 5*1)
-Team.create!(name: "Apple,Inc.", current_fund: 100, origin_fund: 100, investment_limit: 5*2)
-Team.create!(name: "Apple,Inc.", current_fund: 100, origin_fund: 100, investment_limit: 5*3)
-Team.create!(name: "Apple,Inc.", current_fund: 100, origin_fund: 100, investment_limit: 5*4)
-
+team = Team.create!(name: "Apple,Inc.", current_fund: 50, origin_fund: 50, current_employee: 10, current_novice: 9, investment_limit: 5*1)
+(2..4).each do |num|
+  Team.create!(name: "Apple,Inc.", current_fund: 100, origin_fund: 100, current_employee: 20, current_novice: 19, investment_limit: 5*num)
+end
 #Banana
-(1..4).each do |num|
-  Team.create!(name: "Banana,Inc.", current_fund: 100, origin_fund: 100, investment_limit: 5*num)
+Team.create!(name: "Banana,Inc.", current_fund: 50, origin_fund: 50, current_employee: 10, current_novice: 9, investment_limit: 5*1)
+(2..4).each do |num|
+  Team.create!(name: "Banana,Inc.", current_fund: 100, origin_fund: 100, current_employee: 20, current_novice: 19, investment_limit: 5*num)
 end
 #Coconut
-(1..4).each do |num|
-  Team.create!(name: "Coconut,Inc.", current_fund: 100, origin_fund: 100, investment_limit: 5*num)
+Team.create!(name: "Coconut,Inc.", current_fund: 50, origin_fund: 50, current_employee: 10, current_novice: 9, investment_limit: 5*1)
+(2..4).each do |num|
+  Team.create!(name: "Coconut,Inc.", current_fund: 100, origin_fund: 100, current_employee: 20, current_novice: 19, investment_limit: 5*num)
 end
 #Dragonfruit
-(1..4).each do |num|
-  Team.create!(name: "Dragonfruit,Inc.", current_fund: 100, origin_fund: 100, investment_limit: 5*num)
+Team.create!(name: "Dragonfruit,Inc.", current_fund: 50, origin_fund: 50, current_employee: 10, current_novice: 9, investment_limit: 5*1)
+(2..4).each do |num|
+  Team.create!(name: "Dragonfruit,Inc.", current_fund: 100, origin_fund: 100, current_employee: 20, current_novice: 19, investment_limit: 5*num)
 end
 #Elderberry
-(1..4).each do |num|
-  Team.create!(name: "Elderberry,Inc.", current_fund: 100, origin_fund: 100, investment_limit: 5*num)
+Team.create!(name: "Elderberry,Inc.", current_fund: 50, origin_fund: 50, current_employee: 10, current_novice: 9, investment_limit: 5*1)
+(2..4).each do |num|
+  Team.create!(name: "Elderberr,Inc.", current_fund: 100, origin_fund: 100, current_employee: 20, current_novice: 19, investment_limit: 5*num)
 end
 #Fig
-(1..4).each do |num|
-  Team.create!(name: "Fig,Inc.", current_fund: 100, origin_fund: 100, investment_limit: 5*num)
+Team.create!(name: "Fig,Inc.", current_fund: 50, origin_fund: 50, current_employee: 10, current_novice: 9, investment_limit: 5*1)
+(2..4).each do |num|
+  Team.create!(name: "Fig,Inc.", current_fund: 100, origin_fund: 100, current_employee: 20, current_novice: 19, investment_limit: 5*num)
 end
 #Grape
-(1..4).each do |num|
-  Team.create!(name: "Grape,Inc.", current_fund: 100, origin_fund: 100, investment_limit: 5*num)
+Team.create!(name: "Grape,Inc.", current_fund: 50, origin_fund: 50, current_employee: 10, current_novice: 9, investment_limit: 5*1)
+(2..4).each do |num|
+  Team.create!(name: "Grape,Inc.", current_fund: 100, origin_fund: 100, current_employee: 20, current_novice: 19, investment_limit: 5*num)
 end
 #Honeydew
-(1..4).each do |num|
-  Team.create!(name: "Honeydew,Inc.", current_fund: 100, origin_fund: 100, investment_limit: 5*num)
+Team.create!(name: "Honeydew,Inc.", current_fund: 50, origin_fund: 50, current_employee: 10, current_novice: 9, investment_limit: 5*1)
+(2..4).each do |num|
+  Team.create!(name: "Honeydew,Inc.", current_fund: 100, origin_fund: 100, current_employee: 20, current_novice: 19, investment_limit: 5*num)
 end
 #Italian Plum
-(1..4).each do |num|
-  Team.create!(name: "Italian Plum,Inc.", current_fund: 100, origin_fund: 100, investment_limit: 5*num)
+Team.create!(name: "Italian Plum,Inc.", current_fund: 50, origin_fund: 50, current_employee: 10, current_novice: 9, investment_limit: 5*1)
+(2..4).each do |num|
+  Team.create!(name: "Intalian Plum,Inc.", current_fund: 100, origin_fund: 100, current_employee: 20, current_novice: 19, investment_limit: 5*num)
 end
 #Jujube
-(1..4).each do |num|
-  Team.create!(name: "Jujube,Inc.", current_fund: 100, origin_fund: 100, investment_limit: 5*num)
+Team.create!(name: "Jujube,Inc.", current_fund: 50, origin_fund: 50, current_employee: 10, current_novice: 9, investment_limit: 5*1)
+(2..4).each do |num|
+  Team.create!(name: "Jujube,Inc.", current_fund: 100, origin_fund: 100, current_employee: 20, current_novice: 19, investment_limit: 5*num)
 end
 #Kiwi
-(1..4).each do |num|
-  Team.create!(name: "Kiwi,Inc.", current_fund: 100, origin_fund: 100, investment_limit: 5*num)
+Team.create!(name: "Kiwi,Inc.", current_fund: 50, origin_fund: 50, current_employee: 10, current_novice: 9, investment_limit: 5*1)
+(2..4).each do |num|
+  Team.create!(name: "Kiwi,Inc.", current_fund: 100, origin_fund: 100, current_employee: 20, current_novice: 19, investment_limit: 5*num)
 end
 #Lemon
-(1..4).each do |num|
-  Team.create!(name: "Lemon,Inc.", current_fund: 100, origin_fund: 100, investment_limit: 5*num)
+Team.create!(name: "Lemon,Inc.", current_fund: 50, origin_fund: 50, current_employee: 10, current_novice: 9, investment_limit: 5*1)
+(2..4).each do |num|
+  Team.create!(name: "Lemon,Inc.", current_fund: 100, origin_fund: 100, current_employee: 20, current_novice: 19, investment_limit: 5*num)
 end
 #Muscat
-(1..4).each do |num|
-  Team.create!(name: "Muscat,Inc.", current_fund: 100, origin_fund: 100, investment_limit: 5*num)
+Team.create!(name: "Muscat,Inc.", current_fund: 50, origin_fund: 50, current_employee: 10, current_novice: 9, investment_limit: 5*1)
+(2..4).each do |num|
+  Team.create!(name: "Muscat,Inc.", current_fund: 100, origin_fund: 100, current_employee: 20, current_novice: 19, investment_limit: 5*num)
 end
 #Nectarine
-(1..4).each do |num|
-  Team.create!(name: "Nectarine,Inc.", current_fund: 100, origin_fund: 100, investment_limit: 5*num)
+Team.create!(name: "Nectarine,Inc.", current_fund: 50, origin_fund: 50, current_employee: 10, current_novice: 9, investment_limit: 5*1)
+(2..4).each do |num|
+  Team.create!(name: "Nectarine,Inc.", current_fund: 100, origin_fund: 100, current_employee: 20, current_novice: 19, investment_limit: 5*num)
 end
 #Orange
-(1..4).each do |num|
-  Team.create!(name: "Orange,Inc.", current_fund: 100, origin_fund: 100, investment_limit: 5*num)
+Team.create!(name: "Orange,Inc.", current_fund: 50, origin_fund: 50, current_employee: 10, current_novice: 9, investment_limit: 5*1)
+(2..4).each do |num|
+  Team.create!(name: "Orange,Inc.", current_fund: 100, origin_fund: 100, current_employee: 20, current_novice: 19, investment_limit: 5*num)
 end
 #Peach
-(1..4).each do |num|
-  Team.create!(name: "Peach,Inc.", current_fund: 100, origin_fund: 100, investment_limit: 5*num)
+Team.create!(name: "Peach,Inc.", current_fund: 50, origin_fund: 50, current_employee: 10, current_novice: 9, investment_limit: 5*1)
+(2..4).each do |num|
+  Team.create!(name: "Peach,Inc.", current_fund: 100, origin_fund: 100, current_employee: 20, current_novice: 19, investment_limit: 5*num)
 end
 #Quince
-(1..4).each do |num|
-  Team.create!(name: "Quince,Inc.", current_fund: 100, origin_fund: 100, investment_limit: 5*num)
+Team.create!(name: "Quince,Inc.", current_fund: 50, origin_fund: 50, current_employee: 10, current_novice: 9, investment_limit: 5*1)
+(2..4).each do |num|
+  Team.create!(name: "Quince,Inc.", current_fund: 100, origin_fund: 100, current_employee: 20, current_novice: 19, investment_limit: 5*num)
 end
-
 
 
 Admin.create!(email: "admin@waqoo.jp", password: "adminadmin")
@@ -266,44 +234,44 @@ end
 # end
 
 #甲パターン
-marketmaster = MarketMaster.create!(market_name: "Apple", market_growth_index: 1.177, capital_intensive_index: 10.2, labor_intensive_index: 8.25, sales_retention_index: 0.10)
-MarketMaster.create!(market_name: "Banana", market_growth_index: 1.034, capital_intensive_index: 9.40, labor_intensive_index: 4.80, sales_retention_index: 0.63)
-MarketMaster.create!(market_name: "Coconut", market_growth_index: 1.062, capital_intensive_index: 8.65, labor_intensive_index: 7.94, sales_retention_index: 0.55)
-MarketMaster.create!(market_name: "Dragonfruit", market_growth_index: 1.105, capital_intensive_index: 5.50, labor_intensive_index: 11.4, sales_retention_index: 0.89)
-MarketMaster.create!(market_name: "Elderberry", market_growth_index: 1.138, capital_intensive_index: 13.4, labor_intensive_index: 4.85, sales_retention_index: 0.28)
-MarketMaster.create!(market_name: "Fig", market_growth_index: 0.983, capital_intensive_index: 5.21, labor_intensive_index: 13.5, sales_retention_index: 0.80)
-MarketMaster.create!(market_name: "Grape", market_growth_index: 1.092, capital_intensive_index: 15.2, labor_intensive_index: 3.91, sales_retention_index: 0.50)
-MarketMaster.create!(market_name: "Honeydew", market_growth_index: 1.041, capital_intensive_index: 8.93, labor_intensive_index: 8.44, sales_retention_index: 0.34)
-MarketMaster.create!(market_name: "Itarian Plum", market_growth_index: 1.127, capital_intensive_index: 13.8, labor_intensive_index: 4.59, sales_retention_index: 0.11)
-MarketMaster.create!(market_name: "Jujube", market_growth_index: 1.016, capital_intensive_index: 8.40, labor_intensive_index: 5.37, sales_retention_index: 0.70)
-MarketMaster.create!(market_name: "Kiwi", market_growth_index: 1.050, capital_intensive_index: 8.61, labor_intensive_index: 4.29, sales_retention_index: 0.97)
-MarketMaster.create!(market_name: "Lemon", market_growth_index: 1.019, capital_intensive_index: 7.43, labor_intensive_index: 6.69, sales_retention_index: 0.93)
-MarketMaster.create!(market_name: "Muscat", market_growth_index: 1.138, capital_intensive_index: 14.9, labor_intensive_index: 3.21, sales_retention_index: 0.56)
-MarketMaster.create!(market_name: "Nectarine", market_growth_index: 0.993, capital_intensive_index: 5.97, labor_intensive_index: 15.1, sales_retention_index: 0.33)
-MarketMaster.create!(market_name: "Orange", market_growth_index: 1.149, capital_intensive_index: 10.2, labor_intensive_index: 7.62, sales_retention_index: 0.19)
-MarketMaster.create!(market_name: "Peach", market_growth_index: 1.028, capital_intensive_index: 7.40, labor_intensive_index: 12.5, sales_retention_index: 0.20)
-MarketMaster.create!(market_name: "Quince", market_growth_index: 1.030, capital_intensive_index: 6.91, labor_intensive_index: 7.21, sales_retention_index: 0.90)
-MarketMaster.create!(market_name: "Recruitment", market_growth_index: 0.000, capital_intensive_index: 0.00, labor_intensive_index: 0.00, sales_retention_index: 0.00)
+marketmaster = MarketMaster.create!(market_name: "Apple", market_growth_index: 1.00177, capital_intensive_index: 10.2, labor_intensive_index: 8.25, sales_retention_index: 0.11)
+MarketMaster.create!(market_name: "Banana", market_growth_index: 1.00034, capital_intensive_index: 9.40, labor_intensive_index: 4.80, sales_retention_index: 0.63)
+MarketMaster.create!(market_name: "Coconut", market_growth_index: 1.00062, capital_intensive_index: 8.65, labor_intensive_index: 7.94, sales_retention_index: 0.55)
+MarketMaster.create!(market_name: "Dragonfruit", market_growth_index: 1.00105, capital_intensive_index: 5.50, labor_intensive_index: 11.4, sales_retention_index: 0.89)
+MarketMaster.create!(market_name: "Elderberry", market_growth_index: 1.00138, capital_intensive_index: 13.4, labor_intensive_index: 4.85, sales_retention_index: 0.28)
+MarketMaster.create!(market_name: "Fig", market_growth_index: 0.99983, capital_intensive_index: 5.21, labor_intensive_index: 13.5, sales_retention_index: 0.81)
+MarketMaster.create!(market_name: "Grape", market_growth_index: 1.00092, capital_intensive_index: 15.2, labor_intensive_index: 3.91, sales_retention_index: 0.48)
+MarketMaster.create!(market_name: "Honeydew", market_growth_index: 1.00041, capital_intensive_index: 8.93, labor_intensive_index: 8.44, sales_retention_index: 0.34)
+MarketMaster.create!(market_name: "Itarian Plum", market_growth_index: 1.00127, capital_intensive_index: 13.8, labor_intensive_index: 4.59, sales_retention_index: 0.11)
+MarketMaster.create!(market_name: "Jujube", market_growth_index: 1.00016, capital_intensive_index: 8.40, labor_intensive_index: 7.21, sales_retention_index: 0.72)
+MarketMaster.create!(market_name: "Kiwi", market_growth_index: 1.00050, capital_intensive_index: 8.61, labor_intensive_index: 4.29, sales_retention_index: 0.97)
+MarketMaster.create!(market_name: "Lemon", market_growth_index: 1.00019, capital_intensive_index: 7.43, labor_intensive_index: 6.69, sales_retention_index: 0.93)
+MarketMaster.create!(market_name: "Muscat", market_growth_index: 1.00138, capital_intensive_index: 14.9, labor_intensive_index: 3.21, sales_retention_index: 0.56)
+MarketMaster.create!(market_name: "Nectarine", market_growth_index: 0.99993, capital_intensive_index: 5.97, labor_intensive_index: 15.1, sales_retention_index: 0.33)
+MarketMaster.create!(market_name: "Orange", market_growth_index: 1.00149, capital_intensive_index: 10.2, labor_intensive_index: 6.75, sales_retention_index: 0.43)
+MarketMaster.create!(market_name: "Peach", market_growth_index: 1.00028, capital_intensive_index: 7.40, labor_intensive_index: 12.5, sales_retention_index: 0.21)
+MarketMaster.create!(market_name: "Quince", market_growth_index: 1.00030, capital_intensive_index: 6.91, labor_intensive_index: 7.21, sales_retention_index: 0.92)
+MarketMaster.create!(market_name: "Recruitment", market_growth_index: 0.00000, capital_intensive_index: 0.00, labor_intensive_index: 0.00, sales_retention_index: 0.00)
 
 #乙パターン
-# marketmaster = MarketMaster.create!(market_name: "Apple", market_growth_index: 1.127, capital_intensive_index: 13.8, labor_intensive_index: 4.59, sales_retention_index: 0.11)
-# MarketMaster.create!(market_name: "Banana", market_growth_index: 1.016, capital_intensive_index: 8.40, labor_intensive_index: 5.37, sales_retention_index: 0.70)
-# MarketMaster.create!(market_name: "Coconut", market_growth_index: 1.050, capital_intensive_index: 8.61, labor_intensive_index: 4.29, sales_retention_index: 0.97)
-# MarketMaster.create!(market_name: "Dragonfruit", market_growth_index: 1.019, capital_intensive_index: 7.43, labor_intensive_index: 6.69, sales_retention_index: 0.93)
-# MarketMaster.create!(market_name: "Elderberry", market_growth_index: 1.138, capital_intensive_index: 14.9, labor_intensive_index: 3.21, sales_retention_index: 0.56)
-# MarketMaster.create!(market_name: "Fig", market_growth_index: 0.993, capital_intensive_index: 5.97, labor_intensive_index: 15.1, sales_retention_index: 0.33)
-# MarketMaster.create!(market_name: "Grape", market_growth_index: 1.149, capital_intensive_index: 10.2, labor_intensive_index: 7.62, sales_retention_index: 0.19)
-# MarketMaster.create!(market_name: "Honeydew", market_growth_index: 1.028, capital_intensive_index: 7.40, labor_intensive_index: 12.5, sales_retention_index: 0.20)
-# MarketMaster.create!(market_name: "Italian Plum", market_growth_index: 1.030, capital_intensive_index: 6.91, labor_intensive_index: 7.21, sales_retention_index: 0.90)
-# MarketMaster.create!(market_name: "Jujube", market_growth_index: 1.177, capital_intensive_index: 10.2, labor_intensive_index: 8.25, sales_retention_index: 0.10)
-# MarketMaster.create!(market_name: "Kiwi", market_growth_index: 1.034, capital_intensive_index: 9.40, labor_intensive_index: 4.80, sales_retention_index: 0.63)
-# MarketMaster.create!(market_name: "Lemon", market_growth_index: 1.062, capital_intensive_index: 8.65, labor_intensive_index: 7.94, sales_retention_index: 0.55)
-# MarketMaster.create!(market_name: "Muscat", market_growth_index: 1.105, capital_intensive_index: 5.50, labor_intensive_index: 11.4, sales_retention_index: 0.89)
-# MarketMaster.create!(market_name: "Nectarine", market_growth_index: 1.138, capital_intensive_index: 13.4, labor_intensive_index: 4.85, sales_retention_index: 0.28)
-# MarketMaster.create!(market_name: "Orange", market_growth_index: 0.983, capital_intensive_index: 5.21, labor_intensive_index: 13.5, sales_retention_index: 0.80)
-# MarketMaster.create!(market_name: "Peach", market_growth_index: 1.092, capital_intensive_index: 15.2, labor_intensive_index: 3.91, sales_retention_index: 0.50)
-# MarketMaster.create!(market_name: "Quince", market_growth_index: 1.041, capital_intensive_index: 8.93, labor_intensive_index: 8.44, sales_retention_index: 0.34)
-# MarketMaster.create!(market_name: "Recruitment", market_growth_index: 0.000, capital_intensive_index: 0.00, labor_intensive_index: 0.00, sales_retention_index: 0.00)
+# marketmaster = MarketMaster.create!(market_name: "Apple", market_growth_index: 1.00127, capital_intensive_index: 13.8, labor_intensive_index: 4.59, sales_retention_index: 0.11)
+# MarketMaster.create!(market_name: "Banana", market_growth_index: 1.00016, capital_intensive_index: 8.40, labor_intensive_index: 7.21, sales_retention_index: 0.72)
+# MarketMaster.create!(market_name: "Coconut", market_growth_index: 1.00050, capital_intensive_index: 8.61, labor_intensive_index: 4.29, sales_retention_index: 0.97)
+# MarketMaster.create!(market_name: "Dragonfruit", market_growth_index: 1.00019, capital_intensive_index: 7.43, labor_intensive_index: 6.69, sales_retention_index: 0.93)
+# MarketMaster.create!(market_name: "Elderberry", market_growth_index: 1.00138, capital_intensive_index: 14.9, labor_intensive_index: 3.21, sales_retention_index: 0.56)
+# MarketMaster.create!(market_name: "Fig", market_growth_index: 0.99993, capital_intensive_index: 5.97, labor_intensive_index: 15.1, sales_retention_index: 0.33)
+# MarketMaster.create!(market_name: "Grape", market_growth_index: 1.00149, capital_intensive_index: 10.2, labor_intensive_index: 6.75, sales_retention_index: 0.43)
+# MarketMaster.create!(market_name: "Honeydew", market_growth_index: 1.00028, capital_intensive_index: 7.40, labor_intensive_index: 12.5, sales_retention_index: 0.21)
+# MarketMaster.create!(market_name: "Italian Plum", market_growth_index: 1.00030, capital_intensive_index: 6.91, labor_intensive_index: 7.21, sales_retention_index: 0.92)
+# MarketMaster.create!(market_name: "Jujube", market_growth_index: 1.00177, capital_intensive_index: 10.2, labor_intensive_index: 8.25, sales_retention_index: 0.11)
+# MarketMaster.create!(market_name: "Kiwi", market_growth_index: 1.00034, capital_intensive_index: 9.40, labor_intensive_index: 4.80, sales_retention_index: 0.63)
+# MarketMaster.create!(market_name: "Lemon", market_growth_index: 1.00062, capital_intensive_index: 8.65, labor_intensive_index: 7.94, sales_retention_index: 0.55)
+# MarketMaster.create!(market_name: "Muscat", market_growth_index: 1.00105, capital_intensive_index: 5.50, labor_intensive_index: 11.4, sales_retention_index: 0.89)
+# MarketMaster.create!(market_name: "Nectarine", market_growth_index: 1.00138, capital_intensive_index: 13.4, labor_intensive_index: 4.85, sales_retention_index: 0.28)
+# MarketMaster.create!(market_name: "Orange", market_growth_index: 0.99983, capital_intensive_index: 5.21, labor_intensive_index: 13.5, sales_retention_index: 0.81)
+# MarketMaster.create!(market_name: "Peach", market_growth_index: 1.00092, capital_intensive_index: 15.2, labor_intensive_index: 3.91, sales_retention_index: 0.48)
+# MarketMaster.create!(market_name: "Quince", market_growth_index: 1.00041, capital_intensive_index: 8.93, labor_intensive_index: 8.44, sales_retention_index: 0.34)
+# MarketMaster.create!(market_name: "Recruitment", market_growth_index: 0.00000, capital_intensive_index: 0.00, labor_intensive_index: 0.00, sales_retention_index: 0.00)
 
 (1..Team.all.count).each do |n|
   (1..MarketMaster.all.count).each do |m|
