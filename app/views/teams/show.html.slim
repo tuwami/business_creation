@@ -12,7 +12,7 @@ div.row
             td Not Assigned
         tbody
           tr
-            - if @team.id % 4 == 1 #rollplay用
+            - if @team.id % 4 == 1 #roleplay用
               - if @use_histories.count > 1
                 td = "￥#{@team.current_fund} million(#{sprintf("%+.2f",@use_histories.last.fund - @use_histories[-2].fund)})"
                 td = "#{@team.current_employee} person(#{sprintf("%+d",@use_histories.last.employee - @use_histories[-2].employee)})"
@@ -42,7 +42,7 @@ div.row
               end
             end
       div class="graph1"
-        - if @team.id % 4 == 1 #rollplay用
+        - if @team.id % 4 == 1 #roleplay用
           = line_chart [{name: "Fund",data: @use_histories.order(:id).pluck(:fund).map.with_index{|a,i| [i+1,a]}.insert(0,[0,@team.origin_fund])}, \
                         {name: "Entire Employee",data: @use_histories.order(:id).pluck(:employee).map.with_index{|a,i| [i+1,a]}.insert(0,[0,10])},\
                         {name: "Not Assigned", data: @use_histories.order(:id).pluck(:novice).map.with_index{|a,i| [i+1,a]}.insert(0,[0,9])} \
